@@ -49,7 +49,7 @@ export const navMenuConfig: NavMenuConfig = {
   ],
   examplesNav: [
     {
-      title: "Examples",
+      title: "Skydive",
       items: [
         {
           title: "Static Blog",
