@@ -48,27 +48,25 @@ export function MainNavigationMenu() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem> */}
+        
 
-        <NavigationMenuItem>
+        {/* <NavigationMenuItem>
           <NavigationMenuTrigger>{pages.title}</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-1 lg:w-[600px] ">
               {pages.items?.map((page) => (
                 <ListItem key={page.title} {...page} />
+                
               ))}
             </ul>
           </NavigationMenuContent>
+        </NavigationMenuItem> */}
+        <NavigationMenuItem>
+          <NavigationMenuTrigger><a href={pages.href}>{pages.title}</a></NavigationMenuTrigger>
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger>{examples.title}</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {examples.items?.map((example) => (
-                <ListItem key={example.title} {...example} />
-              ))}
-            </ul>
-          </NavigationMenuContent>
+          <NavigationMenuTrigger><a href={examples.href}>{examples.title}</a></NavigationMenuTrigger>
         </NavigationMenuItem>
 
         {links ? (

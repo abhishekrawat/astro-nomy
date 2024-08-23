@@ -3,7 +3,7 @@ import type { NavMenuConfig } from "@/types";
 export const navMenuConfig: NavMenuConfig = {
   pagesNav: [
     {
-      title: "Pages",
+      title: "About Me",
       items: [
         {
           title: "Malaffi Health Portal",
@@ -30,7 +30,7 @@ export const navMenuConfig: NavMenuConfig = {
   ],
   examplesNav: [
     {
-      title: "Skydive",
+      title: "Blog",
       items: [
         {
           title: "Static Blog",

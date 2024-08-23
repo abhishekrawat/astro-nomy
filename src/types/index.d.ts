@@ -2,6 +2,7 @@ export type NavItem = {
   title: string;
   href: string;
   disabled?: boolean;
+  chevron: boolean;
 };
 export type MenuItem = NavItem & {
   image?: string;
