@@ -8,14 +8,33 @@ import Testimonials from "@/components/sections/testimonials.astro";
 
 import { infos } from "@/config/landing";
 import MainLayout from "@/layouts/main-layout.astro";
+
+import ExampleGrid from "@/components/example-grid.astro";
+import PageHeader from "@/components/page-header.astro";
+import { navMenuConfig } from "@/config/nav-menu";
+
+const examples = navMenuConfig.examplesNav[0].items;
+const pages = navMenuConfig.pagesNav[0].items;
 ---
 
-<MainLayout title="Abhishek Rawat">
+<MainLayout title="">
   <HeroLanding />
-  <PreviewLanding />
-  <BentoGrid />
-  <InfoLanding data={infos[0]} reverse={true} />
+  <!-- <PreviewLanding /> -->
+  <!-- <BentoGrid /> -->
+  <!-- <InfoLanding data={infos[0]} reverse={true} /> -->
   <!-- <InfoLanding data={infos[1]} /> -->
-  <Features />
-  <Testimonials />
+  <!-- <Features /> -->
+  <!-- <Testimonials /> -->
+  <div class="bg-background-200">
+    <section class="container py-12">
+      <PageHeader
+        heading="Showcase"
+        text="Few handpicked items from the Blog."
+      />
+
+      <ExampleGrid title="Design" items={pages} link="#" />
+      <ExampleGrid title="Dev" items={examples} link="#"/>
+      <ExampleGrid title="Random" items={examples} link="#"/>
+    </section>
+  </div>
 </MainLayout>

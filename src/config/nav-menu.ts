@@ -6,43 +6,24 @@ export const navMenuConfig: NavMenuConfig = {
       title: "Pages",
       items: [
         {
-          title: "Landing",
+          title: "Malaffi Health Portal",
           href: "/landing",
-          description: "A landing page template with differents sections.",
+          description: "A healthcare app showing your medical records fetched from the HIE.",
           image: "/images/examples/landing.jpg",
         },
         {
-          title: "Changelog",
+          title: "Appointment Booking",
           href: "/releases",
-          description: "A reproduction of Starlog template with Tailwind CSS.",
+          description: "A section of an app to book doctor's appointment",
           image: "/images/examples/changelog.jpg",
         },
         {
-          title: "Waitlist",
+          title: "Augmented Reality",
           href: "/waitlist",
           description:
-            "A waitlist form using Astro DB, React Hook Form & Sonner. Static page.",
+            "Ecommerce app for Homecenter to view furnitures in your own space.",
           image: "/images/examples/waitlist.jpg",
           forceReload: true,
-        },
-        {
-          title: "Pricing",
-          href: "/pricing",
-          description: "Pricing cards, FAQs and more content with price.",
-          image: "/images/examples/pricing.jpg",
-        },
-        {
-          title: "About",
-          href: "/about",
-          description: "A simple page with a masonry gallery and little text.",
-          image: "/images/examples/about.jpg",
-        },
-        {
-          title: "Newsletter",
-          href: "/newsletter",
-          description:
-            "A newsletter form using Astro DB & Simple Stack Form. Counter display!",
-          image: "/images/examples/newsletter.jpg",
         },
       ],
     },
@@ -63,29 +44,6 @@ export const navMenuConfig: NavMenuConfig = {
           description:
             "A Markdown/MDX docs site built using Content Collections.",
           image: "/images/examples/documentation.jpg",
-        },
-        {
-          title: "Anime List",
-          href: "/animes",
-          description:
-            "Fetch anime content from an graphql endpoint. Tabs component.",
-          image: "/images/examples/animes.jpg",
-          launched: true,
-        },
-        {
-          title: "Blog DB",
-          href: "/blog-db",
-          description:
-            "Blog built using Astro DB. With categories, views & likes.",
-          // image: "/images/examples/blog-db.jpg",
-          disabled: true,
-        },
-        {
-          title: "Ecommerce",
-          href: "/products",
-          disabled: true,
-          description: "Ecommerce pages fetching data from an API.",
-          // image: "/images/examples/ecommerce.jpg",
         },
         {
           title: "Authentification",

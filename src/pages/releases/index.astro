@@ -9,11 +9,11 @@ const posts = await getCollection("releases");
 posts.sort((a, b) => +b.data.date - +a.data.date);
 ---
 
-<MainLayout title="Changelog">
+<MainLayout title="Abhishek Rawat - Career so far">
   <section class="container max-w-screen-lg space-y-6 pt-12">
     <PageHeader
-      heading="Changelog"
-      text="Reproduce Astro Starlog template with Tailwind CSS & shadcn/ui."
+      heading="Career"
+      text="A timeline of my career so far."
     />
 
     <ul class="pt-6">
@@ -23,7 +23,7 @@ posts.sort((a, b) => +b.data.date - +a.data.date);
             <div class="md:basis-32 lg:basis-56 shrink-0 grow-0">
               <div class="md:sticky md:top-24 w-auto mr-6">
                 <a
-                  href={`/releases/${post.slug}`}
+                  href={}
                   class="flex flex-col gap-y-2 pb-4"
                 >
                   <Badge
@@ -34,7 +34,7 @@ posts.sort((a, b) => +b.data.date - +a.data.date);
                     {post.data.versionNumber}
                   </Badge>
                   <span class="text-sm text-muted-foreground">
-                    {formatDate(post.data.date)}
+                    {post.data.period}
                   </span>
                 </a>
               </div>
