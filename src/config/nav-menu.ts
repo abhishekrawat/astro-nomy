@@ -4,6 +4,7 @@ export const navMenuConfig: NavMenuConfig = {
   pagesNav: [
     {
       title: "About Me",
+      href: "/about",
       items: [
         {
           title: "Malaffi Health Portal",
@@ -31,6 +32,7 @@ export const navMenuConfig: NavMenuConfig = {
   examplesNav: [
     {
       title: "Blog",
+      href: "/blog",
       items: [
         {
           title: "Static Blog",
