@@ -10,8 +10,10 @@ import { infos } from "@/config/landing";
 import MainLayout from "@/layouts/main-layout.astro";
 
 import ExampleGrid from "@/components/example-grid.astro";
+import BlogList from "@/components/blog-list.astro";
 import PageHeader from "@/components/page-header.astro";
 import { navMenuConfig } from "@/config/nav-menu";
+import { List } from "lucide-react";
 
 const examples = navMenuConfig.examplesNav[0].items;
 const pages = navMenuConfig.pagesNav[0].items;
@@ -25,8 +27,8 @@ const pages = navMenuConfig.pagesNav[0].items;
   <InfoLanding data={infos[1]} />
   <Features />
   <Testimonials /> -->
-  <div class="bg-background-200">
-    <section class="container py-12">
+  <section class="bg-background-200">
+    <div class="container py-12">
       <PageHeader
         heading="Showcase"
         text="Few handpicked items from the Blog."
@@ -34,7 +36,19 @@ const pages = navMenuConfig.pagesNav[0].items;
 
       <ExampleGrid title="Design" items={pages} link="/blog/category/design" />
       <ExampleGrid title="Code" items={examples} link="/blog/category/code" />
-      <ExampleGrid title="Things" items={examples} link="/blog/category/things" />
-    </section>
-  </div>
+      <ExampleGrid
+        title="Things"
+        items={examples}
+        link="/blog/category/things"
+      />
+    </div>
+  </section>
+
+  <section class="container py-12 bg-background">
+    <PageHeader
+    heading="Latest from the blog"
+    text="I try to write as often as possible"
+  />
+    <BlogList/>
+  </section>
 </MainLayout>
