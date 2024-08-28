@@ -1,6 +1,6 @@
 ---
-title: "Pale Blue Dot"
-description: "Carl Sagan's reflection on our planet Earth"
+title: "Designing for Healthcare"
+description: "A summary of my experience with UX in healthcare."
 pubDate: "Sep 10 2023"
 cover: "/images/blog/placeholder-4.jpg"
 category: "design"
