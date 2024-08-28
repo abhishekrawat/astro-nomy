@@ -10,13 +10,26 @@ import { infos } from "@/config/landing";
 import MainLayout from "@/layouts/main-layout.astro";
 
 import ExampleGrid from "@/components/example-grid.astro";
-import BlogList from "@/components/blog-list.astro";
 import PageHeader from "@/components/page-header.astro";
 import { navMenuConfig } from "@/config/nav-menu";
 import { List } from "lucide-react";
 
 const examples = navMenuConfig.examplesNav[0].items;
 const pages = navMenuConfig.pagesNav[0].items;
+
+const allPosts = await Astro.glob("../content/blog/*.md")
+import { getCollection } from 'astro:content';
+
+// Get all blog posts
+const posts = await getCollection('blog');
+
+// Sort posts by date in descending order
+posts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+
+// Limit to the top 5 posts
+const topPosts = posts.slice(0, 3);
+
+
 ---
 
 <MainLayout title="">
@@ -43,13 +56,23 @@ const pages = navMenuConfig.pagesNav[0].items;
       />
     </div>
   </section>
+  
+  <section class="container py-12 bg-background">
+    <PageHeader heading="Latest from the blog" text="I try to write as often as possible"/>
+    <ul>
+      {topPosts.map((post) => (
+        <li>
+          <a href={`/blog/${post.slug}`}>
+            <h3>{post.data.title}</h3>
+            <p>{post.data.description}</p>
+            <p>Published: {new Date(post.data.pubDate).toLocaleDateString()}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
 
-  <!-- To be added later -->
-  <!-- <section class="container py-12 bg-background">
-    <PageHeader
-    heading="Latest from the blog"
-    text="I try to write as often as possible"
-  />
-    <BlogList/>
-  </section> -->
+
+
+
 </MainLayout>
