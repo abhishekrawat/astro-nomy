@@ -28,7 +28,7 @@ export default defineConfig({
     db(),
     simpleStackForm(),
   ],
-  output: "hybrid",
+  output: "static",
   adapter: vercel({
     analytics: true,
   }),

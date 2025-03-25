@@ -25,10 +25,11 @@ const { title, items, link } = Astro.props;
       items &&
         items.map((item) => (
           <a
+            id="card"
             href={item.disabled ? undefined : item.href}
             class={cn(
               "group bg-background rounded-xl overflow-hidden card_border",
-              item.disabled && "cursor-default"
+              item.disabled && "cursor-default",
             )}
             {...(item.forceReload ? { "data-astro-reload": true } : {})}
           >
@@ -43,6 +44,7 @@ const { title, items, link } = Astro.props;
                 alt="placeholder"
                 class="size-full object-cover object-top"
               />
+
               {item.disabled && (
                 <p class="absolute z-10 top-3 right-3 text-foreground bg-gray-900 bg-opacity-35 rounded-full flex items-center justify-center p-1.5">
                   <span class="sr-only">WIP</span>
