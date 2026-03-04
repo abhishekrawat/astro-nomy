@@ -40,6 +40,7 @@ export type SiteConfig = {
     instagram: string;
     x: string;
     linkedin: string;
+    resume: string;
   };
 };
 
