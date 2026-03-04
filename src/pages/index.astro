@@ -86,7 +86,7 @@ const dateOptions: Intl.DateTimeFormatOptions = { day: "2-digit", month: "short"
       <ul>
         {topPosts.map((post) => (
           <li class="group border-b py-5 last:border-0">
-            <a href={`/blog/${post.slug}`}>
+            <a href={`/blog/${post.id}`}>
               <h3 class="text-lg font-medium mb-1 group-hover:underline underline-offset-4">
                 {post.data.title}
               </h3>
