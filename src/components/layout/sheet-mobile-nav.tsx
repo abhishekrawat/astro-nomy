@@ -42,26 +42,21 @@ export function SheetMobileNav({
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="pr-0">
-        <a href="/" className="flex items-center">
-          <Icons.logo className="mr-2 size-8" />
-          <span className="font-bold">{siteConfig.name}</span>
+        <a href="/" className="flex items-center" onClick={() => setOpen(false)}>
+          <span className="font-semibold text-sm">{siteConfig.name}</span>
         </a>
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-10">
           <div className="mt-2 mb-20">
             {mainNavItems?.length ? (
-              <div className="flex flex-col space-y-3">
+              <div className="flex flex-col space-y-1">
                 {mergedMainNavItems?.map(
                   (item) =>
                     item.href && (
                       <a
                         key={item.href}
                         href={item.href}
-                        className="text-muted-foreground"
-                        onClick={() =>
-                          item.href.startsWith("/#")
-                            ? setOpen(false)
-                            : undefined
-                        }
+                        className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1.5"
+                        onClick={() => setOpen(false)}
                       >
                         {item.title}
                       </a>
@@ -80,15 +75,18 @@ export function SheetMobileNav({
                   if (!activeItems || activeItems.length === 0) return null;
 
                   return (
-                    <div key={index} className="flex flex-col space-y-3 pt-6">
-                      <h4 className="font-medium">{item.title}</h4>
+                    <div key={index} className="flex flex-col space-y-1 pt-6">
+                      <h4 className="text-xs uppercase tracking-widest text-muted-foreground/50 font-medium mb-1">
+                        {item.title}
+                      </h4>
                       {activeItems.map((subItem, idx) => (
                         <React.Fragment key={subItem.href + idx}>
                           {subItem.href ? (
                             <a
                               href={subItem.href}
                               target={subItem?.external ? "_blank" : undefined}
-                              className="text-muted-foreground"
+                              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1.5"
+                              onClick={() => setOpen(false)}
                             >
                               {subItem.title}
                             </a>

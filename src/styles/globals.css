@@ -144,6 +144,20 @@
   }
 }
 
+/* ─── Header scroll behaviour ──────────────────────────────────────────── */
+#site-header {
+  background-color: hsl(var(--background));
+  transition:
+    background-color 350ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow       350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+#site-header.header-scrolled {
+  background-color: hsl(var(--background) / 0.88);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: 0 4px 24px hsl(var(--foreground) / 0.04);
+}
+
 /* ─── Page transitions ──────────────────────────────────────────────────── */
 @keyframes vt-out {
   to { opacity: 0; transform: translateY(-8px); }
@@ -221,6 +235,7 @@ button:active {
 
 /* ─── Reduced motion: disable everything ────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
+  #site-header { transition: none; }
   .hero-1, .hero-2, .hero-3 {
     opacity: 1;
     animation: none;
