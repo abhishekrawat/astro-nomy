@@ -1,66 +1,58 @@
 ---
-import { buttonVariants } from "@/components/ui/button";
 import { getCategories } from "@/lib/fetchers";
 import { cn } from "@/lib/utils";
-import { Icon } from "astro-icon/components";
-
-const categories = await getCategories();
 
 type Props = {
   title: string;
+  count?: number;
 };
 
-const { title } = Astro.props;
+const { title, count } = Astro.props;
 const { category } = Astro.params;
+const categories = await getCategories();
 ---
 
-<h1 class="inline-block font-heading text-4xl">{title}</h1>
-
-<div class="flex items-start justify-between my-6 max-md:gap-4">
-  <div
-    class="flex items-center lg:w-full max-w-xs h-10 rounded-md px-2 lg:px-3 border text-muted-foreground"
-  >
-    <Icon name="ri:search-line" class="size-5" />
-    <span class="text-sm ml-2 hidden lg:flex">Search (coming soon)</span>
+<div class="mb-12" data-animate>
+  <div class="flex items-end justify-between mb-6">
+    <div>
+      <p class="text-xs uppercase tracking-widest text-muted-foreground/50 mb-2 font-medium">
+        Writing
+      </p>
+      <h1 class="font-heading text-4xl sm:text-5xl tracking-tight">{title}</h1>
+    </div>
+    {count !== undefined && (
+      <span class="text-sm text-muted-foreground mb-1 hidden sm:block">
+        {count} post{count !== 1 ? "s" : ""}
+      </span>
+    )}
   </div>
 
-  {
-    categories?.length ? (
-      <ul class="flex snap-x snap-mandatory overflow-auto items-center space-x-2 lg:space-x-2.5 pb-2">
-        <li class="flex-shrink-0 snap-start">
-          <a
-            href={`/blog`}
-            class={cn(
-              !category ? "select-none" : "",
-              buttonVariants({
-                variant: !category ? "default" : "outline",
-              })
-            )}
-          >
-            All posts
-          </a>
-        </li>
-        {categories.map((item) => (
-          <li class="flex-shrink-0 snap-start">
-            <a
-              href={`/blog/category/${item}`}
-              class={cn(
-                "capitalize",
-                item === category ? "select-none" : "",
-                buttonVariants({
-                  variant: item === category ? "default" : "outline",
-                })
-              )}
-            >
-              {item}
-            </a>
-          </li>
-        ))}
-      </ul>
-    ) : (
-      <div />
-    )
-  }
+  {categories?.length > 0 && (
+    <div class="flex flex-wrap items-center gap-2" role="navigation" aria-label="Filter by category">
+      <a
+        href="/blog"
+        class={cn(
+          "text-xs px-3 py-1 rounded-full font-medium transition-colors duration-200",
+          !category
+            ? "bg-foreground text-background"
+            : "bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/80"
+        )}
+      >
+        All
+      </a>
+      {categories.map((cat) => (
+        <a
+          href={`/blog/category/${cat}`}
+          class={cn(
+            "text-xs px-3 py-1 rounded-full font-medium capitalize transition-colors duration-200",
+            cat === category
+              ? "bg-foreground text-background"
+              : "bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/80"
+          )}
+        >
+          {cat}
+        </a>
+      ))}
+    </div>
+  )}
 </div>
-
-<hr class="mb-7" />

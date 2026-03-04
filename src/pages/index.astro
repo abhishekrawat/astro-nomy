@@ -1,106 +1,31 @@
 ---
 import HeroLanding from "@/components/sections/hero-landing.astro";
 import LogoBar from "@/components/sections/logo-bar.astro";
+import FeaturedWork from "@/components/sections/featured-work.astro";
 import { getCollection } from "astro:content";
 import MainLayout from "@/layouts/main-layout.astro";
-import { Icon } from "astro-icon/components";
-
-// Featured work
-const allWork = await getCollection("work");
-const featuredWork = allWork
-  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
-  .filter((p) => p.data.featured)
-  .slice(0, 3);
+import { formatDate } from "@/lib/utils";
 
 // Latest blog posts
 const posts = await getCollection("blog");
 posts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 const topPosts = posts.slice(0, 3);
-
-const dateOptions: Intl.DateTimeFormatOptions = { day: "2-digit", month: "short", year: "numeric" };
 ---
 
 <MainLayout title="">
   <HeroLanding />
   <LogoBar />
 
-  <!-- Featured Work -->
-  <section class="container py-16 max-w-screen-lg">
-    <div class="flex items-center justify-between mb-8" data-animate>
-      <h2 class="text-2xl font-heading">Featured Work</h2>
-      <a href="/work" class="text-sm text-muted-foreground hover:text-foreground transition-colors link-underline">
-        View all →
-      </a>
-    </div>
-
-    {featuredWork.length > 0 ? (
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[280px]">
-
-        {/* Hero card — spans 2 cols × 2 rows */}
-        <a
-          href={`/work/${featuredWork[0].id}`}
-          data-animate
-          class="group relative overflow-hidden rounded-2xl bg-muted md:col-span-2 md:row-span-2"
-        >
-          <img
-            src={featuredWork[0].data.cover ?? `https://picsum.photos/seed/${featuredWork[0].id}/1200/900`}
-            alt={featuredWork[0].data.title}
-            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-spring group-hover:scale-[1.03]"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-          <div class="absolute bottom-0 left-0 p-7">
-            <p class="text-xs text-white/50 uppercase tracking-widest mb-2">
-              {featuredWork[0].data.company}
-            </p>
-            <h3 class="text-2xl font-semibold text-white leading-snug mb-3">
-              {featuredWork[0].data.title}
-            </h3>
-            <span class="text-xs bg-white/15 backdrop-blur-sm text-white/90 rounded-full px-3 py-1 border border-white/20">
-              {featuredWork[0].data.category}
-            </span>
-          </div>
-          <div class="absolute top-5 right-5 w-9 h-9 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300">
-            <Icon name="lucide:arrow-up-right" class="w-4 h-4 text-white" />
-          </div>
-        </a>
-
-        {/* Secondary cards */}
-        {featuredWork.slice(1, 3).map((project, i) => (
-          <a
-            href={`/work/${project.id}`}
-            data-animate
-            data-delay={String(i + 1)}
-            class="group relative overflow-hidden rounded-2xl bg-muted"
-          >
-            <img
-              src={project.data.cover ?? `https://picsum.photos/seed/${project.id}/700/500`}
-              alt={project.data.title}
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-spring group-hover:scale-[1.03]"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
-            <div class="absolute bottom-0 left-0 p-5">
-              <h3 class="text-base font-semibold text-white mb-1.5">{project.data.title}</h3>
-              <span class="text-xs bg-white/15 backdrop-blur-sm text-white/90 rounded-full px-2.5 py-0.5 border border-white/20">
-                {project.data.category}
-              </span>
-            </div>
-            <div class="absolute top-4 right-4 w-8 h-8 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300">
-              <Icon name="lucide:arrow-up-right" class="w-3.5 h-3.5 text-white" />
-            </div>
-          </a>
-        ))}
-
-      </div>
-    ) : (
-      <p class="text-muted-foreground text-sm">Case studies coming soon.</p>
-    )}
-  </section>
+  <FeaturedWork />
 
   <!-- Latest Writing -->
   <section class="container py-12 max-w-screen-lg border-t">
     <div class="flex items-center justify-between mb-8" data-animate>
       <h2 class="text-2xl font-heading">Latest Writing</h2>
-      <a href="/blog" class="text-sm text-muted-foreground hover:text-foreground transition-colors link-underline">
+      <a
+        href="/blog"
+        class="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 link-underline"
+      >
         View all →
       </a>
     </div>
@@ -114,9 +39,7 @@ const dateOptions: Intl.DateTimeFormatOptions = { day: "2-digit", month: "short"
                 {post.data.title}
               </h3>
               <p class="text-sm text-muted-foreground mb-1.5">{post.data.description}</p>
-              <p class="text-xs text-muted-foreground">
-                {new Date(post.data.pubDate).toLocaleDateString("en-gb", dateOptions)}
-              </p>
+              <p class="text-xs text-muted-foreground">{formatDate(post.data.pubDate)}</p>
             </a>
           </li>
         ))}

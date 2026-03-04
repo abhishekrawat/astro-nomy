@@ -3,18 +3,84 @@ import BlogHeader from "@/components/blog-header.astro";
 import BlogCard from "@/components/cards/blog-card.astro";
 import MainLayout from "@/layouts/main-layout.astro";
 import { getPosts } from "@/lib/fetchers";
+import { formatDate, getReadingTime } from "@/lib/utils";
 
 const posts = await getPosts();
+const [heroPost, ...restPosts] = posts;
 ---
 
-<MainLayout title="Blog">
-  <section class="container py-10">
-    <BlogHeader title="Blog" />
+<MainLayout title="Writing">
+  <section class="container py-10 max-w-screen-lg">
 
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-9 md:gap-y-11 lg:gap-y-16 lg:gap-x-8"
-    >
-      {posts.map((post) => <BlogCard {...post} />)}
-    </div>
+    <BlogHeader title="Writing" count={posts.length} />
+
+    {posts.length === 0 ? (
+      <p class="text-muted-foreground text-sm">No posts yet. Check back soon.</p>
+    ) : (
+      <>
+        {/* ── Hero post ─────────────────────────────────────── */}
+        <a
+          href={`/blog/${heroPost.id}/`}
+          class="group block mb-14"
+          data-animate
+        >
+          <div class="img-hover-zoom aspect-[21/9] rounded-2xl overflow-hidden bg-muted mb-6">
+            <img
+              loading="eager"
+              class="w-full h-full object-cover"
+              width={1200}
+              height={514}
+              src={heroPost.data.cover ?? `https://picsum.photos/seed/${heroPost.id}/1200/514`}
+              alt={heroPost.data.title}
+              transition:name={`img-${heroPost.id}`}
+            />
+          </div>
+
+          <div class="flex items-center gap-2 text-xs text-muted-foreground mb-3">
+            <span
+              class="capitalize font-medium text-foreground/70"
+              transition:name={`badge-cat-${heroPost.id}`}
+            >
+              {heroPost.data.category}
+            </span>
+            <span aria-hidden="true">·</span>
+            <span transition:name={`date-${heroPost.id}`}>
+              {formatDate(heroPost.data.pubDate)}
+            </span>
+            <span aria-hidden="true">·</span>
+            <span>{getReadingTime(heroPost.body ?? "")} min read</span>
+          </div>
+
+          <h2
+            class="font-heading text-3xl sm:text-4xl leading-tight mb-3 max-w-2xl group-hover:opacity-70 transition-opacity duration-200"
+            transition:name={`title-${heroPost.id}`}
+          >
+            {heroPost.data.title}
+          </h2>
+          <p class="text-muted-foreground leading-relaxed max-w-2xl mb-4 line-clamp-2">
+            {heroPost.data.description}
+          </p>
+          <span class="text-sm font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all duration-200">
+            Read article
+            <span aria-hidden="true">→</span>
+          </span>
+        </a>
+
+        {/* ── Remaining posts grid ──────────────────────────── */}
+        {restPosts.length > 0 && (
+          <>
+            <hr class="mb-12 border-border" />
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12">
+              {restPosts.map((post, i) => (
+                <div data-animate data-delay={String((i % 3) + 1)}>
+                  <BlogCard {...post} />
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+      </>
+    )}
+
   </section>
 </MainLayout>

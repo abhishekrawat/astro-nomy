@@ -2,7 +2,7 @@
 title: "Building a Design System for a National Health Information Exchange"
 description: "When your design system has to work across a government HIE, a patient portal, a provider portal, and a mobile app — all in two languages — scale forces you to make different decisions."
 pubDate: "2024-03-22"
-cover: "/images/blog/placeholder-1.jpg"
+cover: "https://picsum.photos/seed/design-system-hie/1200/600"
 category: "design"
 ---
 

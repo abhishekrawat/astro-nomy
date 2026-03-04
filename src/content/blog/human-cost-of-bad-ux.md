@@ -2,7 +2,7 @@
 title: "The Human Cost of Bad UX in Healthcare"
 description: "Poor interface design in clinical settings isn't just frustrating — it contributes to medical errors, clinician burnout, and patient harm. A case for human factors engineering in healthcare UX."
 pubDate: "2024-11-10"
-cover: "/images/blog/placeholder-1.jpg"
+cover: "https://picsum.photos/seed/healthcare-bad-ux/1200/600"
 category: "design"
 ---
 

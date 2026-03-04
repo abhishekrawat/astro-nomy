@@ -28,6 +28,7 @@ const work = defineCollection({
     team: z.string().optional(),
     category: z.string(),
     cover: z.string().optional(),
+    video: z.string().optional(),
     tags: z.array(z.string()),
     featured: z.boolean().default(false),
     outcome: z.string(),

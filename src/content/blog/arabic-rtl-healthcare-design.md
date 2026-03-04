@@ -2,8 +2,8 @@
 title: "Arabic RTL Design in Healthcare: Lessons from Malaffi"
 description: "Building a bilingual Arabic/English healthcare platform for Abu Dhabi taught me that RTL is not a feature — it's a different design paradigm. Here's what I learned."
 pubDate: "2024-06-18"
-cover: "/images/blog/placeholder-3.jpg"
-category: "design"
+cover: "https://picsum.photos/seed/arabic-rtl/1200/600"
+category: "DIY"
 ---
 
 TODO: Write this post.

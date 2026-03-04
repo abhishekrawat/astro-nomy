@@ -14,6 +14,11 @@ export function formatDate(date: Date) {
   return format(date, "LLL dd, y");
 }
 
+export function getReadingTime(body: string): number {
+  const wordCount = body.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(wordCount / 200));
+}
+
 export function extractSegmentURL(path: string) {
   if (!path) return "";
   if (path === "/") return null;

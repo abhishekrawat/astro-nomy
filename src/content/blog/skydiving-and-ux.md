@@ -2,7 +2,7 @@
 title: "What Skydiving Taught Me About UX Design"
 description: "Coaching skydivers and designing clinical software have more in common than you'd think. Both involve high stakes, irreversible actions, and the dangerous assumption that the user will read the instructions."
 pubDate: "2024-01-14"
-cover: "/images/blog/placeholder-2.jpg"
+cover: "https://picsum.photos/seed/skydiving-ux/1200/600"
 category: "things"
 ---
 

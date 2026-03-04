@@ -2,7 +2,7 @@
 title: "Designing for Clinical Workflows Under Pressure"
 description: "What contextual inquiry in an emergency department taught me about designing software for people who cannot afford to think about software."
 pubDate: "2024-09-05"
-cover: "/images/blog/placeholder-2.jpg"
+cover: "https://picsum.photos/seed/clinical-workflow/1200/600"
 category: "design"
 ---
 

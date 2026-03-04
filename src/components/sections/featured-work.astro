@@ -1,0 +1,175 @@
+---
+/**
+ * FeaturedWork
+ *
+ * One card per row: image pane (left) + metadata (right).
+ * Cards with an optional `video` field play a looping silent preview on hover.
+ * Videos are lazy-loaded — src is assigned only on first mouseenter.
+ */
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
+
+const allWork = await getCollection("work");
+const featured = allWork
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
+  .filter((p) => p.data.featured)
+  .slice(0, 3);
+
+const coverSrc = (id: string, cover?: string) =>
+  cover ?? `https://picsum.photos/seed/${id}/900/600`;
+---
+
+{featured.length > 0 && (
+  <section class="container py-16 max-w-screen-lg">
+
+    <!-- Section header -->
+    <div class="flex items-center justify-between mb-10" data-animate>
+      <h2 class="text-2xl font-heading">Featured Work</h2>
+      <a
+        href="/work"
+        class="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 link-underline"
+      >
+        View all →
+      </a>
+    </div>
+
+    <!-- Card stack — one per row -->
+    <div class="flex flex-col gap-4">
+      {featured.map((project, i) => (
+        <a
+          href={`/work/${project.id}`}
+          data-work-card
+          data-animate
+          data-delay={String(Math.min(i, 3))}
+          class="group flex flex-col md:flex-row rounded-2xl overflow-hidden border border-border
+                 hover:border-foreground/20 hover:shadow-lg dark:hover:shadow-none
+                 transition-[border-color,box-shadow] duration-300"
+        >
+          <!-- ── Image / video pane ─────────────────────── -->
+          <div class="relative aspect-[16/9] md:aspect-auto md:w-[55%] md:self-stretch flex-shrink-0 overflow-hidden bg-muted">
+
+            <img
+              data-media-img
+              src={coverSrc(project.id, project.data.cover)}
+              alt={project.data.title}
+              class="absolute inset-0 h-full w-full object-cover
+                     transition-[transform,opacity] duration-500 ease-spring
+                     group-hover:scale-[1.04]"
+              loading={i === 0 ? "eager" : "lazy"}
+            />
+
+            {/* Video (lazy — src assigned on first hover) */}
+            {project.data.video && (
+              <video
+                data-src={project.data.video}
+                class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500"
+                muted
+                loop
+                playsinline
+                preload="none"
+              />
+            )}
+
+            {/* Preview badge — only on video cards, only on hover */}
+            {project.data.video && (
+              <div
+                class="absolute left-4 top-4 flex items-center gap-1.5 rounded-full border border-white/20
+                       bg-black/40 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm
+                       opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                aria-hidden="true"
+              >
+                <span class="size-1.5 animate-pulse rounded-full bg-white" />
+                Preview
+              </div>
+            )}
+
+          </div>
+
+          <!-- ── Metadata pane ──────────────────────────── -->
+          <div class="flex flex-1 flex-col justify-between p-7 md:p-10 bg-background">
+
+            <div>
+              {/* Company + role */}
+              <p class="mb-1 text-xs uppercase tracking-widest text-muted-foreground/50 font-medium">
+                {project.data.company}
+              </p>
+              <p class="mb-5 text-xs text-muted-foreground">{project.data.role}</p>
+
+              {/* Title */}
+              <h3 class="font-heading text-2xl md:text-3xl leading-tight mb-4
+                         group-hover:opacity-80 transition-opacity duration-200">
+                {project.data.title}
+              </h3>
+
+              {/* Description */}
+              <p class="text-sm text-muted-foreground leading-relaxed line-clamp-3 mb-6">
+                {project.data.description}
+              </p>
+
+              {/* Tags */}
+              <div class="flex flex-wrap gap-2">
+                {project.data.tags.slice(0, 4).map((tag) => (
+                  <span class="rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div class="mt-8 flex items-center gap-2 text-sm font-medium">
+              <span>View case study</span>
+              <Icon
+                name="lucide:arrow-right"
+                class="size-4 transition-transform duration-200 group-hover:translate-x-1"
+              />
+            </div>
+
+          </div>
+        </a>
+      ))}
+    </div>
+
+  </section>
+)}
+
+<script>
+  /**
+   * Video-on-hover — lazy loading + image cross-fade.
+   *
+   * data-work-card  → the <a> card element (mouseenter/leave target)
+   * data-src        → on <video>, deferred src (set only on first hover)
+   * data-media-img  → on <img>, fades out while video plays
+   */
+  function initVideoCards() {
+    document.querySelectorAll<HTMLVideoElement>("video[data-src]").forEach((video) => {
+      if (video.dataset.videoInit) return;
+      video.dataset.videoInit = "1";
+
+      const card = video.closest<HTMLElement>("[data-work-card]");
+      const img  = card?.querySelector<HTMLElement>("[data-media-img]");
+      if (!card) return;
+
+      let loaded = false;
+
+      card.addEventListener("mouseenter", () => {
+        if (!loaded) {
+          video.src = video.dataset.src!;
+          loaded = true;
+        }
+        video.play().catch(() => {});
+        if (img) img.style.opacity = "0";
+        video.style.opacity = "1";
+      });
+
+      card.addEventListener("mouseleave", () => {
+        video.pause();
+        if (img) img.style.opacity = "1";
+        video.style.opacity = "0";
+      });
+    });
+  }
+
+  initVideoCards();
+  document.addEventListener("astro:page-load", initVideoCards);
+</script>
