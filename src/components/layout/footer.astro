@@ -1,8 +1,6 @@
 ---
-import { NewsletterForm } from "@/components/forms/newsletter-form";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { footerLinks, siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
+import { siteConfig } from "@/config/site";
 import { Icon } from "astro-icon/components";
 
 type Props = {
@@ -13,7 +11,7 @@ const { className } = Astro.props;
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class={cn("border-t", className)}>
+<footer class={`border-t${className ? ` ${className}` : ""}`}>
   <!-- <div
     class="container grid grid-cols-1 gap-6 py-14 sm:grid-cols-2 md:grid-cols-5"
   >

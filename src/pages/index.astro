@@ -1,5 +1,6 @@
 ---
 import HeroLanding from "@/components/sections/hero-landing.astro";
+import LogoBar from "@/components/sections/logo-bar.astro";
 import { getCollection } from "astro:content";
 import MainLayout from "@/layouts/main-layout.astro";
 import { Badge } from "@/components/ui/badge";
@@ -21,6 +22,7 @@ const dateOptions: Intl.DateTimeFormatOptions = { day: "2-digit", month: "short"
 
 <MainLayout title="">
   <HeroLanding />
+  <LogoBar />
 
   <!-- Featured Work -->
   <section class="container py-16 max-w-screen-md">
