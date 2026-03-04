@@ -9,73 +9,87 @@ type Props = {
 
 const { className } = Astro.props;
 const currentYear = new Date().getFullYear();
+
+const navLinks = [
+  { label: "Work", href: "/work" },
+  { label: "Blog", href: "/blog" },
+  { label: "About", href: "/about" },
+  { label: "Resume", href: siteConfig.links.resume, external: true },
+];
+
+const socialLinks = [
+  { label: "LinkedIn", href: siteConfig.links.linkedin, icon: "linkedin" },
+  { label: "X (Twitter)", href: siteConfig.links.x, icon: "x" },
+  { label: "Instagram", href: siteConfig.links.instagram, icon: "instagram" },
+  { label: "GitHub", href: siteConfig.links.github, icon: "github" },
+];
 ---
 
-<footer class={`border-t${className ? ` ${className}` : ""}`}>
-  <!-- <div
-    class="container grid grid-cols-1 gap-6 py-14 sm:grid-cols-2 md:grid-cols-5"
-  >
-    {
-      footerLinks.map((section) => (
-        <div>
-          <span class="text-sm font-medium text-foreground">
-            {section.title}
-          </span>
-          <ul class="mt-4 list-inside space-y-3">
-            {section.items?.map((link) => (
-              <li>
-                <a
-                  href={link.href}
-                  class="text-sm text-muted-foreground hover:text-primary"
-                >
-                  {link.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))
-    }
-    <div class="flex flex-col items-end md:col-span-2">
-      Form Newsletter coming soon!
-      <NewsletterForm client:only="react" /> 
-    </div>
-  </div> -->
+<footer class={`border-t${className ? ` ${className}` : ""}`} aria-label="Site footer">
+  <div class="container grid grid-cols-1 sm:grid-cols-2 gap-10 py-12">
 
-  <div class=" py-4">
-    <div class="container flex items-center justify-between">
-      <p class="text-left text-sm text-muted-foreground">
-        © {currentYear}
+    <!-- Brand & description -->
+    <div class="flex flex-col gap-4">
+      <a href="/" class="text-base font-semibold hover:opacity-75 transition-opacity w-fit">
+        Abhishek Rawat
+      </a>
+      <p class="text-sm text-muted-foreground max-w-xs leading-relaxed">
+        Lead UX Designer specialising in healthcare systems, patient portals, and clinical
+        workflow design. Based in Abu Dhabi, UAE.
+      </p>
+      <address class="not-italic text-xs text-muted-foreground/60">
+        Abu Dhabi, UAE ·{" "}
+        <a href={siteConfig.url} class="hover:text-foreground transition-colors">
+          rawat.dev
+        </a>
+      </address>
+
+      <!-- Social links -->
+      <div class="flex items-center gap-4 mt-1" role="list" aria-label="Social media links">
+        {socialLinks.map((s) => (
+          <a
+            href={s.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${s.label} profile`}
+            role="listitem"
+            class="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Icon name={s.icon} class="size-[18px]" />
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav aria-label="Footer navigation" class="flex flex-col gap-3 sm:items-end sm:text-right">
+      <p class="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1 font-medium">
+        Navigation
+      </p>
+      {navLinks.map((link) => (
         <a
-          href={siteConfig.links.linkedin}
-          target="_blank"
-          rel="rawat.dev"
-          class=""
+          href={link.href}
+          {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          class="text-sm text-muted-foreground hover:text-foreground transition-colors w-fit sm:ml-auto"
         >
+          {link.label}{link.external && <span aria-hidden="true"> ↗</span>}
+        </a>
+      ))}
+    </nav>
+
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="border-t">
+    <div class="container flex items-center justify-between py-4">
+      <p class="text-xs text-muted-foreground">
+        © {currentYear}{" "}
+        <a href="/" class="hover:text-foreground transition-colors">
           Abhishek Rawat
         </a>
-        . Hosted on{" "}
-        <a
-          href="https://www.hetzner.com/"
-          target="_blank"
-          rel="rawat.dev"
-          class=""
-        >
-          Hetzner
-        </a>.
+        . All rights reserved.
       </p>
-
-      <div class="flex items-center gap-3">
-        <a
-          href={siteConfig.links.linkedin}
-          target="_blank"
-          rel="noreferrer"
-          class="font-medium underline underline-offset-4"
-        >
-          <Icon name="linkedin" class="size-5" />
-        </a>
-        <ThemeToggle client:load />
-      </div>
+      <ThemeToggle client:load />
     </div>
   </div>
 </footer>

@@ -1,4 +1,4 @@
-import type { SidebarNavItem, SiteConfig } from "@/types";
+import type { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
   name: "Abhishek Rawat",
@@ -15,33 +15,3 @@ export const siteConfig: SiteConfig = {
     resume: "https://drive.google.com/file/d/17iBO9L1QschgMY05YjFAtm8K-3nQ_zX7",
   },
 };
-
-export const footerLinks: SidebarNavItem[] = [
-  {
-    title: "Company",
-    items: [
-      { title: "About", href: "#" },
-      { title: "Enterprise", href: "#" },
-      { title: "Partners", href: "#" },
-      { title: "Jobs", href: "#" },
-    ],
-  },
-  {
-    title: "Product",
-    items: [
-      { title: "Security", href: "#" },
-      { title: "Customization", href: "#" },
-      { title: "Customers", href: "#" },
-      { title: "Changelog", href: "#" },
-    ],
-  },
-  {
-    title: "Docs",
-    items: [
-      { title: "Introduction", href: "#" },
-      { title: "Installation", href: "#" },
-      { title: "Components", href: "#" },
-      { title: "Code Blocks", href: "#" },
-    ],
-  },
-];
