@@ -1,0 +1,103 @@
+---
+export const prerender = true;
+
+import { getCollection, render } from "astro:content";
+import MainLayout from "@/layouts/main-layout.astro";
+import { Badge } from "@/components/ui/badge";
+
+export async function getStaticPaths() {
+  const allWork = await getCollection("work");
+  return allWork.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const { title, description, role, company, duration, team, category, tags, outcome, cover } =
+  project.data;
+---
+
+<MainLayout title={title} description={description}>
+  <article class="container max-w-screen-md py-16 sm:py-20">
+
+    <!-- Back link -->
+    <a
+      href="/work"
+      class="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-10 transition-colors"
+    >
+      ← All Work
+    </a>
+
+    <!-- Header -->
+    <header class="mb-12">
+      <div class="flex flex-wrap gap-2 mb-4">
+        {tags.map((tag) => <Badge variant="secondary">{tag}</Badge>)}
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl font-heading mb-4">{title}</h1>
+      <p class="text-lg text-muted-foreground">{description}</p>
+    </header>
+
+    <!-- Cover image -->
+    {cover && (
+      <div class="w-full rounded-xl overflow-hidden mb-12 bg-muted">
+        <img src={cover} alt={title} class="w-full object-cover" />
+      </div>
+    )}
+
+    <!-- At-a-glance metadata -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border rounded-xl p-6 mb-12 bg-muted/30">
+      <div>
+        <p class="text-xs text-muted-foreground uppercase tracking-wide mb-1">Role</p>
+        <p class="text-sm font-medium">{role}</p>
+      </div>
+      <div>
+        <p class="text-xs text-muted-foreground uppercase tracking-wide mb-1">Company</p>
+        <p class="text-sm font-medium">{company}</p>
+      </div>
+      <div>
+        <p class="text-xs text-muted-foreground uppercase tracking-wide mb-1">Duration</p>
+        <p class="text-sm font-medium">{duration}</p>
+      </div>
+      {team && (
+        <div>
+          <p class="text-xs text-muted-foreground uppercase tracking-wide mb-1">Team</p>
+          <p class="text-sm font-medium">{team}</p>
+        </div>
+      )}
+    </div>
+
+    <!-- Outcome highlight -->
+    <div class="border-l-4 border-primary pl-5 mb-12">
+      <p class="text-xs text-muted-foreground uppercase tracking-wide mb-1">Outcome</p>
+      <p class="text-base font-medium">{outcome}</p>
+    </div>
+
+    <!-- MDX content -->
+    <div class="prose prose-neutral dark:prose-invert max-w-none
+                prose-headings:font-heading prose-headings:tracking-tight
+                prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+                prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-3
+                prose-p:text-muted-foreground prose-p:leading-relaxed
+                prose-a:text-foreground prose-a:underline
+                prose-strong:text-foreground
+                prose-blockquote:border-l-primary prose-blockquote:text-muted-foreground
+                prose-table:text-sm
+                prose-img:rounded-lg">
+      <Content />
+    </div>
+
+    <!-- Footer nav -->
+    <div class="mt-16 pt-8 border-t">
+      <a
+        href="/work"
+        class="text-sm text-muted-foreground hover:text-foreground transition-colors"
+      >
+        ← Back to all work
+      </a>
+    </div>
+
+  </article>
+</MainLayout>

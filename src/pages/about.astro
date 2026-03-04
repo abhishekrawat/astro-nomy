@@ -1,44 +1,228 @@
 ---
 import MainLayout from "@/layouts/main-layout.astro";
-import { Image } from "astro:assets";
-import { hobbies } from "@/config/about.ts";
-import { Button } from "@/components/ui/button";
 import { Icon } from "astro-icon/components";
+import { siteConfig } from "@/config/site";
+
+// TODO: Replace all placeholder content with your real information
+
+const skills = {
+  "Healthcare UX": [
+    "Clinical workflow design",
+    "EHR / EMR systems",
+    "Patient portal design",
+    "Health information exchange (HIE)",
+    "HIPAA-compliant design",
+    "Medical device UX",
+  ],
+  "Research & Strategy": [
+    "Contextual inquiry",
+    "Stakeholder interviews",
+    "Usability testing",
+    "Heuristic evaluation",
+    "Journey mapping",
+    "Service blueprinting",
+  ],
+  "Design & Tools": [
+    "Figma",
+    "Prototyping & interaction design",
+    "Design systems",
+    "Accessibility (WCAG 2.2)",
+    "Arabic RTL design",
+    "Framer",
+  ],
+};
+
+const philosophy = [
+  {
+    title: "TODO: Principle 1",
+    description:
+      "TODO: Describe your first design principle. e.g., 'In healthcare, every design decision has a human consequence. I design for the person first, the pixel second.'",
+  },
+  {
+    title: "TODO: Principle 2",
+    description:
+      "TODO: Describe your second principle. e.g., 'Good UX is invisible. The goal is a clinical workflow so natural that nurses don't have to think — they just act.'",
+  },
+  {
+    title: "TODO: Principle 3",
+    description:
+      "TODO: Describe your third principle. e.g., 'Context is everything. A design that works for a patient at home fails for a clinician in an ICU. I design for environment, not just persona.'",
+  },
+];
+
+const experience = [
+  {
+    role: "Lead UX Designer",
+    company: "Malaffi / Department of Health, Abu Dhabi",
+    period: "TODO: Add dates",
+    description:
+      "TODO: 2–3 sentences on your impact here. What did you lead? What shipped? What changed because of your work?",
+  },
+  {
+    role: "TODO: Previous Role",
+    company: "TODO: Company",
+    period: "TODO: Dates",
+    description: "TODO: Describe your responsibilities and impact.",
+  },
+  {
+    role: "TODO: Earlier Role",
+    company: "TODO: Company",
+    period: "TODO: Dates",
+    description: "TODO: Describe your responsibilities and impact.",
+  },
+];
 ---
 
-<MainLayout title="About" description="Lorem ipsum dolor sit amet">
-  <section class="space-y-5">
-    <section
-      class="relative container max-w-screen-md mb-28 mt-16 sm:mt-20 lg:mt-28"
-    >
-      <div class="flex h-full flex-col justify-between">
-        <div class="grid gap-8 sm:grid-cols-2">
-          <div>
-            <h1 class="text-4xl font-heading text-foreground">Abhishek Rawat</h1>
-            <p class="text-base text-muted-foreground mt-0.5">
-              Lead Healthcare UX Designer
-            </p>
-          </div>
-          <div>
-            <p class="mb-12 text-base text-muted-foreground">
-              Hi there! I'm Abhishek, a designer, maker and a skydiving coach.
-              <br />
-              Lets connect!
-            </p>
-            <div class="flex items-center gap-3">
-              <Button className="rounded-xl">
-                <Icon name="lucide:mail" class="mr-2 size-4" />
-                <a href="mailto:abhishek@rawat.dev">Email me</a>
-              </Button>
+<MainLayout
+  title="About"
+  description="Lead Healthcare UX Designer based in Abu Dhabi — designing clinical systems that improve patient outcomes and reduce clinician burden."
+>
+  <div class="container max-w-screen-md">
 
-              <Button variant="outline" className="rounded-xl">
-                <Icon name="lucide:briefcase" class="mr-2.5 size-4" />
-                <a href="/">View Featured Work</a>
-              </Button>
-            </div>
-          </div>
-        </div>
+    <!-- Hero -->
+    <section class="py-16 sm:py-20">
+      <h1 class="text-4xl sm:text-5xl font-heading mb-4">Abhishek Rawat</h1>
+      <p class="text-xl text-muted-foreground mb-2">
+        Lead UX Designer · Healthcare &amp; Product
+      </p>
+      <p class="text-sm text-muted-foreground mb-8">
+        Based in Abu Dhabi, UAE · Working at Malaffi, Department of Health
+      </p>
+
+      <!-- TODO: Replace the paragraphs below with your real bio -->
+      <div class="prose prose-neutral dark:prose-invert max-w-none prose-p:text-muted-foreground">
+        <p>
+          TODO: Write your opening paragraph. Who are you and what do you do?
+          e.g., "I'm a Lead UX Designer specialising in healthcare systems — specifically the intersection
+          of clinical workflows, patient-facing products, and the technology that connects them."
+        </p>
+        <p>
+          TODO: Write your second paragraph. What's your background and what drives you?
+          e.g., "I've spent the last X years designing for the Abu Dhabi health ecosystem, working
+          across HIE platforms, appointment systems, and mobile health applications used by millions
+          of residents."
+        </p>
+        <p>
+          TODO: Add a human touch. What else defines you?
+          e.g., "Outside of design, I'm a licensed skydiving coach — which has taught me a lot about
+          operating under pressure, trusting systems, and the cost of a bad UX when the stakes are high."
+        </p>
+      </div>
+
+      <div class="flex gap-3 mt-8">
+        <a
+          href={`mailto:abhishek@rawat.dev`}
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border text-sm font-medium hover:bg-muted transition-colors"
+        >
+          <Icon name="lucide:mail" class="size-4" />
+          Email me
+        </a>
+        <a
+          href={siteConfig.links.linkedin}
+          target="_blank"
+          rel="noreferrer"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border text-sm font-medium hover:bg-muted transition-colors"
+        >
+          <Icon name="linkedin" class="size-4" />
+          LinkedIn
+        </a>
+        <a
+          href={siteConfig.links.resume}
+          target="_blank"
+          rel="noreferrer"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border text-sm font-medium hover:bg-muted transition-colors"
+        >
+          <Icon name="download" class="size-4" />
+          Resume
+        </a>
       </div>
     </section>
-  </section>
+
+    <hr class="border-border" />
+
+    <!-- Design Philosophy -->
+    <section class="py-14">
+      <h2 class="text-2xl font-heading mb-2">Design Philosophy</h2>
+      <p class="text-muted-foreground text-sm mb-8">
+        The principles that guide how I approach every project.
+      </p>
+      <div class="grid gap-6 sm:grid-cols-3">
+        {philosophy.map((item) => (
+          <div class="border rounded-xl p-5">
+            <h3 class="font-medium mb-2">{item.title}</h3>
+            <p class="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <hr class="border-border" />
+
+    <!-- Skills & Expertise -->
+    <section class="py-14">
+      <h2 class="text-2xl font-heading mb-2">Skills &amp; Expertise</h2>
+      <p class="text-muted-foreground text-sm mb-8">
+        Domain knowledge and tools I bring to every engagement.
+      </p>
+      <div class="grid gap-8 sm:grid-cols-3">
+        {Object.entries(skills).map(([category, items]) => (
+          <div>
+            <h3 class="font-medium text-sm uppercase tracking-wide text-muted-foreground mb-3">
+              {category}
+            </h3>
+            <ul class="space-y-2">
+              {items.map((skill) => (
+                <li class="text-sm flex items-center gap-2">
+                  <span class="size-1 rounded-full bg-foreground/30 flex-shrink-0" />
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <hr class="border-border" />
+
+    <!-- Experience -->
+    <section class="py-14">
+      <h2 class="text-2xl font-heading mb-2">Experience</h2>
+      <p class="text-muted-foreground text-sm mb-8">
+        TODO: Add your full work history below.
+      </p>
+      <div class="space-y-8">
+        {experience.map((item, i) => (
+          <div class="grid sm:grid-cols-[180px_1fr] gap-2 sm:gap-8">
+            <div class="text-sm text-muted-foreground pt-0.5">{item.period}</div>
+            <div>
+              <p class="font-medium">{item.role}</p>
+              <p class="text-sm text-muted-foreground mb-2">{item.company}</p>
+              <p class="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <hr class="border-border" />
+
+    <!-- Contact CTA -->
+    <section class="py-14">
+      <h2 class="text-2xl font-heading mb-3">Let's work together</h2>
+      <p class="text-muted-foreground text-base mb-6 max-w-md">
+        TODO: Add your availability status and what kind of work you're open to.
+        e.g., "I'm currently open to senior IC and lead roles in healthcare technology.
+        Based in Abu Dhabi, available for remote collaboration globally."
+      </p>
+      <a
+        href={`mailto:abhishek@rawat.dev`}
+        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-foreground text-background text-sm font-medium hover:opacity-90 transition-opacity"
+      >
+        <Icon name="lucide:mail" class="size-4" />
+        Get in touch
+      </a>
+    </section>
+
+  </div>
 </MainLayout>

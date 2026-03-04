@@ -1,6 +1,8 @@
 ---
+export const prerender = true;
+
 import BlogPostLayout from '@/layouts/blog-post.astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -14,7 +16,7 @@ type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
 const slug = Astro.params.slug;
-const { Content } = await post.render();
+const { Content } = await render(post);
 
 if (!slug || !post) {
   return new Response(null, {

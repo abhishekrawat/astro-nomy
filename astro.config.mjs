@@ -3,7 +3,7 @@ import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel";
 import icon from "astro-icon";
 import { defineConfig } from "astro/config";
 import simpleStackForm from "simple-stack-form";
@@ -28,7 +28,7 @@ export default defineConfig({
     db(),
     simpleStackForm(),
   ],
-  output: "static",
+  output: "server",
   adapter: vercel({
     analytics: true,
   }),

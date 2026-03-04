@@ -1,0 +1,97 @@
+---
+import { getCollection } from "astro:content";
+import MainLayout from "@/layouts/main-layout.astro";
+import { Badge } from "@/components/ui/badge";
+
+const allWork = await getCollection("work");
+const sorted = allWork
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+
+const featured = sorted.filter((p) => p.data.featured);
+const other = sorted.filter((p) => !p.data.featured);
+---
+
+<MainLayout title="Work" description="Selected case studies in healthcare and e-commerce UX design.">
+  <section class="container max-w-screen-md py-16 sm:py-20">
+
+    <div class="mb-14">
+      <h1 class="text-4xl font-heading mb-3">Selected Work</h1>
+      <p class="text-muted-foreground text-base max-w-xl">
+        A curated collection of healthcare and product design case studies. Each project
+        documents the problem, process, decisions, and outcomes.
+      </p>
+    </div>
+
+    <!-- Featured projects -->
+    {featured.length > 0 && (
+      <div class="space-y-6 mb-16">
+        {featured.map((project) => (
+          <a
+            href={`/work/${project.slug}`}
+            class="group block border rounded-xl overflow-hidden hover:border-foreground/30 transition-colors"
+          >
+            <!-- Cover image placeholder -->
+            <div class="w-full h-52 bg-muted flex items-center justify-center text-muted-foreground text-sm">
+              {project.data.cover
+                ? <img src={project.data.cover} alt={project.data.title} class="w-full h-full object-cover" />
+                : <span>Cover image — {project.data.title}</span>
+              }
+            </div>
+
+            <div class="p-6">
+              <div class="flex flex-wrap gap-2 mb-3">
+                {project.data.tags.slice(0, 4).map((tag) => (
+                  <Badge variant="secondary">{tag}</Badge>
+                ))}
+              </div>
+
+              <h2 class="text-2xl font-heading mb-1 group-hover:underline underline-offset-4">
+                {project.data.title}
+              </h2>
+
+              <p class="text-sm text-muted-foreground mb-4">{project.data.description}</p>
+
+              <div class="flex flex-wrap gap-x-6 gap-y-1 text-xs text-muted-foreground">
+                <span><strong class="text-foreground">Role:</strong> {project.data.role}</span>
+                <span><strong class="text-foreground">Company:</strong> {project.data.company}</span>
+                <span><strong class="text-foreground">Duration:</strong> {project.data.duration}</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+
+    <!-- Other projects -->
+    {other.length > 0 && (
+      <div>
+        <h2 class="text-xl font-heading mb-6 text-muted-foreground">More Projects</h2>
+        <div class="space-y-4">
+          {other.map((project) => (
+            <a
+              href={`/work/${project.slug}`}
+              class="group flex items-start justify-between border-b pb-4 hover:border-foreground/30 transition-colors"
+            >
+              <div>
+                <h3 class="font-medium group-hover:underline underline-offset-4 mb-0.5">
+                  {project.data.title}
+                </h3>
+                <p class="text-sm text-muted-foreground">{project.data.company} · {project.data.category}</p>
+              </div>
+              <div class="flex flex-wrap gap-1.5 mt-0.5">
+                {project.data.tags.slice(0, 2).map((tag) => (
+                  <Badge variant="outline" className="text-xs">{tag}</Badge>
+                ))}
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {allWork.length === 0 && (
+      <p class="text-muted-foreground">No case studies published yet. Check back soon.</p>
+    )}
+
+  </section>
+</MainLayout>

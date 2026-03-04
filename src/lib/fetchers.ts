@@ -25,10 +25,3 @@ export async function getPostsByCategory(category: string) {
   return posts;
 }
 
-export async function getGuides() {
-  const guides = (await getCollection("guides"))
-    .filter((guide) => guide.data.published)
-    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-  return guides;
-}

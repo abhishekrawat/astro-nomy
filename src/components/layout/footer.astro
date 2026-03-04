@@ -10,6 +10,7 @@ type Props = {
 };
 
 const { className } = Astro.props;
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class={cn("border-t", className)}>
@@ -46,7 +47,7 @@ const { className } = Astro.props;
   <div class=" py-4">
     <div class="container flex items-center justify-between">
       <p class="text-left text-sm text-muted-foreground">
-        © 2024
+        © {currentYear}
         <a
           href={siteConfig.links.linkedin}
           target="_blank"

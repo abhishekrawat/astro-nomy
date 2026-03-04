@@ -1,81 +1,103 @@
 ---
-import BentoGrid from "@/components/sections/bentogrid.astro";
-import Features from "@/components/sections/features.astro";
 import HeroLanding from "@/components/sections/hero-landing.astro";
-import InfoLanding from "@/components/sections/info-landing.astro";
-import PreviewLanding from "@/components/sections/preview-landing.astro";
-import Testimonials from "@/components/sections/testimonials.astro";
-
-
-import { infos } from "@/config/landing";
+import { getCollection } from "astro:content";
 import MainLayout from "@/layouts/main-layout.astro";
+import { Badge } from "@/components/ui/badge";
 
-import ExampleGrid from "@/components/example-grid.astro";
-import PageHeader from "@/components/page-header.astro";
-import { navMenuConfig } from "@/config/nav-menu";
-import { List } from "lucide-react";
+// Featured work
+const allWork = await getCollection("work");
+const featuredWork = allWork
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
+  .filter((p) => p.data.featured)
+  .slice(0, 3);
 
-const examples = navMenuConfig.examplesNav[0].items;
-const pages = navMenuConfig.pagesNav[0].items;
-
-const allPosts = await Astro.glob("../content/blog/*.md")
-import { getCollection } from 'astro:content';
-
-// Get all blog posts
-const posts = await getCollection('blog');
-
-// Sort posts by date in descending order
+// Latest blog posts
+const posts = await getCollection("blog");
 posts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
-
-// Limit to the top 5 posts
 const topPosts = posts.slice(0, 3);
 
-const options = { day: '2-digit', month: 'short', year: 'numeric' };
-
+const dateOptions: Intl.DateTimeFormatOptions = { day: "2-digit", month: "short", year: "numeric" };
 ---
 
 <MainLayout title="">
   <HeroLanding />
-  <!-- <PreviewLanding />
-  <BentoGrid />
-  <InfoLanding data={infos[0]} reverse={true} />
-  <InfoLanding data={infos[1]} />
-  <Features />
-  <Testimonials /> -->
-  <section class="bg-background-200">
-    <div class="container py-12">
-      <PageHeader
-        heading="Showcase"
-        text="Few handpicked items from the Blog."
-      />
 
-      <ExampleGrid title="Design" items={pages} link="/blog/category/design" />
-      <ExampleGrid title="Code" items={examples} link="/blog/category/code" />
-      <ExampleGrid
-        title="Things"
-        items={examples}
-        link="/blog/category/things"
-      />
+  <!-- Featured Work -->
+  <section class="container py-16 max-w-screen-md">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-2xl font-heading">Featured Work</h2>
+      <a href="/work" class="text-sm text-muted-foreground hover:text-foreground transition-colors">
+        View all →
+      </a>
     </div>
-  </section>
-  
-  <section class="container py-12 bg-background">
-    <PageHeader heading="Latest from the blog"/>
-    <!-- <PageHeader heading="Latest from the blog" text="I try to write as often as possible"/> -->
-    <ul class="-mt-4">
-      {topPosts.map((post) => (
-        <li class="group background border-b bg-background overflow-hidden pb-4 pt-4  ">
-          <a href={`/blog/${post.slug}`}>
-            <h3 class="text-2xl font-bold mb-2">{post.data.title}</h3>
-            <p class="text-muted-foreground font-thin text-sm mb-2">{post.data.description}</p>
-            <p class="text-xs text-muted-foreground">{new Date(post.data.pubDate).toLocaleDateString('en-gb', options)}</p>
+
+    {featuredWork.length > 0 ? (
+      <div class="space-y-4">
+        {featuredWork.map((project) => (
+          <a
+            href={`/work/${project.slug}`}
+            class="group flex flex-col sm:flex-row gap-4 border rounded-xl p-5 hover:border-foreground/30 transition-colors"
+          >
+            <!-- Cover thumbnail -->
+            <div class="w-full sm:w-32 h-24 rounded-lg bg-muted flex-shrink-0 overflow-hidden">
+              {project.data.cover ? (
+                <img
+                  src={project.data.cover}
+                  alt={project.data.title}
+                  class="w-full h-full object-cover"
+                />
+              ) : (
+                <div class="w-full h-full bg-muted" />
+              )}
+            </div>
+
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap gap-1.5 mb-2">
+                {project.data.tags.slice(0, 3).map((tag) => (
+                  <Badge variant="secondary" className="text-xs">{tag}</Badge>
+                ))}
+              </div>
+              <h3 class="font-medium group-hover:underline underline-offset-4 mb-1">
+                {project.data.title}
+              </h3>
+              <p class="text-sm text-muted-foreground line-clamp-2">{project.data.description}</p>
+              <p class="text-xs text-muted-foreground mt-2">{project.data.company} · {project.data.role}</p>
+            </div>
           </a>
-        </li>
-      ))}
-    </ul>
+        ))}
+      </div>
+    ) : (
+      <p class="text-muted-foreground text-sm">Case studies coming soon.</p>
+    )}
   </section>
 
+  <!-- Latest from the blog -->
+  <section class="container py-12 max-w-screen-md border-t">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-2xl font-heading">Latest Writing</h2>
+      <a href="/blog" class="text-sm text-muted-foreground hover:text-foreground transition-colors">
+        View all →
+      </a>
+    </div>
 
-
-
+    {topPosts.length > 0 ? (
+      <ul>
+        {topPosts.map((post) => (
+          <li class="group border-b py-5 last:border-0">
+            <a href={`/blog/${post.slug}`}>
+              <h3 class="text-lg font-medium mb-1 group-hover:underline underline-offset-4">
+                {post.data.title}
+              </h3>
+              <p class="text-sm text-muted-foreground mb-1.5">{post.data.description}</p>
+              <p class="text-xs text-muted-foreground">
+                {new Date(post.data.pubDate).toLocaleDateString("en-gb", dateOptions)}
+              </p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="text-muted-foreground text-sm">No posts yet. Check back soon.</p>
+    )}
+  </section>
 </MainLayout>
