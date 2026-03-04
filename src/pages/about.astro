@@ -189,13 +189,13 @@ const experience = [
 
     <!-- Leadership at a glance -->
     <section class="py-14">
-      <h2 class="text-2xl font-heading mb-2">Impact at a Glance</h2>
-      <p class="text-muted-foreground text-sm mb-8">
+      <h2 class="text-2xl font-heading mb-2" data-animate>Impact at a Glance</h2>
+      <p class="text-muted-foreground text-sm mb-8" data-animate data-delay="1">
         TODO: Replace these numbers with your real figures.
       </p>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
-        {leadership.map((item) => (
-          <div class="border rounded-xl p-5 text-center">
+        {leadership.map((item, i) => (
+          <div class="border rounded-xl p-5 text-center" data-animate data-delay={String(i + 1)}>
             <p class="text-3xl font-heading mb-1">{item.stat}</p>
             <p class="text-xs text-muted-foreground uppercase tracking-wide">{item.label}</p>
           </div>
@@ -207,13 +207,13 @@ const experience = [
 
     <!-- Design Philosophy -->
     <section class="py-14">
-      <h2 class="text-2xl font-heading mb-2">Design Philosophy</h2>
-      <p class="text-muted-foreground text-sm mb-8">
+      <h2 class="text-2xl font-heading mb-2" data-animate>Design Philosophy</h2>
+      <p class="text-muted-foreground text-sm mb-8" data-animate data-delay="1">
         The principles that guide how I approach every project.
       </p>
       <div class="grid gap-6 sm:grid-cols-3">
-        {philosophy.map((item) => (
-          <div class="border rounded-xl p-5">
+        {philosophy.map((item, i) => (
+          <div class="border rounded-xl p-5 hover:border-foreground/20 transition-colors duration-300" data-animate data-delay={String(i + 1)}>
             <h3 class="font-medium mb-2">{item.title}</h3>
             <p class="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
           </div>
@@ -230,8 +230,8 @@ const experience = [
         Domain knowledge and tools I bring to every engagement.
       </p>
       <div class="grid gap-8 sm:grid-cols-3">
-        {Object.entries(skills).map(([category, items]) => (
-          <div>
+        {Object.entries(skills).map(([category, items], i) => (
+          <div data-animate data-delay={String(i + 1)}>
             <h3 class="font-medium text-sm uppercase tracking-wide text-muted-foreground mb-3">
               {category}
             </h3>
@@ -258,7 +258,7 @@ const experience = [
       </p>
       <div class="space-y-8">
         {experience.map((item, i) => (
-          <div class="grid sm:grid-cols-[180px_1fr] gap-2 sm:gap-8">
+          <div class="grid sm:grid-cols-[180px_1fr] gap-2 sm:gap-8" data-animate data-delay={String(Math.min(i + 1, 4))}>
             <div class="text-sm text-muted-foreground pt-0.5">{item.period}</div>
             <div>
               <p class="font-medium">{item.role}</p>
@@ -279,8 +279,8 @@ const experience = [
         TODO: Replace with real testimonials. Specific outcomes beat generic praise.
       </p>
       <div class="space-y-6">
-        {testimonials.map((t) => (
-          <figure class="border rounded-xl p-6">
+        {testimonials.map((t, i) => (
+          <figure class="border rounded-xl p-6 hover:border-foreground/20 transition-colors duration-300" data-animate data-delay={String(i + 1)}>
             <blockquote class="text-sm leading-relaxed text-muted-foreground mb-4">
               "{t.quote}"
             </blockquote>

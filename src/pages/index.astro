@@ -26,30 +26,27 @@ const dateOptions: Intl.DateTimeFormatOptions = { day: "2-digit", month: "short"
 
   <!-- Featured Work -->
   <section class="container py-16 max-w-screen-md">
-    <div class="flex items-center justify-between mb-8">
+    <div class="flex items-center justify-between mb-8" data-animate>
       <h2 class="text-2xl font-heading">Featured Work</h2>
-      <a href="/work" class="text-sm text-muted-foreground hover:text-foreground transition-colors">
+      <a href="/work" class="text-sm text-muted-foreground hover:text-foreground transition-colors link-underline">
         View all →
       </a>
     </div>
 
     {featuredWork.length > 0 ? (
       <div class="space-y-4">
-        {featuredWork.map((project) => (
+        {featuredWork.map((project, i) => (
           <a
-            href={`/work/${project.slug}`}
-            class="group flex flex-col sm:flex-row gap-4 border rounded-xl p-5 hover:border-foreground/30 transition-colors"
+            href={`/work/${project.id}`}
+            data-animate
+            data-delay={String(i + 1)}
+            class="group flex flex-col sm:flex-row gap-4 border rounded-xl p-5 hover:border-foreground/20 hover:shadow-sm dark:hover:shadow-none transition-all duration-300"
           >
-            <!-- Cover thumbnail -->
-            <div class="w-full sm:w-32 h-24 rounded-lg bg-muted flex-shrink-0 overflow-hidden">
+            <div class="img-hover-zoom w-full sm:w-32 h-24 rounded-lg bg-muted flex-shrink-0">
               {project.data.cover ? (
-                <img
-                  src={project.data.cover}
-                  alt={project.data.title}
-                  class="w-full h-full object-cover"
-                />
+                <img src={project.data.cover} alt={project.data.title} class="w-full h-full object-cover rounded-lg" />
               ) : (
-                <div class="w-full h-full bg-muted" />
+                <div class="w-full h-full bg-muted rounded-lg" />
               )}
             </div>
 
@@ -59,7 +56,7 @@ const dateOptions: Intl.DateTimeFormatOptions = { day: "2-digit", month: "short"
                   <Badge variant="secondary" className="text-xs">{tag}</Badge>
                 ))}
               </div>
-              <h3 class="font-medium group-hover:underline underline-offset-4 mb-1">
+              <h3 class="font-medium mb-1 link-underline inline-block">
                 {project.data.title}
               </h3>
               <p class="text-sm text-muted-foreground line-clamp-2">{project.data.description}</p>
@@ -73,21 +70,21 @@ const dateOptions: Intl.DateTimeFormatOptions = { day: "2-digit", month: "short"
     )}
   </section>
 
-  <!-- Latest from the blog -->
+  <!-- Latest Writing -->
   <section class="container py-12 max-w-screen-md border-t">
-    <div class="flex items-center justify-between mb-8">
+    <div class="flex items-center justify-between mb-8" data-animate>
       <h2 class="text-2xl font-heading">Latest Writing</h2>
-      <a href="/blog" class="text-sm text-muted-foreground hover:text-foreground transition-colors">
+      <a href="/blog" class="text-sm text-muted-foreground hover:text-foreground transition-colors link-underline">
         View all →
       </a>
     </div>
 
     {topPosts.length > 0 ? (
       <ul>
-        {topPosts.map((post) => (
-          <li class="group border-b py-5 last:border-0">
-            <a href={`/blog/${post.id}`}>
-              <h3 class="text-lg font-medium mb-1 group-hover:underline underline-offset-4">
+        {topPosts.map((post, i) => (
+          <li class="group border-b last:border-0" data-animate data-delay={String(i + 1)}>
+            <a href={`/blog/${post.id}`} class="block py-5">
+              <h3 class="text-lg font-medium mb-1 link-underline inline-block">
                 {post.data.title}
               </h3>
               <p class="text-sm text-muted-foreground mb-1.5">{post.data.description}</p>

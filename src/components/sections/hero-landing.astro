@@ -7,61 +7,40 @@ import { siteConfig } from "@/config/site";
 
 <section class="space-y-6 py-12 sm:py-20 lg:py-20">
   <div class="container flex max-w-5xl flex-col items-center gap-5 text-center">
-    <!-- <a
-      href="https://twitter.com/miickasmt"
-      class={cn(
-        buttonVariants({ variant: "outline", size: "sm", rounded: "full" }),
-        "px-4"
-      )}
-      target="_blank"
-    >
-      <span class="mr-3">🎉</span> Introducing on{" "}
-      <Icon name="twitter" class="ml-2 size-3.5" />
-    </a> -->
 
-    <h1
-      class="text-balance font-heading text-4xl sm:text-5xl md:text-6xl lg:text-[66px]"
-    >
-    👋 I'm Abhishek Rawat{" "}
+    <h1 class="hero-1 text-balance font-heading text-4xl sm:text-5xl md:text-6xl lg:text-[66px]">
+      👋 I'm Abhishek Rawat{" "}
       <br/>
       <span class="text-gradient_indigo-purple font-normal text-3xl md:text-5xl">
         Healthcare Product Designer & Skydiving Coach
       </span>
     </h1>
 
-    <p
-      class="text-balance leading-normal text-muted-foreground sm:text-xl sm:leading-8"
-    >
-    I specialize in designing User Experiences (UI/UX) for healthcare & e-commerce focused applications. I also coach other skydivers to improve their skills. 
+    <p class="hero-2 text-balance leading-normal text-muted-foreground sm:text-xl sm:leading-8">
+      I specialize in designing User Experiences (UI/UX) for healthcare &amp; e-commerce focused applications. I also coach other skydivers to improve their skills.
     </p>
 
-    <div class="flex justify-center space-x-2 md:space-x-4">
+    <div class="hero-3 flex justify-center space-x-2 md:space-x-4">
       <a
         href={siteConfig.links.linkedin}
-        class={cn(buttonVariants({ size: "lg", rounded: "full" }), "gap-2")}
+        class={cn(buttonVariants({ size: "lg", rounded: "full" }), "gap-2 group")}
       >
         <span>Visit Linkedin</span>
-        <Icon name="lucide:arrow-right" class="size-4" />
+        <Icon name="lucide:arrow-right" class="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
       </a>
       <a
         href={siteConfig.links.resume}
         target="_blank"
         rel="noreferrer"
         class={cn(
-          buttonVariants({
-            variant: "outline",
-            size: "lg",
-            rounded: "full",
-          }),
-          "px-5"
+          buttonVariants({ variant: "outline", size: "lg", rounded: "full" }),
+          "px-5 group"
         )}
       >
-        <Icon name="download" class="mr-2 size-4" />
-        <p>
-          <span class="sm:inline-block">Download Resume</span>
-          <!-- <span class="font-semibold">{nFormatter(stars)}</span> -->
-        </p>
+        <Icon name="download" class="mr-2 size-4 transition-transform duration-300 group-hover:translate-y-0.5" />
+        <span class="sm:inline-block">Download Resume</span>
       </a>
     </div>
+
   </div>
 </section>

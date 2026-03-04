@@ -1,8 +1,4 @@
 ---
-// TODO: Replace placeholder company names with your actual employer/client logos.
-// For each entry, add an `svg` field with your inline SVG logo, or an `image` field
-// pointing to a file in /public/images/logos/.
-
 const companies = [
   { name: "Malaffi" },
   { name: "Department of Health, Abu Dhabi" },
@@ -12,14 +8,18 @@ const companies = [
 ];
 ---
 
-<section class="border-y py-8">
+<section class="border-y py-8" data-animate>
   <div class="container">
     <p class="text-center text-xs uppercase tracking-widest text-muted-foreground mb-6">
       Organisations I've designed for
     </p>
     <div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-      {companies.map((company) => (
-        <span class="text-sm font-medium text-muted-foreground/60 hover:text-muted-foreground transition-colors whitespace-nowrap">
+      {companies.map((company, i) => (
+        <span
+          class="text-sm font-medium text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-300 whitespace-nowrap"
+          data-animate
+          data-delay={String(Math.min(i + 1, 4))}
+        >
           {company.name}
         </span>
       ))}
