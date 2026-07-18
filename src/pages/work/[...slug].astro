@@ -6,7 +6,7 @@ import MainLayout from "@/layouts/main-layout.astro";
 import { Badge } from "@/components/ui/badge";
 
 export async function getStaticPaths() {
-  const allWork = await getCollection("work");
+  const allWork = await getCollection("work", ({ data }) => !data.draft);
   return allWork.map((project) => ({
     params: { slug: project.id },
     props: { project },

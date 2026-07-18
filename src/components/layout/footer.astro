@@ -12,7 +12,6 @@ const currentYear = new Date().getFullYear();
 
 const navLinks = [
   { label: "Work", href: "/work" },
-  { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
   { label: "Resume", href: siteConfig.links.resume, external: true },
 ];
@@ -38,11 +37,17 @@ const socialLinks = [
         workflow design. Based in Abu Dhabi, UAE.
       </p>
       <address class="not-italic text-xs text-muted-foreground/60">
-        Abu Dhabi, UAE ·{" "}
+        Abu Dhabi, UAE<span data-local-time></span> ·{" "}
         <a href={siteConfig.url} class="hover:text-foreground transition-colors">
           rawat.dev
         </a>
       </address>
+
+      <!-- Availability -->
+      <p class="flex items-center gap-2 text-xs text-muted-foreground">
+        <span class="availability-dot" aria-hidden="true"></span>
+        Open to lead design roles
+      </p>
 
       <!-- Social links -->
       <div class="flex items-center gap-4 mt-1" role="list" aria-label="Social media links">
@@ -93,3 +98,21 @@ const socialLinks = [
     </div>
   </div>
 </footer>
+
+<script>
+  // Local time in Abu Dhabi — quiet signal that this is a real person in a real place.
+  function tickLocalTime() {
+    const els = document.querySelectorAll<HTMLElement>("[data-local-time]");
+    if (!els.length) return;
+    const time = new Intl.DateTimeFormat("en-GB", {
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: "Asia/Dubai",
+    }).format(new Date());
+    els.forEach((el) => (el.textContent = ` · ${time} GST`));
+  }
+
+  tickLocalTime();
+  setInterval(tickLocalTime, 60_000);
+  document.addEventListener("astro:page-load", tickLocalTime);
+</script>

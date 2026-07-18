@@ -6,75 +6,82 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --background-200: 0 0% 98%;
+    /* Warm paper & ink */
+    --background: 50 20% 98%;
+    --background-200: 50 15% 96%;
 
-    --foreground: 0 0% 9%;
+    --foreground: 60 4% 7%;
 
-    --muted: 0 0% 92%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 48 10% 91%;
+    --muted-foreground: 50 4% 38%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 9%;
+    --popover: 50 20% 98%;
+    --popover-foreground: 60 4% 7%;
 
-    --border: 0 0% 92%;
-    --input: 0 0% 92%;
+    --border: 48 10% 89%;
+    --input: 48 10% 89%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 9%;
+    --card: 50 20% 98%;
+    --card-foreground: 60 4% 7%;
 
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 60 4% 7%;
+    --primary-foreground: 50 20% 98%;
 
-    --secondary: 0 0% 92%;
-    --secondary-foreground: 0 0% 9%;
+    --secondary: 48 10% 91%;
+    --secondary-foreground: 60 4% 7%;
 
-    --accent: 0, 0%, 0%, 0.06;
-    --accent-foreground: 0 0% 9%;
+    --accent: 60, 4%, 7%, 0.06;
+    --accent-foreground: 60 4% 7%;
+
+    /* Single warm accent — availability dot, focus, selection only */
+    --accent-warm: 32 90% 44%;
 
     --destructive: 0 100% 50%;
     --destructive-foreground: 210 40% 98%;
 
-    --ring: 215 20.2% 65.1%;
+    --ring: 32 90% 44%;
 
     --radius: 0.5rem;
-    --ds-shadow-border: 0 0 0 1px rgba(0, 0, 0, .08);
+    --ds-shadow-border: 0 0 0 1px rgba(28, 25, 20, .08);
   }
 
   .dark {
-    --background: 0 0% 4%;
-    --background-200: 0 170% 0%;
+    /* Deep warm ink */
+    --background: 60 4% 5%;
+    --background-200: 60 4% 3%;
 
-    --foreground: 0 0% 93%;
+    --foreground: 48 12% 92%;
 
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 80%;
+    --muted: 50 5% 12%;
+    --muted-foreground: 48 6% 78%;
 
-    --accent: 0, 0%, 100%, .09;
-    --accent-foreground: 0 0% 93%;
+    --accent: 48, 12%, 92%, .09;
+    --accent-foreground: 48 12% 92%;
 
-    --popover: 0 0% 4%;
-    --popover-foreground: 0 0% 93%;
+    --accent-warm: 32 85% 56%;
 
-    --border: 0 0% 12%;
-    --input: 0 0% 12%;
+    --popover: 60 4% 5%;
+    --popover-foreground: 48 12% 92%;
 
-    --card: 0 0% 4%;
-    --card-foreground: 0 0% 93%;
+    --border: 50 5% 13%;
+    --input: 50 5% 13%;
 
-    --primary: 0 0% 93%;
-    --primary-foreground: 222.2 47.4% 1.2%;
+    --card: 60 4% 5%;
+    --card-foreground: 48 12% 92%;
 
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 93%;
+    --primary: 48 12% 92%;
+    --primary-foreground: 60 4% 5%;
+
+    --secondary: 50 5% 12%;
+    --secondary-foreground: 48 12% 92%;
 
     --destructive: 0 63% 31%;
-    --destructive-foreground: 0 0% 93%;
+    --destructive-foreground: 48 12% 92%;
 
-    --ring: 0 0% 12%;
+    --ring: 32 85% 56%;
 
     --radius: 0.5rem;
-    --ds-shadow-border: 0 0 0 1px hsla(0, 0%, 100%, .145);
+    --ds-shadow-border: 0 0 0 1px hsla(48, 12%, 92%, .145);
   }
 }
 
@@ -125,6 +132,11 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
+  ::selection {
+    background: hsl(var(--accent-warm) / 0.22);
+  }
+
+
   /* Documentation part */
   .docs-grid-cols-2 {
     @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4;
@@ -142,6 +154,51 @@
   :not(pre)>code {
     @apply relative rounded border px-[0.3rem] py-[0.2rem] font-mono text-sm bg-background text-foreground;
   }
+}
+
+/* ─── Grain texture ─────────────────────────────────────────────────────── */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  pointer-events: none;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.dark body::after {
+  opacity: 0.045;
+}
+
+/* ─── Serif accent (italic, for single emphasized words) ────────────────── */
+.serif-accent {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* ─── Availability dot with soft pulse ──────────────────────────────────── */
+.availability-dot {
+  position: relative;
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background: hsl(var(--accent-warm));
+  flex-shrink: 0;
+}
+.availability-dot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: hsl(var(--accent-warm));
+  animation: pulse-dot 2.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+@keyframes pulse-dot {
+  0%        { transform: scale(1);   opacity: 0.55; }
+  70%, 100% { transform: scale(2.6); opacity: 0;    }
 }
 
 /* ─── Header scroll behaviour ──────────────────────────────────────────── */
@@ -261,6 +318,10 @@ button:active {
   ::view-transition-old(root),
   ::view-transition-new(root) {
     animation: none;
+  }
+  .availability-dot::before {
+    animation: none;
+    opacity: 0;
   }
 }
 

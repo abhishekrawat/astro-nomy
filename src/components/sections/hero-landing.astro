@@ -5,27 +5,37 @@ import { Icon } from "astro-icon/components";
 import { siteConfig } from "@/config/site";
 ---
 
-<section class="space-y-6 py-12 sm:py-20 lg:py-20">
-  <div class="container flex max-w-5xl flex-col items-center gap-5 text-center">
+<section class="py-16 sm:py-24 lg:py-28">
+  <div class="container max-w-4xl">
 
-    <h1 class="hero-1 text-balance font-heading text-4xl sm:text-5xl md:text-6xl lg:text-[66px]">
-      👋 I'm Abhishek Rawat{" "}
-      <br/>
-      <span class="text-gradient_indigo-purple font-normal text-3xl md:text-5xl">
-        A Healthcare UX design leader
-      </span>
-    </h1>
-
-    <p class="hero-2 text-balance leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-      Master of aligning teams to business goals and collaboration between product, design, engineering and leadership.
+    <!-- Availability kicker -->
+    <p class="hero-1 mb-8 flex items-center gap-2.5 text-[13px] font-medium text-muted-foreground">
+      <span class="availability-dot" aria-hidden="true"></span>
+      Open to lead design roles · Abu Dhabi
     </p>
 
-    <div class="hero-3 flex justify-center space-x-2 md:space-x-4">
+    <!-- Editorial headline -->
+    <h1
+      class="hero-1 text-balance font-heading leading-[1.05] tracking-[-0.03em]
+             text-[clamp(2.5rem,7.5vw,5rem)]"
+    >
+      Design leader for healthcare systems used by
+      <span class="serif-accent">3M+ people</span>.
+    </h1>
+
+    <!-- Subhead -->
+    <p class="hero-2 mt-7 max-w-2xl text-balance text-base leading-relaxed text-muted-foreground sm:text-lg sm:leading-8">
+      I'm Abhishek Rawat. I align product, design, engineering and leadership
+      around what patients and clinicians actually need.
+    </p>
+
+    <!-- CTAs -->
+    <div class="hero-3 mt-9 flex flex-wrap items-center gap-3">
       <a
         href={siteConfig.links.linkedin}
         class={cn(buttonVariants({ size: "lg", rounded: "full" }), "gap-2 group")}
       >
-        <span>Visit Linkedin</span>
+        <span>Visit LinkedIn</span>
         <Icon name="lucide:arrow-right" class="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
       </a>
       <a

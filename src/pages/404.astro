@@ -1,0 +1,28 @@
+---
+export const prerender = true;
+
+import MainLayout from "@/layouts/main-layout.astro";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
+---
+
+<MainLayout title="Page not found">
+  <section class="container flex max-w-3xl flex-col items-start py-24 sm:py-36">
+    <p class="hero-1 mb-4 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground/60">
+      404
+    </p>
+    <h1 class="hero-1 font-heading leading-[1.05] tracking-[-0.03em] text-[clamp(2.25rem,6vw,4rem)]">
+      This page pulled its
+      <span class="serif-accent">reserve chute</span>.
+    </h1>
+    <p class="hero-2 mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
+      It bailed somewhere over the desert. The rest of the site landed safely.
+    </p>
+    <a
+      href="/"
+      class={cn(buttonVariants({ size: "lg", rounded: "full" }), "hero-3 mt-9")}
+    >
+      Back to solid ground
+    </a>
+  </section>
+</MainLayout>

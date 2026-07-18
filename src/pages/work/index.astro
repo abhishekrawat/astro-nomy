@@ -6,8 +6,10 @@ import { Icon } from "astro-icon/components";
 
 const allWork = await getCollection("work");
 const sorted = allWork.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
-const featured = sorted.filter((p) => p.data.featured);
-const other    = sorted.filter((p) => !p.data.featured);
+const featured = sorted.filter((p) => p.data.featured && !p.data.draft);
+const other    = sorted.filter((p) => !p.data.featured && !p.data.draft);
+// Drafts: shown as non-linked rows — breadth of experience without exposing unfinished pages
+const drafts   = sorted.filter((p) => p.data.draft);
 ---
 
 <MainLayout title="Work" description="Selected case studies in healthcare and e-commerce UX design.">
@@ -97,6 +99,33 @@ const other    = sorted.filter((p) => !p.data.featured);
                 />
               </div>
             </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Draft projects — listed, not linked -->
+    {drafts.length > 0 && (
+      <div data-animate class={other.length > 0 ? "mt-16" : ""}>
+        <p class="mb-2 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground/60">
+          Case studies in progress
+        </p>
+        <h2 class="text-xl font-heading mb-6 text-muted-foreground">Also Shipped</h2>
+        <div class="space-y-0">
+          {drafts.map((project, i) => (
+            <div
+              data-animate
+              data-delay={String(Math.min(i + 1, 4))}
+              class="flex items-baseline justify-between gap-6 border-b py-4"
+            >
+              <div class="min-w-0">
+                <h3 class="font-medium">{project.data.title}</h3>
+                <p class="text-sm text-muted-foreground mt-0.5">{project.data.description}</p>
+              </div>
+              <p class="flex-shrink-0 text-xs text-muted-foreground/70 text-right hidden sm:block">
+                {project.data.company} · {project.data.category}
+              </p>
+            </div>
           ))}
         </div>
       </div>

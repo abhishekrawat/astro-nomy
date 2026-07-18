@@ -35,6 +35,7 @@ const work = defineCollection({
     featured: z.boolean().default(false),
     outcome: z.string(),
     protected: z.boolean().default(false),
+    draft: z.boolean().default(false),
     order: z.number().optional(),
     pubDate: z
       .string()

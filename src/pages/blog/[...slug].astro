@@ -5,11 +5,11 @@ import BlogPostLayout from '@/layouts/blog-post.astro';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.id },
-		props: post,
-	}));
+	// Blog hidden until posts are written — no pages generated.
+	// To re-enable: return posts.map(...) as before.
+	// const posts = await getCollection('blog');
+	// return posts.map((post) => ({ params: { slug: post.id }, props: post }));
+	return [];
 }
 
 type Props = CollectionEntry<'blog'>;

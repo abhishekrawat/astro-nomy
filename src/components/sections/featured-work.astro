@@ -12,7 +12,7 @@ import { Icon } from "astro-icon/components";
 const allWork = await getCollection("work");
 const featured = allWork
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
-  .filter((p) => p.data.featured)
+  .filter((p) => p.data.featured && !p.data.draft)
   .slice(0, 3);
 
 const coverSrc = (id: string, cover?: string) =>
@@ -23,8 +23,13 @@ const coverSrc = (id: string, cover?: string) =>
   <section class="container py-16 max-w-screen-lg">
 
     <!-- Section header -->
-    <div class="flex items-center justify-between mb-10" data-animate>
-      <h2 class="text-2xl font-heading">Featured Work</h2>
+    <div class="flex items-end justify-between mb-10" data-animate>
+      <div>
+        <p class="mb-2 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground/60">
+          Case study
+        </p>
+        <h2 class="text-2xl font-heading">Featured Work</h2>
+      </div>
       <a
         href="/work"
         class="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 link-underline"

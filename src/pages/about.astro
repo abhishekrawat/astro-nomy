@@ -3,54 +3,13 @@ import MainLayout from "@/layouts/main-layout.astro";
 import { Icon } from "astro-icon/components";
 import { siteConfig } from "@/config/site";
 
-// TODO: Replace all placeholder content with your real information
-
-const leadership = [
-  {
-    stat: "TODO",
-    label: "Years in healthcare UX",
-    // e.g. "8+"
-  },
-  {
-    stat: "TODO",
-    label: "Products shipped",
-    // e.g. "12"
-  },
-  {
-    stat: "TODO",
-    label: "Users impacted",
-    // e.g. "3M+"
-  },
-  {
-    stat: "TODO",
-    label: "Designers mentored",
-    // e.g. "6"
-  },
-];
-
-const testimonials = [
-  {
-    quote:
-      "TODO: Add a specific testimonial here. Mention a concrete outcome. e.g., 'Abhishek redesigned our clinical documentation flow and cut average documentation time from 14 minutes to 6. That's time clinicians now spend with patients.'",
-    name: "TODO: Full Name",
-    title: "TODO: Job Title",
-    company: "TODO: Company",
-  },
-  {
-    quote:
-      "TODO: Add a second testimonial. e.g., 'What sets Abhishek apart is his ability to navigate clinical stakeholders and engineering constraints simultaneously — and still ship work that patients actually use.'",
-    name: "TODO: Full Name",
-    title: "TODO: Job Title",
-    company: "TODO: Company",
-  },
-  {
-    quote:
-      "TODO: Add a third testimonial. Focus on leadership or collaboration. e.g., 'Abhishek built our design practice from a single-person team to a function that now influences every product decision at the organisation.'",
-    name: "TODO: Full Name",
-    title: "TODO: Job Title",
-    company: "TODO: Company",
-  },
-];
+/**
+ * NOTE — Sections hidden until real content exists (restore from git history):
+ * - "Impact at a Glance" (leadership stats)
+ * - "Design Philosophy" (3 principles)
+ * - "What people say" (testimonials)
+ * Placeholder content read as fake and hurt credibility more than absence.
+ */
 
 const skills = {
   "Healthcare UX": [
@@ -79,43 +38,13 @@ const skills = {
   ],
 };
 
-const philosophy = [
-  {
-    title: "TODO: Principle 1",
-    description:
-      "TODO: Describe your first design principle. e.g., 'In healthcare, every design decision has a human consequence. I design for the person first, the pixel second.'",
-  },
-  {
-    title: "TODO: Principle 2",
-    description:
-      "TODO: Describe your second principle. e.g., 'Good UX is invisible. The goal is a clinical workflow so natural that nurses don't have to think — they just act.'",
-  },
-  {
-    title: "TODO: Principle 3",
-    description:
-      "TODO: Describe your third principle. e.g., 'Context is everything. A design that works for a patient at home fails for a clinician in an ICU. I design for environment, not just persona.'",
-  },
-];
-
 const experience = [
   {
     role: "Lead UX Designer",
     company: "Malaffi / Department of Health, Abu Dhabi",
-    period: "TODO: Add dates",
+    period: "Current",
     description:
-      "TODO: 2–3 sentences on your impact here. What did you lead? What shipped? What changed because of your work?",
-  },
-  {
-    role: "TODO: Previous Role",
-    company: "TODO: Company",
-    period: "TODO: Dates",
-    description: "TODO: Describe your responsibilities and impact.",
-  },
-  {
-    role: "TODO: Earlier Role",
-    company: "TODO: Company",
-    period: "TODO: Dates",
-    description: "TODO: Describe your responsibilities and impact.",
+      "Leading design for the patient-facing portal of Abu Dhabi's Health Information Exchange — clinical records made accessible and understandable, in Arabic and English, for 3M+ residents.",
   },
 ];
 ---
@@ -128,7 +57,10 @@ const experience = [
 
     <!-- Hero -->
     <section class="py-16 sm:py-20">
-      <h1 class="text-4xl sm:text-5xl font-heading mb-4">Abhishek Rawat</h1>
+      <p class="mb-3 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground/60">
+        About
+      </p>
+      <h1 class="font-heading tracking-[-0.02em] text-4xl sm:text-5xl mb-4">Abhishek Rawat</h1>
       <p class="text-xl text-muted-foreground mb-2">
         Lead UX Designer · Healthcare &amp; Product
       </p>
@@ -136,23 +68,19 @@ const experience = [
         Based in Abu Dhabi, UAE · Working at Malaffi, Department of Health
       </p>
 
-      <!-- TODO: Replace the paragraphs below with your real bio -->
       <div class="prose prose-neutral dark:prose-invert max-w-none prose-p:text-muted-foreground">
         <p>
-          TODO: Write your opening paragraph. Who are you and what do you do?
-          e.g., "I'm a Lead UX Designer specialising in healthcare systems — specifically the intersection
-          of clinical workflows, patient-facing products, and the technology that connects them."
+          I'm a Lead UX Designer specialising in healthcare systems — the intersection of
+          clinical workflows, patient-facing products, and the technology that connects them.
         </p>
         <p>
-          TODO: Write your second paragraph. What's your background and what drives you?
-          e.g., "I've spent the last X years designing for the Abu Dhabi health ecosystem, working
-          across HIE platforms, appointment systems, and mobile health applications used by millions
-          of residents."
+          I design for the Abu Dhabi health ecosystem at Malaffi, the region's Health
+          Information Exchange, where the products I work on serve over three million
+          residents in Arabic and English.
         </p>
         <p>
-          TODO: Add a human touch. What else defines you?
-          e.g., "Outside of design, I'm a licensed skydiving coach — which has taught me a lot about
-          operating under pressure, trusting systems, and the cost of a bad UX when the stakes are high."
+          Outside of design, I'm a skydiving coach — which has taught me a lot about operating
+          under pressure, trusting systems, and the real cost of bad UX when the stakes are high.
         </p>
       </div>
 
@@ -187,46 +115,13 @@ const experience = [
 
     <hr class="border-border" />
 
-    <!-- Leadership at a glance -->
-    <section class="py-14">
-      <h2 class="text-2xl font-heading mb-2" data-animate>Impact at a Glance</h2>
-      <p class="text-muted-foreground text-sm mb-8" data-animate data-delay="1">
-        TODO: Replace these numbers with your real figures.
-      </p>
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
-        {leadership.map((item, i) => (
-          <div class="border rounded-xl p-5 text-center" data-animate data-delay={String(i + 1)}>
-            <p class="text-3xl font-heading mb-1">{item.stat}</p>
-            <p class="text-xs text-muted-foreground uppercase tracking-wide">{item.label}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <hr class="border-border" />
-
-    <!-- Design Philosophy -->
-    <section class="py-14">
-      <h2 class="text-2xl font-heading mb-2" data-animate>Design Philosophy</h2>
-      <p class="text-muted-foreground text-sm mb-8" data-animate data-delay="1">
-        The principles that guide how I approach every project.
-      </p>
-      <div class="grid gap-6 sm:grid-cols-3">
-        {philosophy.map((item, i) => (
-          <div class="border rounded-xl p-5 hover:border-foreground/20 transition-colors duration-300" data-animate data-delay={String(i + 1)}>
-            <h3 class="font-medium mb-2">{item.title}</h3>
-            <p class="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <hr class="border-border" />
-
     <!-- Skills & Expertise -->
     <section class="py-14">
-      <h2 class="text-2xl font-heading mb-2">Skills &amp; Expertise</h2>
-      <p class="text-muted-foreground text-sm mb-8">
+      <p class="mb-2 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground/60" data-animate>
+        Capabilities
+      </p>
+      <h2 class="text-2xl font-heading mb-2" data-animate>Skills &amp; Expertise</h2>
+      <p class="text-muted-foreground text-sm mb-8" data-animate data-delay="1">
         Domain knowledge and tools I bring to every engagement.
       </p>
       <div class="grid gap-8 sm:grid-cols-3">
@@ -252,10 +147,10 @@ const experience = [
 
     <!-- Experience -->
     <section class="py-14">
-      <h2 class="text-2xl font-heading mb-2">Experience</h2>
-      <p class="text-muted-foreground text-sm mb-8">
-        TODO: Add your full work history below.
+      <p class="mb-2 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground/60" data-animate>
+        Track record
       </p>
+      <h2 class="text-2xl font-heading mb-8" data-animate>Experience</h2>
       <div class="space-y-8">
         {experience.map((item, i) => (
           <div class="grid sm:grid-cols-[180px_1fr] gap-2 sm:gap-8" data-animate data-delay={String(Math.min(i + 1, 4))}>
@@ -272,39 +167,15 @@ const experience = [
 
     <hr class="border-border" />
 
-    <!-- Testimonials -->
-    <section class="py-14">
-      <h2 class="text-2xl font-heading mb-2">What people say</h2>
-      <p class="text-muted-foreground text-sm mb-8">
-        TODO: Replace with real testimonials. Specific outcomes beat generic praise.
-      </p>
-      <div class="space-y-6">
-        {testimonials.map((t, i) => (
-          <figure class="border rounded-xl p-6 hover:border-foreground/20 transition-colors duration-300" data-animate data-delay={String(i + 1)}>
-            <blockquote class="text-sm leading-relaxed text-muted-foreground mb-4">
-              "{t.quote}"
-            </blockquote>
-            <figcaption class="flex items-center gap-3">
-              <div class="size-8 rounded-full bg-muted flex-shrink-0" />
-              <div>
-                <p class="text-sm font-medium">{t.name}</p>
-                <p class="text-xs text-muted-foreground">{t.title} · {t.company}</p>
-              </div>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-    </section>
-
-    <hr class="border-border" />
-
     <!-- Contact CTA -->
     <section class="py-14">
-      <h2 class="text-2xl font-heading mb-3">Let's work together</h2>
-      <p class="text-muted-foreground text-base mb-6 max-w-md">
-        TODO: Add your availability status and what kind of work you're open to.
-        e.g., "I'm currently open to senior IC and lead roles in healthcare technology.
-        Based in Abu Dhabi, available for remote collaboration globally."
+      <p class="mb-3 flex items-center gap-2 text-xs text-muted-foreground" data-animate>
+        <span class="availability-dot" aria-hidden="true"></span>
+        Open to lead design roles
+      </p>
+      <h2 class="text-2xl font-heading mb-3" data-animate>Let's work together</h2>
+      <p class="text-muted-foreground text-base mb-6 max-w-md" data-animate data-delay="1">
+        Based in Abu Dhabi, available for remote collaboration globally.
       </p>
       <a
         href={`mailto:abhishek@rawat.dev`}

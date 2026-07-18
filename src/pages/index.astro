@@ -4,12 +4,13 @@ import LogoBar from "@/components/sections/logo-bar.astro";
 import FeaturedWork from "@/components/sections/featured-work.astro";
 import { getCollection } from "astro:content";
 import MainLayout from "@/layouts/main-layout.astro";
-import { formatDate } from "@/lib/utils";
 
-// Latest blog posts
-const posts = await getCollection("blog");
-posts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
-const topPosts = posts.slice(0, 3);
+// Compact list: work not shown as a featured card (drafts included — breadth
+// of experience without linking to unfinished case studies).
+const allWork = await getCollection("work");
+const otherWork = allWork
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
+  .filter((p) => p.data.draft || !p.data.featured);
 ---
 
 <MainLayout title="">
@@ -18,34 +19,35 @@ const topPosts = posts.slice(0, 3);
 
   <FeaturedWork />
 
-  <!-- Latest Writing -->
-  <section class="container py-12 max-w-screen-lg border-t">
-    <div class="flex items-center justify-between mb-8" data-animate>
-      <h2 class="text-2xl font-heading">Latest Writing</h2>
-      <a
-        href="/blog"
-        class="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 link-underline"
-      >
-        View all →
-      </a>
-    </div>
+  <!-- Selected work — compact, non-linked rows -->
+  {otherWork.length > 0 && (
+    <section class="container py-12 max-w-screen-lg border-t">
+      <div class="mb-8" data-animate>
+        <p class="mb-2 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground/60">
+          Also shipped
+        </p>
+        <h2 class="text-2xl font-heading">Selected Work</h2>
+      </div>
 
-    {topPosts.length > 0 ? (
       <ul>
-        {topPosts.map((post, i) => (
-          <li class="group border-b last:border-0" data-animate data-delay={String(i + 1)}>
-            <a href={`/blog/${post.id}`} class="block py-5">
-              <h3 class="text-lg font-medium mb-1 link-underline inline-block">
-                {post.data.title}
-              </h3>
-              <p class="text-sm text-muted-foreground mb-1.5">{post.data.description}</p>
-              <p class="text-xs text-muted-foreground">{formatDate(post.data.pubDate)}</p>
-            </a>
+        {otherWork.map((project, i) => (
+          <li
+            class="flex flex-col gap-1 border-b py-5 last:border-0 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+            data-animate
+            data-delay={String(Math.min(i + 1, 4))}
+          >
+            <div class="min-w-0">
+              <h3 class="text-lg font-medium">{project.data.title}</h3>
+              <p class="mt-0.5 text-sm text-muted-foreground">
+                {project.data.description}
+              </p>
+            </div>
+            <p class="flex-shrink-0 text-xs text-muted-foreground/70 sm:text-right">
+              {project.data.company} · {project.data.category}
+            </p>
           </li>
         ))}
       </ul>
-    ) : (
-      <p class="text-muted-foreground text-sm">No posts yet. Check back soon.</p>
-    )}
-  </section>
+    </section>
+  )}
 </MainLayout>

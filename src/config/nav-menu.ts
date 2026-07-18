@@ -12,35 +12,11 @@ export const navMenuConfig: NavMenuConfig = {
           description: "Patient-facing HIE portal redesign for 3M+ Abu Dhabi residents.",
           image: "/images/work/malaffi-cover.jpg",
         },
-        {
-          title: "Appointment Booking",
-          href: "/work/appointment-booking",
-          description: "Frictionless doctor booking flow across Abu Dhabi healthcare facilities.",
-          image: "/images/work/appointment-cover.jpg",
-        },
-        {
-          title: "AR Furniture Experience",
-          href: "/work/ar-furniture",
-          description: "Augmented reality shopping for Homecenter — view furniture in your space.",
-          image: "/images/work/ar-cover.jpg",
-        },
       ],
     },
   ],
-  examplesNav: [
-    {
-      title: "Blog",
-      href: "/blog",
-      items: [
-        {
-          title: "Writing",
-          href: "/blog",
-          description: "Thoughts on healthcare UX, design leadership, and building products.",
-          image: "/images/examples/static-blog.jpg",
-        },
-      ],
-    },
-  ],
+  // Blog hidden until posts are written — restore entries here to re-enable
+  examplesNav: [],
   links: [
     {
       title: "About",

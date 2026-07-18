@@ -8,6 +8,8 @@ import { capitalizer } from "@/lib/utils";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
+  // Blog hidden until posts are written — no category pages generated.
+  return [];
   const allPosts = await getCollection("blog");
   const uniqueCategories = [
     ...new Set(allPosts.map((post) => post.data.category).flat()),

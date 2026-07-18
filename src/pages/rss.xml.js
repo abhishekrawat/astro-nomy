@@ -1,20 +1,13 @@
 import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
 import { siteConfig } from '@/config/site';
 
 export async function GET(context) {
-	const posts = (await getCollection('blog')).sort(
-		(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-	);
+	// Blog hidden until posts are written — feed stays valid but empty.
+	// To re-enable, restore: getCollection('blog') → items mapping.
 	return rss({
 		title: siteConfig.name,
 		description: siteConfig.description,
 		site: context.site,
-		items: posts.map((post) => ({
-			title: post.data.title,
-			description: post.data.description,
-			pubDate: post.data.pubDate,
-			link: `/blog/${post.id}/`,
-		})),
+		items: [],
 	});
 }
