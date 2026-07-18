@@ -29,7 +29,7 @@ const { title, description, mainClass } = Astro.props;
         ...navMenuConfig.examplesNav,
       ]}
       slot="mobile-nav-header"
-      client:load
+      client:idle
     />
 
     <!-- Desktop nav -->
@@ -45,7 +45,7 @@ const { title, description, mainClass } = Astro.props;
       >
         Get in touch ↗
       </a>
-      <ThemeToggle client:load />
+      <ThemeToggle client:idle />
     </div>
 
   </Header>

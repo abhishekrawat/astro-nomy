@@ -32,6 +32,16 @@ const {
   type="font/woff2"
   crossorigin
 />
+<link
+  rel="preload"
+  href="/fonts/inter.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
+
+<!-- RSS feed -->
+<link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} — Writing`} href="/rss.xml" />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
@@ -54,6 +64,24 @@ const {
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<!-- JSON-LD: Person structured data -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": siteConfig.name,
+  "url": siteConfig.url,
+  "sameAs": [
+    siteConfig.links.linkedin,
+    siteConfig.links.github,
+    siteConfig.links.x,
+  ],
+  "jobTitle": "Lead Healthcare UX Designer",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Malaffi / Department of Health, Abu Dhabi"
+  }
+})} />
 
 <!-- Dark mode with prevent flickering flash between navigations -->
 <script is:inline>

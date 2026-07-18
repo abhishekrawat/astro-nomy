@@ -105,7 +105,7 @@ export function ThemeToggle() {
     <button
       role="button"
       onClick={toggleTheme}
-      className="min-h-[40px] block focus:outline-none"
+      className="min-h-[40px] w-[22px] block focus:outline-none"
     >
       <span className="sr-only">Toggle mode</span>
       <AnimatePresence initial={false}>
@@ -113,6 +113,7 @@ export function ThemeToggle() {
       </AnimatePresence>
     </button>
   ) : (
-    <div />
+    /* Placeholder reserves exact space before hydration — prevents CLS */
+    <div className="min-h-[40px] w-[22px]" aria-hidden="true" />
   );
 }

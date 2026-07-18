@@ -11,6 +11,8 @@ const { className } = Astro.props;
 
 <header
   id="site-header"
+  transition:name="site-header"
+  transition:animate="none"
   class={cn(
     "flex items-center h-16 z-50 sticky top-0 border-b",
     className
@@ -54,17 +56,17 @@ const { className } = Astro.props;
 
 <!-- Scroll-aware header: frosted glass when page is scrolled -->
 <script is:inline>
-  if (!window.__headerScrollSetup) {
-    window.__headerScrollSetup = true;
-    function syncHeaderScroll() {
-      var h = document.getElementById("site-header");
-      if (h) h.classList.toggle("header-scrolled", window.scrollY > 10);
-    }
-    window.addEventListener("scroll", syncHeaderScroll, { passive: true });
-    document.addEventListener("astro:page-load", syncHeaderScroll);
-    syncHeaderScroll();
-  } else {
+  function syncHeaderScroll() {
     var h = document.getElementById("site-header");
     if (h) h.classList.toggle("header-scrolled", window.scrollY > 10);
   }
+  if (!window.__headerScrollSetup) {
+    window.__headerScrollSetup = true;
+    window.addEventListener("scroll", syncHeaderScroll, { passive: true });
+    // astro:after-swap: new DOM is in place, sync before transition animates in
+    document.addEventListener("astro:after-swap", syncHeaderScroll);
+    // astro:page-load: fires after transitions complete
+    document.addEventListener("astro:page-load", syncHeaderScroll);
+  }
+  syncHeaderScroll();
 </script>

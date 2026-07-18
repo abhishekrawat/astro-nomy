@@ -5,7 +5,7 @@ export const siteConfig: SiteConfig = {
   description:
     "Healthcare product, ux/ui designer, maker and a skydiving coach working at Malaffi, Department of Health, Abu Dhabi.",
   url: "https://rawat.dev",
-  ogImage: "https://astro-nomy.vercel.app/og.jpg",
+  ogImage: "https://rawat.dev/og.jpg",
   links: {
     twitter: "https://x.com/rawat899",
     github: "https://github.com/abhishekrawat",
