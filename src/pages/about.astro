@@ -36,6 +36,13 @@ const skills = {
     "Arabic RTL design",
     "Framer",
   ],
+  "AI & Automation": [
+    "Design-to-code with AI (Figma Code Connect)",
+    "RAG knowledge systems & chatbots",
+    "Internal AI tooling",
+    "AI content pipelines (Strapi)",
+    "AI-assisted prototyping",
+  ],
 };
 
 const experience = [
@@ -44,7 +51,7 @@ const experience = [
     company: "Malaffi / Department of Health, Abu Dhabi",
     period: "Current",
     description:
-      "Leading design for the patient-facing portal of Abu Dhabi's Health Information Exchange — clinical records made accessible and understandable, in Arabic and English, for 3M+ residents.",
+      "Leading design for the patient-facing portal of Abu Dhabi's Health Information Exchange — clinical records made accessible and understandable, in Arabic and English, for 3M+ residents. Drove an AI-assisted upgrade of the Figma design system to Code Connect across all components, cutting design-dev handoff friction.",
   },
 ];
 ---
@@ -77,6 +84,12 @@ const experience = [
           I design for the Abu Dhabi health ecosystem at Malaffi, the region's Health
           Information Exchange, where the products I work on serve over three million
           residents in Arabic and English.
+        </p>
+        <p>
+          I'm also part of our internal AI guild, building tools that make the whole team
+          faster: an AI-assisted upgrade of our Figma design system to Code Connect across
+          every component — cutting design-dev handoff friction — a RAG-powered knowledge
+          repository and chatbot, and AI pipelines for content operations in Strapi.
         </p>
         <p>
           Outside of design, I'm a skydiving coach — which has taught me a lot about operating
@@ -124,7 +137,7 @@ const experience = [
       <p class="text-muted-foreground text-sm mb-8" data-animate data-delay="1">
         Domain knowledge and tools I bring to every engagement.
       </p>
-      <div class="grid gap-8 sm:grid-cols-3">
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {Object.entries(skills).map(([category, items], i) => (
           <div data-animate data-delay={String(i + 1)}>
             <h3 class="font-medium text-sm uppercase tracking-wide text-muted-foreground mb-3">
