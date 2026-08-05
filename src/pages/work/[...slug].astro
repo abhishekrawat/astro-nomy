@@ -33,7 +33,7 @@ const { title, description, role, company, duration, team, category, tags, outco
     <!-- Header -->
     <header class="mb-12">
       <div class="flex flex-wrap gap-2 mb-4">
-        {tags.map((tag) => <Badge variant="secondary">{tag}</Badge>)}
+        {tags.map((tag) => <Badge variant="secondary" radius={"full"}>{tag}</Badge>)}
       </div>
 
       <h1 class="text-4xl sm:text-5xl font-heading mb-4" transition:name={`work-title-${project.id}`}>{title}</h1>
