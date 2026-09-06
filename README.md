@@ -1,101 +1,26 @@
-# Astronomy
+# Abhishek Rawat — Portfolio
 
-An open source application built using the latest features in Astro v4 with shadcn/ui.
+Healthcare product design, AI-assisted delivery and independent builds. Built with Astro, MDX and Tailwind, with native browser interactions and a single self-hosted sans-serif family.
 
-![blog](public/og.jpg)
+## Development
 
-> **Warning**
-> This app is a work in progress. I'm building this in public. You can follow the progress on Twitter [@miickasmt](https://twitter.com/miickasmt).
-> See the roadmap below.
+Requires Node 22.12 or newer. Install with `pnpm install --frozen-lockfile`, then run `npm run dev`.
 
-## About this project
+- `npm run build` generates the static site in `dist/`.
+- `npm test` checks the built routes, links, fragment targets, assets, metadata and editorial publication boundaries.
+- `npm run preview` serves the production build locally.
+- `node scripts/generate-social-card.mjs` regenerates the social JPEG from its editable SVG source.
 
-This project as an experiment to see how a modern app (with features like authentication, subscriptions, API routes, Markdown, Content Collections ...etc) would work in Astro v4 and shadcn/ui.
+See [CONTENT_GUIDE.md](CONTENT_GUIDE.md) for replacing sample narratives, illustrations and the portrait, promoting content for indexing, and enabling optional analytics.
 
-> **Note**
-> I would like to inform you that for the time being, my example app built with Astro.js is still under development and **cannot yet be considered a starter template**.
+## Current scope
 
-## Project Structure
+Home, Work, Builds, Writing and About; four reviewable case studies; three sample essays; a bilingual interface demonstration; responsive project images; accessible navigation and light/dark themes.
 
-```
-├── public/
-│   └── fonts/
-├── src/
-│   ├── components/
-│   ├── config/
-│   ├── content/
-│   ├── hooks/
-│   ├── icons/
-│   ├── layouts/
-│   ├── lib/
-│   ├── pages/
-│   ├── styles/
-│   └── types/
-├── astro.config.mjs
-├── README.md
-├── package.json
-├── tailwind.config.cjs
-└── tsconfig.json
-```
+Sample case studies and essays are labeled and excluded from search indexing, sitemap and RSS until approved. No measured product outcomes or testimonials have been invented. Real project photos, final evidence, a portrait and reviewed content are still needed before promotion.
 
-## Features
+The site builds without Astro Studio or a database connection. Legacy starter dependencies and unused components remain available; they are not required by the portfolio routes. CI now builds and checks the static site instead of synchronizing an Astro Studio database.
 
-- Config files
-- Views Transitions
-- Routing and Layouts
-- React components & hooks
-- UI Components built using **shadcn/ui**
-- Documentation and blog using **MDX** and **Content Collections**
-- Styled using **Tailwind CSS**
-- Validations using **Zod**
-- Written in **TypeScript**
-- 100/100 Lighthouse performance
-- Minimal styling (make it your own!)
-- RSS Feed support
-- Sitemap support
-- Data Fetching
-- API Endpoint
+## Credits
 
-_Not implemented yet :_
-
-- SEO component
-- Subscriptions using **Lemon Squeezy** ?
-
-## Roadmap
-
-- [x] ~Dark mode~
-- [x] ~Add Markdown & MDX support~
-- [x] ~Sheet mobile nav~
-- [x] ~Build **changelog pages**~
-- [x] ~Build **waitlist with React Hook Form**~
-- [x] ~Build **newsletter with Simple Form**~
-- [x] ~Build **animes pages** (graphql)~
-- [ ] Build **blog with Astro DB** (work on it)
-- [ ] Build **ecommerce pages** (work on it)
-- [ ] Build **auth/dashboard pages**
-- [ ] Add search support for blog
-- [ ] Add OG image for blog and others
-- [ ] Add SEO component & metadata
-- [ ] Subscriptions using Stripe (or Lemon Squeezy?)
-
-## Running Locally
-
-1. Install dependencies using pnpm:
-
-```sh
-pnpm install
-```
-
-2. Start the development server:
-
-```sh
-pnpm run dev
-```
-
-## Credit
-
-This theme is based off of the example app [Taxonomy](https://tx.shadcn.com/) of shadcn.
-
-## License
-
-Licensed under the [MIT license](https://github.com/mickasmt/astro-nomy/blob/main/LICENSE.md).
+Originally based on the Astronomy starter by Mickaël, itself inspired by shadcn’s Taxonomy. The original MIT license is retained in [LICENCE.md](LICENCE.md).

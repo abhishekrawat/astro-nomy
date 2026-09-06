@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -87,11 +86,11 @@
 
 @layer base {
   @font-face {
-    font-family: 'CalSans Semibold';
-    src: url('/fonts/calsans-semibold.woff2') format('woff2');
-    font-weight: normal;
+    font-family: 'Inter';
+    src: url('/fonts/inter.woff2') format('woff2');
+    font-weight: 100 900;
     font-style: normal;
-    font-display: optional;
+    font-display: swap;
   }
 
   * {
@@ -170,12 +169,12 @@ body::after {
   opacity: 0.045;
 }
 
-/* ─── Serif accent (italic, for single emphasized words) ────────────────── */
+/* Legacy emphasis hook: typography stays within the sans-serif family. */
 .serif-accent {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.01em;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: inherit;
+  letter-spacing: inherit;
 }
 
 /* ─── Availability dot with soft pulse ──────────────────────────────────── */
@@ -242,8 +241,8 @@ body::after {
 
 /* ─── Scroll reveal ─────────────────────────────────────────────────────── */
 [data-animate] {
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 1;
+  transform: none;
   transition:
     opacity  0.6s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -299,6 +298,7 @@ button:active {
 
 /* ─── Reduced motion: disable everything ────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   #site-header { transition: none; }
   .hero-1, .hero-2, .hero-3 {
     opacity: 1;

@@ -1,0 +1,23 @@
+---
+const enabled = import.meta.env.PROD && import.meta.env.PUBLIC_ENABLE_ANALYTICS === 'true';
+const scriptSrc = import.meta.env.PUBLIC_ANALYTICS_SCRIPT_SRC || '/_vercel/insights/script.js';
+---
+{enabled && <>
+  <script is:inline>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+  <script is:inline defer src={scriptSrc}></script>
+  <script is:inline>
+    document.addEventListener('click', function(event) {
+      const link = event.target instanceof Element ? event.target.closest('[data-track]') : null;
+      if (link) window.va('event', { name: link.dataset.track, data: { page: location.pathname } });
+    });
+    const article = document.querySelector('[data-case-study]');
+    if (article && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(function(entries) {
+        if (entries.some(entry => entry.isIntersecting)) {
+          window.va('event', { name: 'Case study end reached', data: { page: location.pathname } }); observer.disconnect();
+        }
+      });
+      const end = document.querySelector('[data-article-end]'); if (end) observer.observe(end);
+    }
+  </script>
+</>}

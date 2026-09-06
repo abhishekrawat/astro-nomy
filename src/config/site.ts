@@ -3,9 +3,9 @@ import type { SiteConfig } from "@/types";
 export const siteConfig: SiteConfig = {
   name: "Abhishek Rawat",
   description:
-    "Healthcare product, ux/ui designer, maker and a skydiving coach working at Malaffi, Department of Health, Abu Dhabi.",
+    "Abhishek Rawat is a healthcare product design lead in Abu Dhabi, connecting clinical UX, design systems and AI-assisted delivery. Explore selected work and independent builds.",
   url: "https://rawat.dev",
-  ogImage: "https://rawat.dev/og.jpg",
+  ogImage: "https://rawat.dev/og-portfolio.jpg",
   links: {
     twitter: "https://x.com/rawat899",
     github: "https://github.com/abhishekrawat",

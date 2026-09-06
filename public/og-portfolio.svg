@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f6f4ef"/>
+  <path d="M64 110H1136M64 538H1136" stroke="#d9d9cf"/>
+  <text x="64" y="76" font-family="Arial,sans-serif" font-size="23" font-weight="bold" fill="#20231f">Abhishek Rawat<tspan fill="#ad511f">.</tspan></text>
+  <text x="1136" y="76" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#5c6256">Healthcare product design lead</text>
+  <text x="64" y="248" font-family="Arial,sans-serif" font-size="72" font-weight="bold" letter-spacing="-2" fill="#20231f">Care, made clear.</text>
+  <text x="64" y="349" font-family="Arial,sans-serif" font-size="72" font-weight="bold" letter-spacing="-2" fill="#20231f">Delivery, made better.</text>
+  <text x="68" y="434" font-family="Arial,sans-serif" font-size="23" fill="#5c6256">Healthcare UX · AI-assisted delivery · Independent builds</text>
+  <circle cx="75" cy="581" r="5" fill="#ad511f"/>
+  <text x="95" y="587" font-family="Arial,sans-serif" font-size="18" fill="#5c6256">Abu Dhabi, UAE</text>
+  <text x="1136" y="587" text-anchor="end" font-family="Arial,sans-serif" font-size="20" fill="#20231f">rawat.dev ↗</text>
+</svg>

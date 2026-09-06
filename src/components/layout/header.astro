@@ -1,72 +1,31 @@
 ---
-import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
-
-type Props = {
-  className?: string;
-};
-
-const { className } = Astro.props;
+import ThemeControl from "@/components/theme-control.astro";
+import { portfolio } from "@/config/portfolio";
+const path = Astro.url.pathname;
 ---
-
-<header
-  id="site-header"
-  transition:name="site-header"
-  transition:animate="none"
-  class={cn(
-    "flex items-center h-16 z-50 sticky top-0 border-b",
-    className
-  )}
->
-  <div class="relative container max-w-screen-lg flex items-center justify-between w-full">
-
-    <!-- Left: logo + desktop nav -->
-    <div class="flex items-center gap-6 md:gap-8">
-      <a
-        href="/"
-        class="hidden md:inline-flex items-center text-sm font-semibold hover:opacity-70 transition-opacity duration-200"
-        aria-label={`${siteConfig.name} — home`}
-      >
-        {siteConfig.name}
-      </a>
-
-      <!-- Mobile nav trigger (sheet) -->
-      <slot name="mobile-nav-header" />
-
-      <!-- Desktop nav links -->
-      <div class="hidden md:flex">
-        <slot name="left-header" />
-      </div>
+<header id="site-header" class="portfolio-header">
+  <div class="shell header-inner">
+    <a href="/" class="wordmark" aria-label="Abhishek Rawat — home"><span class="monogram" aria-hidden="true">ar<span>.</span></span><span>Abhishek Rawat</span></a>
+    <nav class="desktop-navigation" aria-label="Main navigation">
+      {portfolio.navigation.map(link => <a href={link.href} aria-current={path.startsWith(link.href) ? 'page' : undefined}>{link.label}</a>)}
+    </nav>
+    <div class="header-actions">
+      <a class="header-contact" href={`mailto:${portfolio.email}`} data-track="Contact">Let’s talk <span aria-hidden="true">↗</span></a>
+      <ThemeControl />
+      <details class="mobile-navigation">
+        <summary aria-label="Navigation menu"><span aria-hidden="true">☰</span></summary>
+        <nav aria-label="Mobile navigation">
+          {portfolio.navigation.map(link => <a href={link.href} aria-current={path.startsWith(link.href) ? 'page' : undefined}>{link.label}<span aria-hidden="true">↗</span></a>)}
+          <a href={`mailto:${portfolio.email}`} data-track="Contact">Let’s talk <span aria-hidden="true">↗</span></a>
+        </nav>
+      </details>
     </div>
-
-    <!-- Mobile: centered name -->
-    <a
-      href="/"
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:hidden text-sm font-semibold hover:opacity-70 transition-opacity duration-200 whitespace-nowrap"
-      aria-label="Home"
-    >
-      {siteConfig.name}
-    </a>
-
-    <!-- Right: actions -->
-    <slot name="right-header" />
-
   </div>
 </header>
-
-<!-- Scroll-aware header: frosted glass when page is scrolled -->
-<script is:inline>
-  function syncHeaderScroll() {
-    var h = document.getElementById("site-header");
-    if (h) h.classList.toggle("header-scrolled", window.scrollY > 10);
-  }
-  if (!window.__headerScrollSetup) {
-    window.__headerScrollSetup = true;
-    window.addEventListener("scroll", syncHeaderScroll, { passive: true });
-    // astro:after-swap: new DOM is in place, sync before transition animates in
-    document.addEventListener("astro:after-swap", syncHeaderScroll);
-    // astro:page-load: fires after transitions complete
-    document.addEventListener("astro:page-load", syncHeaderScroll);
-  }
-  syncHeaderScroll();
+<script>
+  const menu = document.querySelector<HTMLDetailsElement>('.mobile-navigation');
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && menu?.open) { menu.open = false; menu.querySelector('summary')?.focus(); }
+  });
+  document.addEventListener('click', event => { if (menu?.open && event.target instanceof Node && !menu.contains(event.target)) menu.open = false; });
 </script>

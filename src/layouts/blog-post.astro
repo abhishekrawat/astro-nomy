@@ -1,186 +1,26 @@
 ---
-import { cn, formatDate, getReadingTime } from "@/lib/utils";
-import { Icon } from "astro-icon/components";
-import type { CollectionEntry } from "astro:content";
-import MainLayout from "./main-layout.astro";
-import { siteConfig } from "@/config/site";
-
-type Props = CollectionEntry<"blog">;
-
-const id = Astro.props.id;
-const { title, description, pubDate, updatedDate, cover, category } =
-  Astro.props.data;
-
-const readingTime = getReadingTime(Astro.props.body ?? "");
-const postUrl = `${siteConfig.url}/blog/${id}`;
-const xShareUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(postUrl)}`;
+import type { CollectionEntry } from 'astro:content';
+import MainLayout from './main-layout.astro';
+import { siteConfig } from '@/config/site';
+import { getReadingTime, formatDate } from '@/lib/utils';
+type Props = CollectionEntry<'blog'>;
+const { id, data, body } = Astro.props;
+const url = new URL(`/blog/${id}`, siteConfig.url).href;
 ---
-
-<MainLayout title={title} description={description}>
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": title,
-    "description": description,
-    "datePublished": pubDate.toISOString(),
-    ...(updatedDate ? { "dateModified": updatedDate.toISOString() } : {}),
-    "image": cover ? new URL(cover, siteConfig.url).href : `${siteConfig.url}/og.jpg`,
-    "url": postUrl,
-    "author": {
-      "@type": "Person",
-      "name": siteConfig.name,
-      "url": siteConfig.url
-    }
-  })} />
-  <div class="container max-w-screen-md py-10 sm:py-14">
-
-    {/* Back link */}
-    <a
-      href="/blog"
-      class="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 mb-10 group"
-    >
-      <Icon
-        name="lucide:arrow-left"
-        class="size-3.5 transition-transform duration-200 group-hover:-translate-x-0.5"
-      />
-      Writing
-    </a>
-
-    <article>
-
-      {/* Category + meta */}
-      <div class="flex flex-wrap items-center gap-2 text-xs text-muted-foreground mb-4" data-animate>
-        <a
-          href={`/blog/category/${category}`}
-          class="capitalize font-medium text-foreground/70 hover:text-foreground transition-colors duration-200"
-          transition:name={`badge-cat-${id}`}
-        >
-          {category}
-        </a>
-        <span aria-hidden="true">·</span>
-        <time datetime={pubDate.toISOString()} transition:name={`date-${id}`}>
-          {formatDate(pubDate)}
-        </time>
-        {updatedDate && (
-          <>
-            <span aria-hidden="true">·</span>
-            <span>Updated {formatDate(updatedDate)}</span>
-          </>
-        )}
-        <span aria-hidden="true">·</span>
-        <span>{readingTime} min read</span>
-      </div>
-
-      {/* Title */}
-      <h1
-        class="font-heading text-3xl sm:text-4xl md:text-5xl leading-tight mb-4"
-        transition:name={`title-${id}`}
-        data-animate
-      >
-        {title}
-      </h1>
-
-      {/* Description / lead */}
-      <p class="text-lg text-muted-foreground leading-relaxed mb-8 max-w-prose" data-animate>
-        {description}
-      </p>
-
-      {/* Cover image */}
-      {cover && (
-        <div
-          class="img-hover-zoom rounded-2xl overflow-hidden mb-10 aspect-[21/9] bg-muted"
-          data-animate
-        >
-          <img
-            class="w-full h-full object-cover"
-            width={1200}
-            height={514}
-            src={cover}
-            alt={title}
-            transition:name={`img-${id}`}
-          />
-        </div>
-      )}
-
-      {/* Divider */}
-      <hr class="border-border mb-10" />
-
-      {/* Post content */}
-      <div
-        class={cn(
-          "prose dark:prose-invert max-w-none",
-          "prose-headings:font-heading prose-headings:tracking-tight",
-          "prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4",
-          "prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-3",
-          "prose-p:text-foreground/80 prose-p:leading-relaxed",
-          "prose-a:text-foreground prose-a:underline prose-a:underline-offset-2",
-          "prose-strong:text-foreground",
-          "prose-blockquote:border-l-2 prose-blockquote:border-foreground/30 prose-blockquote:text-muted-foreground prose-blockquote:not-italic",
-          "prose-code:text-foreground prose-code:bg-muted prose-code:rounded prose-code:px-1 prose-code:py-0.5 prose-code:text-sm",
-          "prose-img:rounded-xl prose-img:my-8",
-          "prose-hr:border-border"
-        )}
-      >
-        <slot />
-      </div>
-
-      {/* Share + back */}
-      <div class="mt-14 pt-8 border-t border-border">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <p class="text-sm font-medium text-muted-foreground">
-            Found this useful? Share it.
-          </p>
-          <div class="flex items-center gap-3">
-            <a
-              href={xShareUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-md bg-muted hover:bg-muted/80 transition-colors duration-200"
-            >
-              <Icon name="x" class="size-3" />
-              Share on X
-            </a>
-            <button
-              id="copy-link-btn"
-              class="inline-flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-md bg-muted hover:bg-muted/80 transition-colors duration-200"
-            >
-              <Icon name="lucide:link" class="size-3" />
-              Copy link
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Back to writing */}
-      <div class="mt-8">
-        <a
-          href="/blog"
-          class="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 group"
-        >
-          <Icon
-            name="lucide:arrow-left"
-            class="size-3.5 transition-transform duration-200 group-hover:-translate-x-0.5"
-          />
-          Back to writing
-        </a>
-      </div>
-
-    </article>
-  </div>
+<MainLayout title={data.title} description={data.description} noindex={data.editorial}>
+  <div class="shell"><article class="article-shell"><header class="page-intro"><a href="/blog" class="back-link">← All writing</a><p class="eyebrow">{data.category}</p><h1>{data.title}</h1><p>{data.description}</p></header><div class="article-meta"><span>Abhishek Rawat</span><time datetime={data.pubDate.toISOString()}>{formatDate(data.pubDate)}</time><span>{getReadingTime(body ?? '')} min read</span></div>
+    {data.editorial && <aside class="editorial-banner"><strong>Sample essay.</strong> Drafted for the portfolio’s editorial direction. Replace or review before publishing as a personal account.</aside>}
+    <div class="case-prose"><slot /></div>
+    <div class="share-row"><a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`} target="_blank" rel="noreferrer">Share on LinkedIn ↗</a><button type="button" data-copy-link={url} hidden>Copy link</button><span class="share-status" aria-live="polite"></span></div>
+  </article></div>
 </MainLayout>
-
 <script>
-  const btn = document.getElementById("copy-link-btn");
-  if (btn) {
-    btn.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(window.location.href);
-        const orig = btn.innerHTML;
-        btn.innerHTML = `<svg class="size-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copied!`;
-        setTimeout(() => { btn.innerHTML = orig; }, 2000);
-      } catch {
-        // clipboard not available
-      }
+  document.querySelectorAll<HTMLButtonElement>('[data-copy-link]').forEach(button => {
+    button.hidden = false;
+    button.addEventListener('click', async () => {
+      const status = document.querySelector('.share-status');
+      try { await navigator.clipboard.writeText(button.dataset.copyLink!); if (status) status.textContent = 'Link copied.'; }
+      catch { if (status) status.textContent = 'Copy the page address from your browser to share this essay.'; }
     });
-  }
+  });
 </script>

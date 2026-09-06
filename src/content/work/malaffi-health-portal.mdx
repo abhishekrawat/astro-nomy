@@ -1,124 +1,98 @@
 ---
 title: "Malaffi Health Portal"
-description: "Redesigning the patient-facing health information portal for the Abu Dhabi Health Information Exchange — making clinical records accessible and understandable for 3M+ residents."
+description: "Designing the patient-facing HIE for the Abu Dhabi Health Information Exchange - making clinical records accessible and understandable for 3M+ residents."
 role: "Lead UX Designer"
 company: "Malaffi / Department of Health, Abu Dhabi"
 duration: "2022 – 2023"
-team: "2 UX designers, 1 UX researcher, 3 engineers"
+team: "Design, research and engineering"
 category: "Healthcare"
 cover: "/images/work/malaffi-cover.jpg"
 video: "/videos/work/malaffi-preview.mp4"
-tags: ["Patient Portal", "HIE", "Healthcare", "Arabic RTL", "HIPAA", "Mobile"]
+tags: ["Patient experience", "Arabic & English", "Healthcare"]
 featured: true
-outcome: "Patient portal for Abu Dhabi's Health Information Exchange, serving 3M+ residents in Arabic and English"
+editorial: true
+visual: "health"
+eyebrow: "Healthcare / Malaffi"
+status: "Patient portal"
+summary: "Connecting a rich clinical record to an experience a patient can understand."
+outcome: "A patient-facing layer for Abu Dhabi’s Health Information Exchange. Adoption and design impact require confirmed evidence."
 protected: false
 order: 1
 pubDate: "2023-06-01"
 ---
 
-import Callout from "@/components/callout.astro";
+import BilingualDemo from "@/components/bilingual-demo.astro";
 
-## TL;DR
+## At a glance
 
-> **Problem:** TODO — 1–2 sentences describing the core problem.
-> **Approach:** TODO — What method/angle did you take?
-> **Result:** TODO — The measurable outcome.
+**The opportunity:** Turn the information already available through a Health Information Exchange into a useful patient experience.
 
----
+**The design question:** How can people find the information they need without having to understand the structure of a clinical record?
 
-## Overview
+**The lens:** Comprehension, continuity and equal consideration for Arabic and English.
 
-TODO: Describe the project context. What is the Health Information Exchange? Why did this matter? What was wrong or missing?
+The following decision narratives are an editorial example for this portfolio. They illustrate how the case study can be told; they are not a verified account of research, delivery decisions or measured outcomes. The original project overview below has been retained.
 
----
+## Project context
 
-## My Role
+This was my first major healthcare project of its scale.
+We had built a solid backend HIE and a robust provider facing portal.
+The next big challenge was to have a patient facing app that would leverage on the HIE and help patients to:
 
-| | |
-|---|---|
-| **Role** | Lead UX Designer |
-| **Company** | Malaffi / Department of Health, Abu Dhabi |
-| **Duration** | 2022 – 2023 |
-| **Team** | TODO: Describe your team |
-| **My Contributions** | TODO: List what you specifically owned vs. collaborated on |
+- View current and historical medical records
+- View and book appointments
+- View lab and radiology reports
+- See analysis of specific trends (eg. glucose levels over a period of time)
+- View medications
+- View and compare health profile
 
----
+The population referenced in the project description describes the intended reach of the health ecosystem. It should not be read as verified active usage of this application or as a measured design outcome.
 
-## The Problem
+## Decision 01: Start with the patient’s question
 
-TODO: What were users struggling with? What clinical or operational problem did this create? What did the data show?
+A clinical record is organised to document care. A patient may arrive with a different question: “What happened at my last visit?” or “Where is my latest report?”
 
-<Callout>
-  **Design challenge:** TODO — Restate the core problem as a crisp design question. e.g., "How might we help patients with limited health literacy understand and act on their clinical records?"
-</Callout>
+A useful design direction is to organise the first layer around recognisable tasks, while keeping the original clinical information accessible. A summary should help someone locate a record without silently changing its meaning.
 
----
+**Alternative to examine:** A comprehensive list of records on the first screen. It makes the available information explicit, but puts more interpretation work on the patient.
 
-## Research & Insights
+**Evidence to add:** An annotated before-and-after screen, the research observation that led to the change, and what participants could do after it.
 
-### Research Methods
-- TODO: e.g., Contextual inquiry with N=12 patients at DOH clinics
-- TODO: e.g., Stakeholder interviews with clinical informatics leads
-- TODO: e.g., Heuristic evaluation of existing portal
+> The design challenge is to reduce the effort of finding information while preserving its clinical context.
 
-### Key Findings
+## Decision 02: Give both languages a first-class experience
 
-1. **TODO — Finding 1:** Describe the most important insight.
-2. **TODO — Finding 2:** Describe the second key insight.
-3. **TODO — Finding 3:** Describe the third key insight.
+An Arabic interface deserves its own layout review. Direction, text expansion and the placement of navigation cues all affect how a page is understood.
 
----
+<BilingualDemo />
 
-## Design Process
+This is a fictional demonstration built for the portfolio, not a reconstruction of the shipped Malaffi interface. The Arabic copy requires native-speaker review before reuse in a product.
 
-### Exploration & Ideation
+**Evidence to add:** A real bilingual flow, one layout decision that changed through review, and the design-system rule that made it repeatable.
 
-TODO: Describe early explorations. What directions did you consider? What did you prototype first?
+## Decision 03: Make the next step visible
 
-### Key Iterations
+Finding a report, understanding an appointment and returning to an overview are connected tasks. Each screen needs to communicate where the person is and what they can do next.
 
-TODO: Describe 1–2 pivotal moments where the design changed and why.
+A useful case-study comparison would show a complete task rather than isolated final screens: entry point, detail, action and return.
 
----
+**Tradeoff to explain:** How the team balanced information density against the need to orient someone quickly, especially on a small screen.
 
-## Key Design Decisions
+## Leading the work
 
-### Decision 1: TODO — Name the decision
+This is the place to distinguish design ownership from team contribution. A strong leadership story should explain how the problem was framed, who influenced the decision, and how disagreements were resolved.
 
-**Context:** TODO
-**Options considered:** TODO
-**Decision:** TODO
-**Why:** TODO
+| Leadership question | Evidence to include |
+| --- | --- |
+| What did I own? | Responsibilities, scope and decisions |
+| Who did I bring together? | Product, engineering and clinical partners |
+| What changed because of my input? | A specific decision and its consequence |
+| What did the team carry forward? | A reusable pattern or working agreement |
 
-### Decision 2: TODO — Name the decision
+## Outcomes and learning
 
-**Context:** TODO
-**Options considered:** TODO
-**Decision:** TODO
-**Why:** TODO
+The existing screens demonstrate the product direction. They do not establish adoption, usability improvement or business impact on their own.
 
----
+Before publishing a final version, add an approved outcome with its timeframe and source. If quantitative data is unavailable, use attributable qualitative feedback or a clearly described delivery result.
 
-## Final Design
-
-TODO: Add screenshots, Figma embeds, or images of the final design here.
-
-*Tip: Use `![Alt text](/images/work/malaffi-screen-1.jpg)` to embed images.*
-
----
-
-## Outcomes & Impact
-
-| Metric | Before | After |
-|---|---|---|
-| TODO metric | TODO | TODO |
-| TODO metric | TODO | TODO |
-| TODO metric | TODO | TODO |
-
-TODO: Add any qualitative outcomes, quotes from stakeholders, or follow-on impact.
-
----
-
-## Reflection
-
-TODO: What was the hardest part? What would you do differently with more time or resources? What did this project teach you?
+The most useful closing reflection will name a decision worth repeating and one that would change with better evidence.

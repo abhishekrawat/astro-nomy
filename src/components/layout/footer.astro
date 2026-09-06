@@ -1,118 +1,16 @@
 ---
-import { ThemeToggle } from "@/components/theme-toggle";
 import { siteConfig } from "@/config/site";
-import { Icon } from "astro-icon/components";
-
-type Props = {
-  className?: string;
-};
-
-const { className } = Astro.props;
-const currentYear = new Date().getFullYear();
-
-const navLinks = [
-  { label: "Work", href: "/work" },
-  { label: "About", href: "/about" },
-  { label: "Resume", href: siteConfig.links.resume, external: true },
-];
-
-const socialLinks = [
-  { label: "LinkedIn", href: siteConfig.links.linkedin, icon: "linkedin" },
-  { label: "X (Twitter)", href: siteConfig.links.x, icon: "x" },
-  { label: "Instagram", href: siteConfig.links.instagram, icon: "instagram" },
-  { label: "GitHub", href: siteConfig.links.github, icon: "github" },
-];
+import { portfolio } from "@/config/portfolio";
 ---
-
-<footer class={`border-t${className ? ` ${className}` : ""}`} aria-label="Site footer">
-  <div class="container max-w-screen-lg grid grid-cols-1 sm:grid-cols-2 gap-10 py-12">
-
-    <!-- Brand & description -->
-    <div class="flex flex-col gap-4">
-      <a href="/" class="text-base font-semibold hover:opacity-75 transition-opacity w-fit">
-        Abhishek Rawat
-      </a>
-      <p class="text-sm text-muted-foreground max-w-xs leading-relaxed">
-        Lead UX Designer specialising in healthcare systems, patient portals, and clinical
-        workflow design. Based in Abu Dhabi, UAE.
-      </p>
-      <address class="not-italic text-xs text-muted-foreground/60">
-        Abu Dhabi, UAE<span data-local-time></span> ·{" "}
-        <a href={siteConfig.url} class="hover:text-foreground transition-colors">
-          rawat.dev
-        </a>
-      </address>
-
-      <!-- Availability -->
-      <p class="flex items-center gap-2 text-xs text-muted-foreground">
-        <span class="availability-dot" aria-hidden="true"></span>
-        Open to lead design roles
-      </p>
-
-      <!-- Social links -->
-      <div class="flex items-center gap-4 mt-1" role="list" aria-label="Social media links">
-        {socialLinks.map((s) => (
-          <a
-            href={s.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${s.label} profile`}
-            role="listitem"
-            class="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <Icon name={s.icon} class="size-[18px]" />
-          </a>
-        ))}
-      </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav aria-label="Footer navigation" class="flex flex-col gap-3 sm:items-end sm:text-right">
-      <p class="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1 font-medium">
-        Navigation
-      </p>
-      {navLinks.map((link) => (
-        <a
-          href={link.href}
-          {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-          class="text-sm text-muted-foreground hover:text-foreground transition-colors w-fit sm:ml-auto"
-        >
-          {link.label}{link.external && <span aria-hidden="true"> ↗</span>}
-        </a>
-      ))}
-    </nav>
-
+<footer class="site-footer">
+  <div class="shell footer-top">
+    <div><a class="wordmark" href="/">Abhishek Rawat<span class="accent-text">.</span></a><p>Healthcare design. Thoughtful systems. Things that work.</p></div>
+    <nav aria-label="Social links"><a href={siteConfig.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a><a href={siteConfig.links.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={siteConfig.links.resume} target="_blank" rel="noreferrer" data-track="Resume">Résumé ↗</a></nav>
   </div>
-
-  <!-- Bottom bar -->
-  <div class="border-t">
-    <div class="container max-w-screen-lg flex items-center justify-between py-4">
-      <p class="text-xs text-muted-foreground">
-        © {currentYear}{" "}
-        <a href="/" class="hover:text-foreground transition-colors">
-          Abhishek Rawat
-        </a>
-        . All rights reserved.
-      </p>
-      <ThemeToggle client:load />
-    </div>
-  </div>
+  <div class="shell footer-bottom"><span>© {new Date().getFullYear()} Abhishek Rawat</span><span>{portfolio.location} <span aria-hidden="true">·</span> <span data-local-time>GST / UTC+4</span></span><a href="/rss.xml">RSS ↗</a></div>
 </footer>
-
 <script>
-  // Local time in Abu Dhabi — quiet signal that this is a real person in a real place.
-  function tickLocalTime() {
-    const els = document.querySelectorAll<HTMLElement>("[data-local-time]");
-    if (!els.length) return;
-    const time = new Intl.DateTimeFormat("en-GB", {
-      hour: "2-digit",
-      minute: "2-digit",
-      timeZone: "Asia/Dubai",
-    }).format(new Date());
-    els.forEach((el) => (el.textContent = ` · ${time} GST`));
-  }
-
-  tickLocalTime();
-  setInterval(tickLocalTime, 60_000);
-  document.addEventListener("astro:page-load", tickLocalTime);
+  const time = document.querySelector('[data-local-time]');
+  function tick() { if (time) time.textContent = `${new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Dubai' }).format(new Date())} GST`; }
+  tick(); setInterval(tick, 60_000);
 </script>

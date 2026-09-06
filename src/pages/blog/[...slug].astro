@@ -1,22 +1,10 @@
 ---
-export const prerender = true;
-
-import BlogPostLayout from '@/layouts/blog-post.astro';
-import { getCollection, render, type CollectionEntry } from 'astro:content';
-
+import { getCollection, render } from 'astro:content';
+import BlogPost from '@/layouts/blog-post.astro';
 export async function getStaticPaths() {
-	// Blog hidden until posts are written — no pages generated.
-	// To re-enable: return posts.map(...) as before.
-	// const posts = await getCollection('blog');
-	// return posts.map((post) => ({ params: { slug: post.id }, props: post }));
-	return [];
+  return (await getCollection('blog', ({data}) => !data.draft)).map(post => ({params: {slug: post.id}, props: {post}}));
 }
-
-type Props = CollectionEntry<'blog'>;
-
-const post = Astro.props;
+const { post } = Astro.props;
 const { Content } = await render(post);
 ---
-<BlogPostLayout {...post}>
-	<Content />
-</BlogPostLayout>
+<BlogPost {...post}><Content /></BlogPost>

@@ -1,0 +1,34 @@
+---
+import { Image } from "astro:assets";
+import healthCover from "../../public/images/work/malaffi-cover.jpg";
+interface Props { variant?: 'health' | 'ai' | 'altimeter' | 'bus'; eager?: boolean; compact?: boolean; }
+const { variant = 'health', eager = false, compact = false } = Astro.props;
+---
+<div class:list={['project-visual', `visual-${variant}`, { compact }]}>
+  {variant === 'health' ? <>
+    <span class="visual-caption">MALAFFI / PATIENT EXPERIENCE</span>
+    <Image src={healthCover} alt="Malaffi patient portal: health overview, appointment booking and a lab report displayed on three phones" widths={[480, 800, 1200]} sizes="(max-width: 700px) 100vw, (max-width: 1100px) 60vw, 650px" width={1200} format="webp" quality={80} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : 'auto'} />
+    <span class="visual-footnote">Making health information easier to understand.</span>
+  </> : variant === 'ai' ? <>
+    <span class="visual-caption">DESIGN INTENT → WORKING INTERFACE</span>
+    <div class="ai-composition" aria-label="Illustration of a design component connected to a reviewed implementation" role="img">
+      <div class="component-window"><div class="window-bar"><span class="window-dot"></span> Component / Appointment</div><div class="component-body"><span class="mini-label">YOUR NEXT VISIT</span><strong>Care that fits<br/>your day.</strong><div class="component-line"></div><div class="component-button">Find an appointment <span>↗</span></div></div><div class="token-row"><i></i><i></i><i></i><span>Tokens · Variants · States</span></div></div>
+      <span class="connection-node" aria-hidden="true">↔</span>
+      <div class="code-window"><div class="window-bar"><span class="window-dot"></span> Implementation</div><div class="code-body"><span class="code-purple">&lt;AppointmentCard</span><span>  intent=<em>"book"</em></span><span>  language=<em>"en"</em></span><span>  state=<em>"available"</em></span><span class="code-purple">/&gt;</span><div class="review-stamp">✓ Human review</div></div></div>
+    </div>
+    <span class="visual-footnote">Illustrative workflow · sample component</span>
+  </> : variant === 'altimeter' ? <>
+    <span class="visual-caption">INDEPENDENT BUILD / 01</span>
+    <div class="altimeter-composition" role="img" aria-label="Concept illustration of an altimeter with an altitude-only display reading 4500 feet">
+      <div class="altimeter-device"><div class="device-screw s1"></div><div class="device-screw s2"></div><div class="altimeter-screen"><span>ALTITUDE / FT</span><strong>4500</strong><div class="altitude-ticks" aria-hidden="true"></div><span class="device-unit">NUMERIC. INTENTIONAL.</span></div><div class="speaker-grille" aria-hidden="true"></div><span class="device-brand">ALTIMETER</span></div>
+      <div class="device-annotation"><span class="annotation-line"></span>Altitude,<br/>not instructions.</div>
+    </div>
+    <span class="visual-footnote">Concept illustration · not a device photograph</span>
+  </> : <>
+    <span class="visual-caption">INDEPENDENT BUILD / 02</span>
+    <div class="bus-composition" role="img" aria-label="Concept illustration of a round desktop bus tracker, showing sample route 71 departing in 6 minutes">
+      <div class="bus-device"><div class="bus-screen"><span class="bus-time">08:42</span><div class="bus-route"><span>71</span><span>NEXT BUS</span></div><strong>6<span>min</span></strong><div class="bus-baseline"><span>Following · 18 min</span><span>↗</span></div></div></div><div class="bus-stand" aria-hidden="true"></div>
+    </div>
+    <span class="visual-footnote">Concept illustration · sample departure times</span>
+  </>}
+</div>

@@ -6,7 +6,9 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    cover: z.string(),
+    cover: z.string().default("/og.jpg"),
+    draft: z.boolean().default(true),
+    editorial: z.boolean().default(false),
     category: z.string(),
     pubDate: z
       .string()
@@ -24,6 +26,12 @@ const work = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    editorial: z.boolean().default(false),
+    kind: z.enum(["professional", "independent"]).default("professional"),
+    visual: z.enum(["health", "ai", "altimeter", "bus"]).default("health"),
+    eyebrow: z.string().default("Selected project"),
+    summary: z.string().optional(),
+    status: z.string().default("Case study"),
     role: z.string(),
     company: z.string(),
     duration: z.string(),

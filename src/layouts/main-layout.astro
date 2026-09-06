@@ -1,58 +1,14 @@
 ---
-import Footer from "@/components/layout/footer.astro";
-import Header from "@/components/layout/header.astro";
-import DesktopNav from "@/components/layout/desktop-nav.astro";
-import { cn } from "@/lib/utils";
 import BaseLayout from "./base-layout.astro";
-import { SheetMobileNav } from "@/components/layout/sheet-mobile-nav";
-import { navMenuConfig } from "@/config/nav-menu";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { siteConfig } from "@/config/site";
-
-type Props = {
-  title: string;
-  description?: string;
-  mainClass?: string;
-};
-
-const { title, description, mainClass } = Astro.props;
+import Header from "@/components/layout/header.astro";
+import Footer from "@/components/layout/footer.astro";
+import Analytics from "@/components/analytics.astro";
+interface Props { title: string; description?: string; image?: string; noindex?: boolean; mainClass?: string; }
+const { mainClass, ...head } = Astro.props;
 ---
-
-<BaseLayout title={title} description={description}>
-  <Header>
-
-    <!-- Mobile hamburger -->
-    <SheetMobileNav
-      mainNavItems={[...navMenuConfig.links]}
-      sidebarNavItems={[
-        ...navMenuConfig.pagesNav,
-        ...navMenuConfig.examplesNav,
-      ]}
-      slot="mobile-nav-header"
-      client:idle
-    />
-
-    <!-- Desktop nav -->
-    <DesktopNav slot="left-header" />
-
-    <!-- Right: CTA + theme toggle -->
-    <div class="flex items-center gap-x-4" slot="right-header">
-      <a
-        href={siteConfig.links.linkedin}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hidden sm:inline-flex text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
-      >
-        Get in touch ↗
-      </a>
-      <ThemeToggle client:idle />
-    </div>
-
-  </Header>
-
-  <main class={cn(mainClass)}>
-    <slot />
-  </main>
-
+<BaseLayout {...head}>
+  <Header />
+  <main id="main-content" tabindex="-1" class={mainClass}><slot /></main>
   <Footer />
+  <Analytics />
 </BaseLayout>

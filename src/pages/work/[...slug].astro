@@ -1,103 +1,28 @@
 ---
-export const prerender = true;
-
-import { getCollection, render } from "astro:content";
-import MainLayout from "@/layouts/main-layout.astro";
-import { Badge } from "@/components/ui/badge";
-
+import { getCollection, render } from 'astro:content';
+import MainLayout from '@/layouts/main-layout.astro';
+import ProjectVisual from '@/components/project-visual.astro';
+import Contact from '@/components/sections/contact.astro';
 export async function getStaticPaths() {
-  const allWork = await getCollection("work", ({ data }) => !data.draft);
-  return allWork.map((project) => ({
-    params: { slug: project.id },
-    props: { project },
-  }));
+  const projects = await getCollection('work', ({data}) => !data.draft && !data.protected);
+  return projects.map(project => ({ params: { slug: project.id }, props: { project } }));
 }
-
 const { project } = Astro.props;
-const { Content } = await render(project);
-const { title, description, role, company, duration, team, category, tags, outcome, cover } =
-  project.data;
+const { Content, headings } = await render(project);
+const data = project.data;
+const all = (await getCollection('work', ({data}) => !data.draft && !data.protected)).sort((a,b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+const next = all[(all.findIndex(item => item.id === project.id) + 1) % all.length];
+const parent = data.kind === 'independent' ? '/builds' : '/work';
 ---
-
-<MainLayout title={title} description={description}>
-  <article class="container max-w-screen-md py-16 sm:py-20">
-
-    <!-- Back link -->
-    <a
-      href="/work"
-      class="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-10 transition-colors"
-    >
-      ← All Work
-    </a>
-
-    <!-- Header -->
-    <header class="mb-12">
-      <div class="flex flex-wrap gap-2 mb-4">
-        {tags.map((tag) => <Badge variant="secondary" radius={"full"}>{tag}</Badge>)}
-      </div>
-
-      <h1 class="text-4xl sm:text-5xl font-heading mb-4" transition:name={`work-title-${project.id}`}>{title}</h1>
-      <p class="text-lg text-muted-foreground">{description}</p>
+<MainLayout title={data.title} description={data.description} image={data.cover} noindex={data.editorial}>
+  <article class="shell" data-case-study>
+    <header class="case-header"><a href={parent} class="back-link">← {data.kind === 'independent' ? 'Independent builds' : 'Selected work'}</a><p class="eyebrow">{data.eyebrow}</p><h1>{data.title}</h1><p class="case-lead">{data.summary ?? data.description}</p>
+      {data.editorial && <aside class="editorial-banner"><strong>Story preview.</strong> This page includes sample narrative for review. Illustrations, proposed decisions and evidence prompts are identified in the story; they are not claims of measured results.</aside>}
     </header>
-
-    <!-- Cover image -->
-    {cover && (
-      <div class="w-full rounded-xl overflow-hidden mb-12 bg-muted">
-        <img src={cover} alt={title} class="w-full object-cover" transition:name={`work-img-${project.id}`} />
-      </div>
-    )}
-
-    <!-- At-a-glance metadata -->
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border rounded-xl p-6 mb-12 bg-muted/30">
-      <div>
-        <p class="text-xs text-muted-foreground uppercase tracking-wide mb-1">Role</p>
-        <p class="text-sm font-medium">{role}</p>
-      </div>
-      <div>
-        <p class="text-xs text-muted-foreground uppercase tracking-wide mb-1">Company</p>
-        <p class="text-sm font-medium">{company}</p>
-      </div>
-      <div>
-        <p class="text-xs text-muted-foreground uppercase tracking-wide mb-1">Duration</p>
-        <p class="text-sm font-medium">{duration}</p>
-      </div>
-      {team && (
-        <div>
-          <p class="text-xs text-muted-foreground uppercase tracking-wide mb-1">Team</p>
-          <p class="text-sm font-medium">{team}</p>
-        </div>
-      )}
-    </div>
-
-    <!-- Outcome highlight -->
-    <div class="border-l-4 border-primary pl-5 mb-12">
-      <p class="text-xs text-muted-foreground uppercase tracking-wide mb-1">Outcome</p>
-      <p class="text-base font-medium">{outcome}</p>
-    </div>
-
-    <!-- MDX content -->
-    <div class="prose prose-neutral dark:prose-invert max-w-none
-                prose-headings:font-heading prose-headings:tracking-tight
-                prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
-                prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-3
-                prose-p:text-foreground/80 prose-p:leading-relaxed
-                prose-a:text-foreground prose-a:underline
-                prose-strong:text-foreground
-                prose-blockquote:border-l-primary prose-blockquote:text-muted-foreground
-                prose-table:text-sm
-                prose-img:rounded-lg">
-      <Content />
-    </div>
-
-    <!-- Footer nav -->
-    <div class="mt-16 pt-8 border-t">
-      <a
-        href="/work"
-        class="text-sm text-muted-foreground hover:text-foreground transition-colors"
-      >
-        ← Back to all work
-      </a>
-    </div>
-
-  </article>
+    <div class="case-cover"><ProjectVisual variant={data.visual} eager /></div>
+    {data.video && <details class="media-preview"><summary>Watch the existing product preview</summary><video controls playsinline preload="none" poster={data.cover} aria-label={`${data.title} product preview`}><source src={data.video} type="video/mp4" /><a href={data.video}>Download the product preview</a></video><p class="sample-label">Silent interface walkthrough. The cover shows the health overview, appointments and report screens.</p></details>}
+    <dl class="case-meta"><div><dt>My role</dt><dd>{data.role}</dd></div><div><dt>Context</dt><dd>{data.company}</dd></div><div><dt>Timeframe</dt><dd>{data.duration}</dd></div><div><dt>Project type</dt><dd>{data.status}</dd></div></dl>
+    <div class="case-layout"><aside class="case-toc"><p class="eyebrow">Inside the story</p><nav aria-label="Case study contents">{headings.filter(item => item.depth === 2).map(heading => <a href={`#${heading.slug}`}>{heading.text}</a>)}</nav></aside><div class="case-prose"><Content /><div data-article-end></div></div></div>
+    {next && next.id !== project.id && <a class="next-case" href={`/work/${next.id}`} data-track="Case study open"><div><p class="eyebrow">Next story</p><strong>{next.data.title}</strong></div><span aria-hidden="true">↗</span></a>}
+  </article><Contact />
 </MainLayout>

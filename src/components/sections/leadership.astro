@@ -1,0 +1,14 @@
+---
+import { portfolio } from '@/config/portfolio';
+const principles = [
+  { number: '01', title: 'Make the complex legible.', text: 'Connect patient needs, clinical workflows and product constraints. Give the team a clear problem to solve.' },
+  { number: '02', title: 'Build shared understanding.', text: 'Bring design, engineering and product into the same conversation. Make tradeoffs visible, and decisions easy to carry forward.' },
+  { number: '03', title: 'Raise the team’s capability.', text: 'Use reusable systems and AI-assisted workflows to make good work easier to repeat. Keep human judgment close to the outcome.' },
+];
+---
+<section class="leadership-section shell section-space" aria-labelledby="leadership-title">
+  <div class="section-heading"><div><p class="eyebrow">How I approach leadership</p><h2 id="leadership-title">Clarity is a<br/><span class="serif-accent">team sport.</span></h2></div><p>Strong interfaces start with strong decisions. My focus is the work—and the conditions that help a team do it well.</p></div>
+  <div class="principle-grid">{principles.map(item => <article><span class="principle-number">{item.number}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
+  {portfolio.testimonials.length > 0 && <div class="testimonial-grid">{portfolio.testimonials.map(item => <figure><blockquote>{item.quote}</blockquote><figcaption>{item.name} · {item.role}</figcaption></figure>)}</div>}
+  <a href="/about" class="text-link">More about my approach <span aria-hidden="true">↗</span></a>
+</section>

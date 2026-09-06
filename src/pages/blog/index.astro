@@ -1,5 +1,9 @@
 ---
-// Blog is hidden until posts are written.
-// Restore from git history (see commit that added this redirect) to re-enable.
-return Astro.redirect("/", 302);
+import MainLayout from '@/layouts/main-layout.astro';
+import Contact from '@/components/sections/contact.astro';
+import { getCollection } from 'astro:content';
+const posts = (await getCollection('blog', ({data}) => !data.draft)).sort((a,b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
+<MainLayout title="Writing on Healthcare UX, AI & Making" description="Notes on bilingual healthcare interfaces, AI-assisted delivery and the human factors of physical products.">
+  <div class="shell work-list"><header class="page-intro"><p class="eyebrow">Writing / working ideas</p><h1>Notes from<br/><span class="serif-accent">the practice.</span></h1><p>Ideas about healthcare, delivery and the things we build. Sample essays are marked while the collection takes shape.</p></header><div class="writing-list">{posts.map((post,index) => <a href={`/blog/${post.id}`}><span class="writing-number">{String(index+1).padStart(2,'0')}</span><div><p class="eyebrow">{post.data.category} {post.data.editorial && ' / Sample essay'}</p><h3>{post.data.title}</h3></div><span aria-hidden="true">↗</span></a>)}</div></div><Contact />
+</MainLayout>

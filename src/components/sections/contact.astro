@@ -1,0 +1,8 @@
+---
+import { portfolio } from "@/config/portfolio";
+import { siteConfig } from "@/config/site";
+---
+<section class="contact-section shell" id="contact" aria-labelledby="contact-title">
+  <div><p class="eyebrow"><span class="availability-dot" aria-hidden="true"></span> {portfolio.availability}</p><h2 id="contact-title">Making something<br/><span class="serif-accent">that matters?</span></h2></div>
+  <div class="contact-copy"><p>I’m interested in teams tackling complex healthcare problems—and leaders who believe great design should make delivery better.</p><a class="button-primary" href={`mailto:${portfolio.email}`} data-track="Contact">Let’s start a conversation <span aria-hidden="true">↗</span></a><div class="contact-secondary"><a href={siteConfig.links.resume} target="_blank" rel="noreferrer" data-track="Resume">View résumé ↗</a><a href={siteConfig.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a></div></div>
+</section>

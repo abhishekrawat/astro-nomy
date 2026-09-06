@@ -1,0 +1,30 @@
+<section class="bilingual-demo" aria-labelledby="bilingual-title">
+  <div class="demo-explanation"><p class="eyebrow">A small interaction, a bigger principle</p><h2 id="bilingual-title">Two languages.<br/><span class="serif-accent">Equal consideration.</span></h2><p>A bilingual experience needs more than translated labels. Reading order, alignment and navigation all need deliberate decisions.</p><p class="sample-label">Illustrative interface · fictional appointment</p></div>
+  <div class="demo-interactive">
+    <div class="language-switch" role="group" aria-label="Interface language" hidden><button type="button" data-language="en" aria-pressed="true">English</button><button type="button" data-language="ar" aria-pressed="false" lang="ar">العربية</button></div>
+    <noscript><p class="sample-label">English example. Enable JavaScript to explore the Arabic layout.</p></noscript>
+    <div class="appointment-demo" data-demo-panel lang="en" dir="ltr">
+      <div class="appointment-heading"><span data-en="Your appointments" data-ar="مواعيدك">Your appointments</span><span aria-hidden="true">＋</span></div>
+      <p class="appointment-category" data-en="UPCOMING VISIT" data-ar="الموعد القادم">UPCOMING VISIT</p>
+      <h3 data-en="General consultation" data-ar="استشارة عامة">General consultation</h3>
+      <p data-en="Community health centre" data-ar="مركز الصحة المجتمعية">Community health centre</p>
+      <div class="appointment-date"><span class="calendar-symbol" aria-hidden="true">▦</span><div><strong data-en="Monday, 14 September" data-ar="الاثنين، ١٤ سبتمبر">Monday, 14 September</strong><span data-en="10:30 AM · In person" data-ar="١٠:٣٠ صباحًا · في المركز">10:30 AM · In person</span></div></div>
+      <div class="appointment-action"><span data-en="View appointment" data-ar="عرض الموعد">View appointment</span><span class="direction-arrow" aria-hidden="true">→</span></div>
+    </div>
+    <p class="demo-feedback" aria-live="polite" data-demo-feedback>English: left-to-right layout.</p>
+  </div>
+</section>
+<script>
+  document.querySelectorAll<HTMLElement>('.bilingual-demo').forEach(demo => {
+    const panel = demo.querySelector<HTMLElement>('[data-demo-panel]')!;
+    const group = demo.querySelector<HTMLElement>('.language-switch')!;
+    group.hidden = false;
+    demo.querySelectorAll<HTMLButtonElement>('[data-language]').forEach(button => button.addEventListener('click', () => {
+      const arabic = button.dataset.language === 'ar';
+      panel.lang = arabic ? 'ar' : 'en'; panel.dir = arabic ? 'rtl' : 'ltr';
+      panel.querySelectorAll<HTMLElement>('[data-en]').forEach(element => { element.textContent = (arabic ? element.dataset.ar : element.dataset.en) ?? ''; });
+      demo.querySelectorAll('[data-language]').forEach(control => control.setAttribute('aria-pressed', String(control === button)));
+      demo.querySelector('[data-demo-feedback]')!.textContent = arabic ? 'Arabic: reading order, alignment and navigation mirrored. Sample translation for review.' : 'English: left-to-right layout.';
+    }));
+  });
+</script>

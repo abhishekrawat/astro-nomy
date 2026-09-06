@@ -1,0 +1,95 @@
+/* A small, shared type scale inspired by editorial reading interfaces. */
+:root {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --type-small: 12px;
+  --type-ui: 14px;
+  --type-body: 16px;
+  --type-card: 22px;
+  --type-section: clamp(28px, 3vw, 38px);
+  --type-display: clamp(38px, 4.1vw, 58px);
+}
+body { font-family: var(--font-sans); }
+h1, h2, h3, .font-heading { font-family: var(--font-sans); font-style: normal; }
+.hero-copy h1, .page-intro h1, .case-header h1 {
+  font-size: var(--type-display);
+  font-weight: 650;
+  line-height: 1.14;
+  letter-spacing: -.04em;
+}
+.hero-line { display: block; }
+.hero-copy h1 .serif-accent { font-size: inherit; }
+.hero-copy { padding-block: 20px; }
+.hero-copy .eyebrow { text-transform: none; letter-spacing: 0; font-size: var(--type-small); }
+.hero-description, .page-intro > p:not(.eyebrow), .about-copy p, .contact-copy > p {
+  font-size: var(--type-body);
+  line-height: 1.8;
+}
+.section-heading h2, .demo-explanation h2, .contact-section h2 {
+  font-size: var(--type-section);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -.03em;
+}
+.project-card h3, .writing-list h3, .experience-row h3, .next-case strong {
+  font-size: var(--type-card);
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: -.025em;
+}
+.principle-grid h3 { font-size: 19px; font-weight: 600; line-height: 1.4; letter-spacing: -.02em; }
+.project-card-body > p, .principle-grid p, .experience-row p, .section-heading > p,
+.section-heading > div + div p, .demo-explanation > p:not(.eyebrow):not(.sample-label) {
+  font-size: var(--type-ui);
+  line-height: 1.8;
+}
+.eyebrow, .trust-strip .eyebrow, .writing-list .eyebrow, .case-prose .eyebrow {
+  font-size: var(--type-small);
+  font-weight: 500;
+  letter-spacing: .035em;
+  text-transform: none;
+}
+.sample-label, .case-prose .sample-label, .hero-location, .case-meta dt,
+.article-meta, .case-toc a, .footer-top p, .footer-bottom, .share-status {
+  font-size: var(--type-small);
+  line-height: 1.65;
+  letter-spacing: 0;
+}
+.wordmark, .desktop-navigation a, .header-contact, .text-link, .button-primary,
+.contact-secondary, .footer-top nav, .case-meta dd { font-size: var(--type-ui); }
+.project-tags span { font-size: 11px; }
+.trust-strip > div { font-size: 17px; letter-spacing: -.025em; font-weight: 500; }
+.trust-strip > div > span:nth-child(2) { font-size: var(--type-ui); }
+.trust-location { font-size: var(--type-small); letter-spacing: 0; }
+.hero-work-caption strong { font-size: var(--type-body); }
+.monogram { font-family: var(--font-sans); font-size: 28px; letter-spacing: -2px; font-weight: 700; }
+.hero-note { font-family: var(--font-sans); font-style: normal; font-size: var(--type-small); line-height: 1.65; transform: none; }
+.note-mark { font-size: 24px; }
+.principle-number, .writing-number { font-family: var(--font-sans); font-size: var(--type-small); font-style: normal; font-weight: 500; }
+.portrait-monogram { font-family: var(--font-sans); font-style: normal; font-weight: 600; letter-spacing: -.08em; }
+.device-annotation { font-family: var(--font-sans); font-style: normal; font-size: var(--type-small); line-height: 1.5; }
+.testimonial-grid blockquote { font-family: var(--font-sans); font-size: var(--type-card); }
+.article-shell { max-width: 720px; }
+.case-layout { grid-template-columns: 190px minmax(0, 720px); }
+.case-prose { font-family: var(--font-sans); font-size: 18px; line-height: 1.85; }
+.case-prose h2 { font-size: 28px; font-weight: 600; line-height: 1.3; letter-spacing: -.025em; }
+.case-prose h3 { font-size: 21px; font-weight: 600; line-height: 1.4; letter-spacing: -.02em; }
+.case-prose > p, .case-prose > ul, .case-prose > ol { color: hsl(var(--foreground) / .85); }
+.case-prose p { margin-bottom: 24px; }
+.case-prose table { font-size: var(--type-ui); }
+.case-prose .demo-explanation > p:not(.eyebrow):not(.sample-label) { font-size: var(--type-ui); }
+.case-prose .demo-explanation h2 { font-size: 28px; }
+@media (max-width: 1000px) {
+  .case-layout { grid-template-columns: 150px minmax(0, 1fr); }
+}
+@media (max-width: 700px) {
+  :root { --type-display: clamp(36px, 9vw, 46px); --type-card: 20px; --type-section: 30px; }
+  .hero-copy { padding-block: 0; }
+  .hero-location span { margin-inline: 5px; }
+  .hero-note { font-size: var(--type-small); }
+  .case-layout { grid-template-columns: 1fr; }
+  .case-prose { font-size: 17px; line-height: 1.85; }
+  .case-prose h2 { font-size: 26px; }
+  .wordmark { font-size: 12px; }
+  .case-toc a { font-size: var(--type-small); }
+  .footer-bottom { gap: 12px; }
+}
