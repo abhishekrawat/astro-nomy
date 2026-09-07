@@ -3,6 +3,7 @@ import { siteConfig } from "@/config/site";
 import "@/styles/globals.css";
 import "@/styles/portfolio.css";
 import "@/styles/typography.css";
+import "@/styles/storytelling.css";
 interface Props { title: string; description?: string; image?: string; noindex?: boolean; }
 const { title, description = siteConfig.description, image = "/og-portfolio.jpg", noindex = false } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, siteConfig.url);

@@ -8,7 +8,7 @@ const work = all.filter(project => !project.data.draft && project.data.kind === 
 const other = all.filter(project => project.data.draft);
 ---
 <MainLayout title="Selected Healthcare & AI Design Work" description="Explore healthcare product design and AI-assisted delivery: selected work by Abhishek Rawat, a design lead based in Abu Dhabi.">
-  <div class="shell work-list"><header class="page-intro"><p class="eyebrow">Selected work / product & practice</p><h1>From complexity<br/>to <span class="serif-accent">clarity.</span></h1><p>Healthcare experiences and the systems behind them. A closer look at the questions, tradeoffs and decisions that shape the work.</p></header><div class="project-grid">{work.map((project,index) => <ProjectCard project={project} index={index} />)}</div>
+  <div class="shell work-list"><header class="page-intro"><p class="eyebrow">Selected work / product & practice</p><h1>From complexity<br/>to <span class="serif-accent">clarity.</span></h1><p>Healthcare experiences and the systems behind them. A closer look at the questions, tradeoffs and decisions that shape the work.</p></header><div class="work-story-list">{work.map((project,index) => <ProjectCard project={project} index={index} />)}</div>
     <section class="additional-work"><p class="eyebrow">More experience</p><h2>Other projects, in brief.</h2>{other.map(project => <article><div><h3>{project.data.title}</h3><p>{project.data.description}</p></div><span>{project.data.category} · Story to follow</span></article>)}</section>
   </div><Contact />
 </MainLayout>

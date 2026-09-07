@@ -1,0 +1,7 @@
+---
+import { Image } from 'astro:assets';
+import workbench from '../../assets/workbench-concept.png';
+interface Props { class?: string; }
+const { class: className } = Astro.props;
+---
+<Image src={workbench} alt="AI-generated workbench concept: unlit rectangular and round display modules, generic circuit boards and enclosure sketches on a wooden desk; not actual project hardware" widths={[480,800,1200]} sizes="(max-width: 700px) 100vw, 800px" width={1200} format="webp" quality={75} loading="lazy" class={className} />

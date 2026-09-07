@@ -1,0 +1,8 @@
+---
+interface Props { caption: string; tone?: 'paper' | 'sage' | 'lavender' | 'ink'; }
+const { caption, tone = 'paper' } = Astro.props;
+---
+<figure class:list={['story-media', `story-tone-${tone}`]}>
+  <div class="story-media-surface"><slot /></div>
+  <figcaption><span aria-hidden="true">↳</span> {caption}</figcaption>
+</figure>

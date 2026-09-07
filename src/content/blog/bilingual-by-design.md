@@ -35,4 +35,4 @@ The most useful guidance explains why an element changes, not just how it looks.
 
 A working prototype can expose layout problems, but it cannot replace review by people who understand the language and context. Include that review in the delivery process and test the interaction with the people who will use it.
 
-[Explore a small bilingual interface demonstration in the Malaffi story.](/work/malaffi-health-portal#decision-02-give-both-languages-a-first-class-experience)
+[Explore a small bilingual interface demonstration in the Malaffi story.](/work/malaffi-health-portal#two-languages-equal-consideration)

@@ -1,0 +1,13 @@
+---
+interface Props { variant?: 'health' | 'bus'; }
+const { variant = 'health' } = Astro.props;
+---
+<div class:list={['decision-comparison', `comparison-${variant}`]}>
+  {variant === 'health' ? <>
+    <div class="comparison-panel"><span class="comparison-label">Direction A / Record first</span><div class="record-stack"><span>Clinical documents <b>24</b></span><span>Laboratory results <b>12</b></span><span>Encounter history <b>08</b></span><span>Medication records <b>06</b></span></div><p>Complete, but the person has to know where to look.</p></div>
+    <div class="comparison-panel considered"><span class="comparison-label">Direction B / Question first</span><div class="patient-question"><span>YOUR HEALTH, IN VIEW</span><strong>What would you<br/>like to find?</strong><div>My latest report <span>↗</span></div><div>My next appointment <span>↗</span></div></div><p>A familiar starting point, with the original record a step away.</p></div>
+  </> : <>
+    <div class="comparison-panel"><span class="comparison-label">01 / Fresh information</span><div class="departure-state"><span>ROUTE 71</span><strong>6 <small>min</small></strong><span>Following · 18 min</span></div><p>One number leads. Route and following departure provide context.</p></div>
+    <div class="comparison-panel considered"><span class="comparison-label">02 / Freshness unknown</span><div class="departure-state unavailable"><span>ROUTE 71</span><strong>—</strong><span>Updates unavailable</span></div><p>Don’t let an old estimate look like a current promise.</p></div>
+  </>}
+</div>

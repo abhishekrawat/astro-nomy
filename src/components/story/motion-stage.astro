@@ -1,0 +1,12 @@
+---
+interface Props { label: string; class?: string; }
+const { label, class: className } = Astro.props;
+---
+<div class:list={['motion-stage', className]} data-motion-stage>
+  <slot />
+  <button class="motion-control" type="button" data-motion-toggle data-label={label} aria-label={`Play ${label}`} aria-pressed="false" hidden><span data-motion-icon aria-hidden="true">▶</span><span data-motion-text>Play preview</span></button>
+</div>
+<script>
+  import { initializeMotion } from '@/scripts/story-motion';
+  initializeMotion();
+</script>

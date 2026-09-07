@@ -2,9 +2,10 @@
 import MainLayout from '@/layouts/main-layout.astro';
 import ProjectCard from '@/components/project-card.astro';
 import Contact from '@/components/sections/contact.astro';
+import WorkbenchPhoto from '@/components/story/workbench-photo.astro';
 import { getCollection } from 'astro:content';
 const projects = (await getCollection('work', ({data}) => !data.draft && data.kind === 'independent')).sort((a,b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 ---
 <MainLayout title="Independent Builds & Physical Prototypes" description="Inside Abhishek Rawat’s workshop: an altimeter, a desktop bus tracker, and explorations in hardware, human factors and AI-assisted development.">
-  <div class="shell work-list"><header class="page-intro"><p class="eyebrow">The workshop / independent projects</p><h1>Ideas are better<br/><span class="serif-accent">when you can hold them.</span></h1><p>Building across hardware and software is how I explore the edges of my practice. These are personal development projects, with concept illustrations while the real build documentation takes shape.</p></header><div class="project-grid">{projects.map((project,index) => <ProjectCard project={project} index={index} />)}</div></div><Contact />
+  <div class="shell work-list"><header class="page-intro"><p class="eyebrow">The workshop / independent projects</p><h1>Ideas are better<br/><span class="serif-accent">when you can hold them.</span></h1><p>Building across hardware and software is how I explore the edges of my practice. These are personal development projects, with concept illustrations while the real build documentation takes shape.</p></header><figure class="workbench-intro"><WorkbenchPhoto /><figcaption>AI-generated workbench concept · awaiting actual project photography.</figcaption></figure><div class="project-grid">{projects.map((project,index) => <ProjectCard project={project} index={index} />)}</div></div><Contact />
 </MainLayout>

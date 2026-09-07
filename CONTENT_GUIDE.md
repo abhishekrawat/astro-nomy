@@ -17,6 +17,10 @@ The site is a working portfolio with clearly labeled editorial samples. It is no
 | Product illustrations and cover image | `src/components/project-visual.astro` |
 | Shared sans-serif typography scale | `src/styles/typography.css` |
 | Layout, colors and device illustrations | `src/styles/portfolio.css` |
+| Visual-story layouts, media stages and motion | `src/styles/storytelling.css` |
+| Reusable case-study media blocks | `src/components/story/` |
+| Preview playback policy | `src/scripts/story-motion.ts` |
+| Generated workbench source and provenance | `src/assets/workbench-concept.png`, `STORYTELLING_ASSETS.md` |
 
 ## Publication states
 
@@ -43,7 +47,32 @@ The existing Malaffi cover is imported through Astro’s image pipeline. It prod
 
 The three new project visuals are editable HTML/CSS illustrations, not stock photos. The labels explicitly identify them. Update `project-visual.astro` to use real project media when ready.
 
-The existing silent Malaffi video uses an explicit expandable player with browser controls. It does not autoplay or depend on hover. Use descriptive fallback copy for any replacement video.
+The existing silent Malaffi video now leads its homepage preview, Work listing and case study. `video-preview.astro` uses an optimized poster and `preload="none"`. With JavaScript, one sufficiently visible preview plays at a time, muted and looping, with an explicit play/pause button. Videos pause offscreen and when the tab is hidden. Manual pauses persist while browsing that page. Reduced-motion and save-data preferences prevent automatic playback. A deliberate video play remains possible. Without JavaScript, the video retains native controls; the case study also links directly to the full video.
+
+`workflow-preview.astro` is an editable HTML/CSS demonstration, not a real internal-tool recording. Its three stages stay readable without animation. Reduced-motion visitors see it statically, without a nonfunctional animation button.
+
+The new workbench image is AI-generated and labeled wherever it appears. Its source stays in `src/assets/`; Astro generates 480, 800 and 1200 px WebP variants (approximately 18, 53 and 122KB). It is not evidence of actual project hardware. Replace it through `workbench-photo.astro`, update the alt text and visible captions, and retain the original provenance record.
+
+### Compose a visual case study
+
+Each `##` MDX heading becomes a numbered chapter in the sticky navigation. Keep headings short, human and specific to the project. Paragraphs use a narrow reading measure, while media blocks can use the full page width.
+
+```mdx
+import StoryMedia from "@/components/story/story-media.astro";
+import ProjectVisual from "@/components/project-visual.astro";
+
+## The decision that changed the direction
+
+A short explanation of the problem, the choice and the tradeoff.
+
+<StoryMedia tone="sage" caption="Describe the artifact, its source and whether it is illustrative.">
+  <ProjectVisual variant="health" />
+</StoryMedia>
+```
+
+Available tones are `paper`, `sage`, `lavender` and `ink`. Use `DecisionComparison` for the current healthcare alternatives or bus-data states; these are explicitly fictional studies, not shipped comparisons. `BilingualDemo` provides the interactive English/Arabic example. For photographs, import through `astro:assets` and include meaningful alt text. For a new film, use `VideoPreview` with `src`, `label`, and an explicit `poster`; its default poster belongs to Malaffi.
+
+Use a caption to distinguish actual evidence, illustrative content, and an artifact awaiting replacement. Keep publication reminders in the closing disclosure. Never turn a proposed decision or a generated visual into an apparent historical result by removing only its label.
 
 Edit `public/og-portfolio.svg`, then run `node scripts/generate-social-card.mjs` to regenerate the social preview JPEG.
 
@@ -57,7 +86,9 @@ After launch, submit the sitemap to Search Console. Share individual project dec
 
 ## Validate and publish
 
-Run `npm run build`, `npm test` and `git diff --check`. Inspect desktop/mobile layouts, both themes, keyboard navigation, language switching and video controls.
+Run `npm run build`, `npm test` and `git diff --check` with Node 22.13 or later (CI uses Node 22). The tests check static routes, assets, anchors, editorial flags, media fallbacks and the preview controller, including offscreen/background pausing, reduced motion, save-data and blocked autoplay. These simulated controller tests do not replace real-browser playback and accessibility checks.
+
+Before publishing, inspect desktop/mobile layouts, both themes, keyboard navigation, language switching and video controls. Include iOS/Safari autoplay restrictions, reduced motion and a slow connection. Confirm the chapter navigation does not obscure headings and all replacement films have an accessible description or captions as appropriate.
 
 Deploy the `dist/` directory as a static Astro site using `npm run build`. The project no longer requires Astro DB, a server adapter or a Studio token to build. Existing legacy dependencies and unused starter components remain to avoid an unrelated dependency migration.
 

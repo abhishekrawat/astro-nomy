@@ -1,6 +1,6 @@
 ---
-import ProjectVisual from '@/components/project-visual.astro';
 import { portfolio } from '@/config/portfolio';
+import VideoPreview from '@/components/story/video-preview.astro';
 ---
 <section class="portfolio-hero shell">
   <div class="hero-copy"><p class="eyebrow hero-1"><span class="availability-dot" aria-hidden="true"></span> Healthcare product design lead</p>
@@ -9,5 +9,8 @@ import { portfolio } from '@/config/portfolio';
     <div class="hero-buttons hero-3"><a href="#selected-work" class="button-primary">Explore my work <span aria-hidden="true">↓</span></a><a href={`mailto:${portfolio.email}`} class="text-link" data-track="Contact">Let’s talk ↗</a></div>
     <p class="hero-location">Based in Abu Dhabi <span aria-hidden="true">/</span> {portfolio.availability}</p>
   </div>
-  <div class="hero-work hero-2"><a href="/work/malaffi-health-portal" aria-label="Explore the Malaffi Health Portal case study" data-track="Case study open"><ProjectVisual variant="health" eager /></a><div class="hero-work-caption"><div><span class="eyebrow">Selected work / Malaffi</span><strong>A clearer view of your health.</strong></div><a href="/work/malaffi-health-portal" aria-label="Read the Malaffi story" class="circle-link">↗</a></div><div class="hero-note"><span class="note-mark" aria-hidden="true">↳</span><span>Healthcare expertise.<br/>A builder’s mindset.</span></div></div>
+  <div class="hero-project">
+    <div class="hero-project-media"><VideoPreview src="/videos/work/malaffi-preview.mp4" label="Malaffi silent interface walkthrough" /></div>
+    <div class="hero-project-caption"><div><p class="eyebrow">Selected story / Malaffi</p><a href="/work/malaffi-health-portal" data-track="Case study open"><strong>A health record.<br/>A human perspective. <span aria-hidden="true">↗</span></strong></a></div><p>Healthcare expertise.<br/>A builder’s mindset.</p></div>
+  </div>
 </section>

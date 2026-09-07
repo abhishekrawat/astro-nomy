@@ -1,0 +1,15 @@
+---
+import MotionStage from './motion-stage.astro';
+import { getImage } from 'astro:assets';
+import healthCover from '../../../public/images/work/malaffi-cover.jpg';
+interface Props { src: string; label: string; poster?: string; }
+const { src, label, poster } = Astro.props;
+const optimizedPoster = await getImage({ src: healthCover, width: 1200, format: 'webp', quality: 80 });
+---
+<MotionStage label={label} class="film-stage">
+  <video muted loop playsinline controls preload="none" poster={poster ?? optimizedPoster.src} aria-label={label}>
+    <source src={src} type="video/mp4" />
+    <a href={src}>Open the silent product walkthrough</a>
+  </video>
+  <span class="film-tag">Product in motion <span aria-hidden="true">↗</span></span>
+</MotionStage>

@@ -22,18 +22,21 @@ pubDate: "2023-06-01"
 ---
 
 import BilingualDemo from "@/components/bilingual-demo.astro";
+import StoryMedia from "@/components/story/story-media.astro";
+import DecisionComparison from "@/components/story/decision-comparison.astro";
+import ProjectVisual from "@/components/project-visual.astro";
 
-## At a glance
+## A record is only the beginning
 
-**The opportunity:** Turn the information already available through a Health Information Exchange into a useful patient experience.
+A health record can contain everything and still leave someone wondering where to look. The design opportunity was to connect a rich clinical system to the questions a patient brings to it.
 
-**The design question:** How can people find the information they need without having to understand the structure of a clinical record?
+**In one sentence:** a patient-facing layer for Abu Dhabi’s Health Information Exchange, with comprehension and continuity at its centre.
 
-**The lens:** Comprehension, continuity and equal consideration for Arabic and English.
+<StoryMedia tone="ink" caption="The framing question · proposed editorial direction for this case study.">
+  <div class="story-principle"><span>From system to person</span><p>“Where is my latest report?”<br/>A simple question.<br/>A complex system behind it.</p></div>
+</StoryMedia>
 
-The following decision narratives are an editorial example for this portfolio. They illustrate how the case study can be told; they are not a verified account of research, delivery decisions or measured outcomes. The original project overview below has been retained.
-
-## Project context
+## Making the information useful
 
 This was my first major healthcare project of its scale.
 We had built a solid backend HIE and a robust provider facing portal.
@@ -46,53 +49,50 @@ The next big challenge was to have a patient facing app that would leverage on t
 - View medications
 - View and compare health profile
 
-The population referenced in the project description describes the intended reach of the health ecosystem. It should not be read as verified active usage of this application or as a measured design outcome.
+<StoryMedia caption="Existing portfolio asset · health overview, appointments and report screens. The opening film is the existing silent product walkthrough.">
+  <ProjectVisual variant="health" />
+</StoryMedia>
 
-## Decision 01: Start with the patient’s question
+The scale of the health ecosystem is context, not a usage metric. The population in the project description should not be read as active application users or measured design impact.
 
-A clinical record is organised to document care. A patient may arrive with a different question: “What happened at my last visit?” or “Where is my latest report?”
+## Start with a familiar question
 
-A useful design direction is to organise the first layer around recognisable tasks, while keeping the original clinical information accessible. A summary should help someone locate a record without silently changing its meaning.
+A clinical record is organised to document care. A patient might arrive with “What happened at my last visit?” That difference is a useful starting point for the interface.
 
-**Alternative to examine:** A comprehensive list of records on the first screen. It makes the available information explicit, but puts more interpretation work on the patient.
+The comparison below explores two ways into the same information. **These are illustrative alternatives, not a shipped before-and-after.**
 
-**Evidence to add:** An annotated before-and-after screen, the research observation that led to the change, and what participants could do after it.
+<StoryMedia tone="sage" caption="Illustrative design comparison · fictional counts and interface copy. Replace with approved explorations and the observation that informed the actual decision.">
+  <DecisionComparison />
+</StoryMedia>
 
-> The design challenge is to reduce the effort of finding information while preserving its clinical context.
+The tradeoff is between exposing the full structure and helping someone get started. A useful summary should help a person locate the record without changing its clinical meaning.
 
-## Decision 02: Give both languages a first-class experience
+<span id="decision-02-give-both-languages-a-first-class-experience" class="legacy-story-anchor" aria-hidden="true"></span>
 
-An Arabic interface deserves its own layout review. Direction, text expansion and the placement of navigation cues all affect how a page is understood.
+## Two languages. Equal consideration.
 
-<BilingualDemo />
+Arabic is more than a translation of the English screen. Direction, text expansion and navigation cues all need consideration together.
 
-This is a fictional demonstration built for the portfolio, not a reconstruction of the shipped Malaffi interface. The Arabic copy requires native-speaker review before reuse in a product.
+**Try the language switch.** Watch the alignment and direction of the action change with the content.
 
-**Evidence to add:** A real bilingual flow, one layout decision that changed through review, and the design-system rule that made it repeatable.
+<StoryMedia caption="Interactive portfolio demonstration · fictional appointment, not the shipped Malaffi interface. Arabic copy requires native-speaker review before product reuse.">
+  <BilingualDemo />
+</StoryMedia>
 
-## Decision 03: Make the next step visible
+The case-study opportunity here is to follow one bilingual decision from a screen review into a reusable rule. That connects attention to detail with the way a team delivers consistently.
 
-Finding a report, understanding an appointment and returning to an overview are connected tasks. Each screen needs to communicate where the person is and what they can do next.
+## The work between the screens
 
-A useful case-study comparison would show a complete task rather than isolated final screens: entry point, detail, action and return.
+Leadership becomes visible in the decisions a team can move forward with. The most useful evidence is a specific disagreement, the constraint behind it, and how it was resolved.
 
-**Tradeoff to explain:** How the team balanced information density against the need to orient someone quickly, especially on a small screen.
+<StoryMedia caption="Leadership story outline · replace these prompts with your actual responsibilities, collaborators and decision artifacts.">
+  <div class="story-steps"><div><span>01 / Frame</span><h3>A shared patient problem</h3><p>Which question focused the team? What was inside and outside the scope?</p></div><div><span>02 / Align</span><h3>Make the tradeoff visible</h3><p>Show how clinical, product and engineering perspectives shaped one decision.</p></div><div><span>03 / Carry forward</span><h3>Leave a reusable pattern</h3><p>Explain what the team could apply again, beyond this release.</p></div></div>
+</StoryMedia>
 
-## Leading the work
+## What the evidence can tell us
 
-This is the place to distinguish design ownership from team contribution. A strong leadership story should explain how the problem was framed, who influenced the decision, and how disagreements were resolved.
+The existing screens and film show the product direction. They do not establish adoption, usability improvement or business impact on their own.
 
-| Leadership question | Evidence to include |
-| --- | --- |
-| What did I own? | Responsibilities, scope and decisions |
-| Who did I bring together? | Product, engineering and clinical partners |
-| What changed because of my input? | A specific decision and its consequence |
-| What did the team carry forward? | A reusable pattern or working agreement |
+A strong final chapter will connect a design decision to an approved outcome: the measure, the timeframe, and what can reasonably be attributed to the work. Where numbers are unavailable, attributable feedback or a documented delivery result can still tell a useful story.
 
-## Outcomes and learning
-
-The existing screens demonstrate the product direction. They do not establish adoption, usability improvement or business impact on their own.
-
-Before publishing a final version, add an approved outcome with its timeframe and source. If quantitative data is unavailable, use attributable qualitative feedback or a clearly described delivery result.
-
-The most useful closing reflection will name a decision worth repeating and one that would change with better evidence.
+<details><summary>Before this story is published</summary><p>Replace the illustrative decisions with your actual process. Add one research artifact, a specific leadership example, and an approved outcome with its source. Retain the distinction between ecosystem population and application usage.</p></details>

@@ -18,7 +18,11 @@ order: 6
 pubDate: "2026-09-06"
 ---
 
-## An everyday question
+import StoryMedia from "@/components/story/story-media.astro";
+import WorkbenchPhoto from "@/components/story/workbench-photo.astro";
+import DecisionComparison from "@/components/story/decision-comparison.astro";
+
+## A small question, asked often
 
 “When is the next bus?” is a small question that can lead to a surprising amount of phone checking.
 
@@ -26,35 +30,40 @@ BusTracker explores putting that information on a dedicated round display. The a
 
 This sample narrative is prepared for replacement with the actual build story. The device illustration and departure times are fictional references, not a live feed or a product photograph.
 
-## Decision 01: Give one number the room it needs
+<StoryMedia tone="ink" caption="The design ambition · proposed story framing, not a measured change in phone use.">
+  <div class="story-principle"><span>An object for the everyday</span><p>One useful glance.<br/>Then back to your day.</p></div>
+</StoryMedia>
+
+## Give one number room to breathe
 
 The next departure is the primary information. Route identity and the following departure provide context. Secondary details should support the glance rather than compete with it.
 
 The visual direction uses scale to separate those roles. It should be evaluated on the physical display, from the distance at which the device is actually used.
 
-**Evidence to add:** A short video showing the real display at a desk, and a close-up of the hierarchy in use.
-
-## Decision 02: Account for an imperfect connection
+## When the connection is imperfect
 
 A connected object has to communicate more than a successful response. A lost connection, an unavailable service and an old departure estimate are different situations.
 
 The portfolio story should show the real implemented states, including what happens when fresh data is unavailable. A polished normal state is only one part of the interaction.
 
-## Decision 03: Make the object fit the routine
+<StoryMedia caption="Illustrative state study · route and departure times are fictional. These demonstrate a design direction, not current firmware behaviour or live data.">
+  <DecisionComparison variant="bus" />
+</StoryMedia>
+
+## Find its place in the routine
 
 The display, clock views, controls and enclosure all influence whether the device is useful in its intended setting.
 
 Use photographs of enclosure iterations and explain a physical constraint that changed the design. A fitting problem, viewing-angle issue or touch-target adjustment can be a valuable part of the story.
 
-## From prototype to evidence
+<StoryMedia caption="AI-generated workbench concept · visual direction only. Replace with the real desk setup, enclosure iterations or a short recording of the object in use.">
+  <WorkbenchPhoto />
+</StoryMedia>
 
-- Record the exact behaviour of a working build.
-- Demonstrate the next and following departures with their data source.
-- Show the unavailable-data state as well as the normal state.
-- Explain which parts were designed directly, implemented with AI assistance and checked on hardware.
-
-## What this project explores
+## Does it earn its place?
 
 A focused connected object can be a useful experiment in restraint. The design question is whether it earns a place in a person’s routine through clarity and reliability.
 
-Replace this closing section with what actual use taught you, including a decision you would change.
+The next layer of evidence is the working object: normal and unavailable-data states, the source of departure information, and what daily use taught the maker. Explain which parts were designed directly, implemented with AI assistance and checked on hardware.
+
+<details><summary>Before this story is published</summary><p>Add a real desk photograph, a short demonstration of the next and following departures, and the actual unavailable-data behaviour. Replace the fictional states and closing reflection with what the build taught you, including a decision you would change.</p></details>

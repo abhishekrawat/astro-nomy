@@ -3,9 +3,9 @@ import MainLayout from '@/layouts/main-layout.astro';
 import Hero from '@/components/sections/hero-landing.astro';
 import FeaturedWork from '@/components/sections/featured-work.astro';
 import Leadership from '@/components/sections/leadership.astro';
-import BilingualDemo from '@/components/bilingual-demo.astro';
 import ProjectCard from '@/components/project-card.astro';
 import Contact from '@/components/sections/contact.astro';
+import WorkbenchPhoto from '@/components/story/workbench-photo.astro';
 import { getCollection } from 'astro:content';
 const builds = (await getCollection('work', ({data}) => !data.draft && data.kind === 'independent')).sort((a,b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 const posts = (await getCollection('blog', ({data}) => !data.draft)).sort((a,b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0,3);
@@ -14,9 +14,8 @@ const posts = (await getCollection('blog', ({data}) => !data.draft)).sort((a,b) 
   <Hero />
   <div class="trust-strip shell"><p class="eyebrow">Organisations I’ve designed for</p><div><span>Malaffi</span><span>Department of Health<span class="trust-location">Abu Dhabi</span></span><span>ADAFSA</span><span>Landmark Group</span><span>Fab.com</span></div></div>
   <FeaturedWork />
-  <div class="shell"><BilingualDemo /></div>
   <Leadership />
-  <section class="builds-section section-space" aria-labelledby="builds-title"><div class="shell"><div class="section-heading"><div><p class="eyebrow">Beyond the screen / independent builds</p><h2 id="builds-title">Curiosity,<br/><span class="serif-accent">made tangible.</span></h2></div><div><p>I build to understand. Small devices, real constraints, and the long journey from an idea to something you can hold.</p><a href="/builds" class="text-link">Inside the workshop ↗</a></div></div><div class="project-grid">{builds.map((project,index) => <ProjectCard project={project} index={index} />)}</div></div></section>
+  <section class="builds-section section-space" aria-labelledby="builds-title"><div class="shell"><div class="section-heading"><div><p class="eyebrow">Beyond the screen / independent builds</p><h2 id="builds-title">Curiosity,<br/><span class="serif-accent">made tangible.</span></h2></div><div><p>I build to understand. Small devices, real constraints, and the long journey from an idea to something you can hold.</p><a href="/builds" class="text-link">Inside the workshop ↗</a></div></div><figure class="workbench-intro"><WorkbenchPhoto /><figcaption>Workbench study · AI-generated concept, awaiting real build photography.</figcaption></figure><div class="project-grid">{builds.map((project,index) => <ProjectCard project={project} index={index} />)}</div></div></section>
   <section class="shell section-space writing-section" aria-labelledby="writing-title"><div class="section-heading"><div><p class="eyebrow">Notes on the work</p><h2 id="writing-title">Thinking <span class="serif-accent">out loud.</span></h2></div><a href="/blog" class="text-link">All writing ↗</a></div><div class="writing-list">{posts.map((post,index) => <a href={`/blog/${post.id}`}><span class="writing-number">0{index+1}</span><div><p class="eyebrow">{post.data.category} {post.data.editorial && ' / Sample essay'}</p><h3>{post.data.title}</h3></div><span aria-hidden="true">↗</span></a>)}</div></section>
   <Contact />
 </MainLayout>

@@ -18,7 +18,11 @@ order: 5
 pubDate: "2026-09-06"
 ---
 
-## The idea
+import StoryMedia from "@/components/story/story-media.astro";
+import WorkbenchPhoto from "@/components/story/workbench-photo.astro";
+import ProjectVisual from "@/components/project-visual.astro";
+
+## Attention is a design constraint
 
 Skydiving and interface design meet at a difficult question: how much information is useful when attention is already occupied?
 
@@ -26,41 +30,42 @@ This independent altimeter project explores how a physical device and its compan
 
 This is a sample case-study narrative based on the project’s recorded positioning. The visual is a concept illustration, and the current device state needs to be documented with real photographs and validation evidence.
 
-## A product principle with consequences
+<StoryMedia caption="AI-generated workbench concept paired with a code-native device illustration. Neither depicts verified project hardware. Replace with a real bench photograph and current prototype.">
+  <div class="story-contact-sheet"><WorkbenchPhoto /><ProjectVisual variant="altimeter" /></div>
+</StoryMedia>
 
-> Altitude, not instructions.
+## One principle, many consequences
+
+<StoryMedia tone="ink" caption="Product principle · numeric altitude information, with decisions remaining with the jumper.">
+  <div class="story-principle"><span>The communication boundary</span><p>Altitude,<br/>not instructions.</p></div>
+</StoryMedia>
 
 The device should communicate objective altitude information. The jumper retains responsibility for the dive plan, awareness, judgment and every action.
 
 That principle narrows the product language. Numeric altitude has a different role from a message that tells someone what to do. The case study should show how this distinction shaped the interaction and voice assets.
 
-## Designing across the boundary of a screen
+## Beyond the flat mockup
 
 A physical prototype exposes questions that a flat mockup can hide: what is readable at a glance, what happens when a connection disappears, and how a person knows whether information is current.
 
 The portfolio story can follow one decision across the device, companion interface and implementation. For example, show how a state is communicated consistently rather than presenting unrelated screenshots of each surface.
 
-**Artifacts to add:** A device photograph, a short bench demonstration, a companion-app screen and an annotated enclosure iteration.
+<StoryMedia tone="sage" caption="Design questions to document with actual hardware, interface and enclosure artifacts.">
+  <div class="story-steps"><div><span>01 / The glance</span><h3>What is readable?</h3><p>Scale, contrast and the physical conditions in which the display is viewed.</p></div><div><span>02 / The state</span><h3>What is current?</h3><p>How the device and companion interface communicate freshness and connection.</p></div><div><span>03 / The object</span><h3>What fits in the hand?</h3><p>Enclosure, controls and the constraints a screen prototype cannot expose.</p></div></div>
+</StoryMedia>
 
-## Building with AI
+## The build, the check, the revision
 
 AI assistance is part of the development process. Its contribution should be visible alongside the design direction, implementation choices and verification performed by the maker.
 
 Describe one concrete loop: a constraint, an implementation attempt, a failed check and the revision. That is stronger evidence than a list of tools or generated code volume.
 
-## Validation is part of the design
+## What a prototype can prove
 
-| Evidence | What it can establish |
-| --- | --- |
-| Interface prototype | Interaction intent and visual hierarchy |
-| Successful firmware build | The code compiles in a recorded configuration |
-| Bench test | Behaviour under the documented test conditions |
-| Field validation | Behaviour in the documented real environment |
+An interface prototype demonstrates intent. A successful firmware build establishes compilation in a recorded configuration. A bench test establishes behaviour under its documented conditions. Field validation is a separate level of evidence.
 
-These are different claims. This portfolio page does not establish operational readiness or flight validation.
-
-## Why this belongs in my design practice
+**This portfolio page does not establish operational readiness or flight validation.** The finished story needs real photographs, a recorded bench demonstration and the limits of the checks performed.
 
 The connection to healthcare is the discipline of designing around attention, uncertainty and system state. It is an exploration of human factors, not a claim that a personal prototype is a validated medical or aviation product.
 
-The final case study should close with one real limitation discovered during testing and the product decision it changed.
+<details><summary>Before this story is published</summary><p>Replace the generated workbench concept with actual build photos. Add one recorded constraint → implementation → failed check → revision sequence, a companion-app screen and a specific limitation discovered in testing. State validation levels explicitly.</p></details>

@@ -75,3 +75,30 @@ test('optimized project image variants stay below 150KB each', () => {
   assert.ok(images.length >= 3);
   images.forEach(file => assert.ok(statSync(file).size < 150_000, file));
 });
+
+test('visual stories have chapter links, media captions and sample disclosures', () => {
+  for (const slug of ['malaffi-health-portal', 'ai-design-delivery', 'altimeter', 'bus-tracker']) {
+    const source = html(join(root, 'work', slug, 'index.html'));
+    assert.match(source, /aria-label="Case study chapters"/);
+    assert.ok((source.match(/<figure class="story-media/g) ?? []).length >= 3, slug);
+    assert.match(source, /<figcaption>/);
+    assert.match(source, /Before this story is published/);
+    const ids = [...source.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
+    assert.equal(new Set(ids).size, ids.length, `Duplicate IDs in ${slug}`);
+  }
+});
+
+test('videos have non-autoplay native fallbacks and previews never nest controls in links', () => {
+  for (const file of pages) {
+    const source = html(file);
+    for (const match of source.matchAll(/<video\b([^>]+)>/g)) {
+      assert.match(match[1], /\bcontrols\b/);
+      assert.match(match[1], /\bmuted\b/);
+      assert.match(match[1], /\bplaysinline\b/);
+      assert.match(match[1], /preload="none"/);
+      assert.match(match[1], /poster="/);
+      assert.doesNotMatch(match[1], /\bautoplay\b/);
+    }
+    assert.doesNotMatch(source, /<a\b[^>]*>(?:(?!<\/a>)[\s\S])*?data-motion-toggle/);
+  }
+});

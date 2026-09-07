@@ -17,58 +17,55 @@ order: 2
 pubDate: "2026-09-06"
 ---
 
-## At a glance
+import StoryMedia from "@/components/story/story-media.astro";
+import ProjectVisual from "@/components/project-visual.astro";
 
-**The opportunity:** Reduce the repeated interpretation between a design decision and its implementation.
+## The cost of interpreting it again
 
-**The approach:** Connect reusable components to their implementation, then use AI to assist with the surrounding work.
+Which component is this? What happens in an empty state? Does the layout change in Arabic? A handoff can be full of small questions that ask people to reconstruct decisions already made.
 
-**The standard:** Include review and correction in any measurement of delivery speed.
+**The opportunity:** give AI-assisted implementation the context of an existing design system, then put review inside the workflow.
 
-This sample narrative develops the Code Connect, knowledge repository and content-pipeline work described on the About page. The workflow below is illustrative until replaced with actual project evidence.
+This sample story develops the Code Connect, knowledge-repository and content-pipeline practice described on the About page. The artifacts are illustrative until replaced with approved internal examples.
 
-## Find the bottleneck before choosing the tool
+<StoryMedia tone="ink" caption="The working principle · an editorial framing, not a measured efficiency claim.">
+  <div class="story-principle"><span>Start with the bottleneck</span><p>Less repeated interpretation.<br/>More room for judgment.</p></div>
+</StoryMedia>
 
-Handoff friction often appears in small, recurring questions. Which component is this? What happens in an empty state? Does this value come from a token? Which behaviour changes in Arabic?
+## Give the system something to work with
 
-A useful starting point is to observe where a team repeatedly reconstructs intent. That creates a concrete target for automation and a baseline against which to assess the result.
+The proposed starting point is the system the team already maintains: component names, tokens, variants and behaviour. An implementation needs to fit that system, not merely resemble one screenshot.
 
-## Decision 01: Connect to existing components
+<StoryMedia tone="lavender" caption="Illustrative component contract · editable HTML and CSS, not a screenshot of an internal tool. Replace with an approved Figma component and its real Code Connect mapping.">
+  <ProjectVisual variant="ai" />
+</StoryMedia>
 
-The proposed workflow starts with the system the team already maintains: component names, variants, tokens and usage guidance. AI-assisted implementation needs that context to produce something that fits the product.
+The important connection is between **what the component means** and **how it behaves**. A good example would follow one component through its default, empty, error and bilingual states.
 
-The portfolio illustration shows a sample appointment component alongside its implementation contract. It represents the relationship; it is not a screenshot of an internal tool.
+## Fast drafts still need slow questions
 
-**Artifact to add:** An approved example of a Figma component, its Code Connect mapping and the implementation it references.
+Does the interaction make sense? Can someone use it with a keyboard? What happens when the expected data never arrives?
 
-## Decision 02: Keep judgment in the loop
+AI can assist with scaffolding and repetitive changes. The designer and engineering partners remain responsible for choosing the interaction, checking the implementation and deciding whether it fits the product.
 
-| Stage | AI can assist with | Human responsibility |
-| --- | --- | --- |
-| Frame | Organising existing material | Define the problem and constraints |
-| Build | Scaffolding and repetitive changes | Choose the interaction and architecture |
-| Review | Finding inconsistencies and edge cases | Verify behaviour, accessibility and fit |
-| Learn | Summarising recorded observations | Decide whether the change helped |
+<StoryMedia caption="Proposed review checkpoints · these are responsibilities to demonstrate with actual project evidence.">
+  <div class="story-steps"><div><span>01 / Intent</span><h3>Does it solve the right problem?</h3><p>Compare behaviour with the agreed task and constraints, not just the mockup.</p></div><div><span>02 / Quality</span><h3>Does it work beyond the happy path?</h3><p>Review accessibility, language direction, failure states and recovery.</p></div><div><span>03 / Ownership</span><h3>Can the team maintain it?</h3><p>Keep the sources, component contracts and review decisions understandable.</p></div></div>
+</StoryMedia>
 
-The review step belongs inside the workflow. A first draft that arrives quickly but requires extensive correction is not automatically a delivery improvement.
+## Make the improvement travel
 
-## Decision 03: Make the improvement reusable
+A useful internal tool should be usable by someone who did not build it. Show the inputs it expects, the output it produces, and the route back to a person when it fails.
 
-A useful internal tool should be understandable by someone who did not build it. The handoff should include the input it expects, the result it produces and how to recover when it fails.
+For the leadership chapter, follow one adoption obstacle: a working session, a colleague’s question, or a change to the review process. Explain what you owned and what your partners contributed.
 
-The same principle applies to a knowledge repository or content pipeline: make sources and review status visible, and provide a clear path back to a person.
+> The most interesting output is a capability the team can use again.
 
-## What I would measure
+## Measure the whole journey
 
-- Time from an agreed design to a reviewed, working implementation.
-- Time spent correcting generated work, including regressions.
-- Reuse of approved components and consistency across states.
-- Whether colleagues can use the workflow independently.
+Time saved on a first draft is only part of the story. A fair comparison includes context preparation, correction, review and maintenance.
 
-Use comparable tasks and record the sample size. Include the costs of setup and maintenance rather than reporting only the best run.
+<StoryMedia caption="Measurement plan · no savings or adoption figures are asserted. Use comparable tasks, recorded sample sizes and an explicit baseline.">
+  <div class="story-steps"><div><span>Delivery</span><h3>Design → reviewed implementation</h3><p>Measure the complete elapsed journey, including correction time.</p></div><div><span>Consistency</span><h3>Reuse that survives review</h3><p>Track approved patterns and regressions across real interface states.</p></div><div><span>Enablement</span><h3>Useful without its creator</h3><p>Observe whether colleagues can complete the workflow independently.</p></div></div>
+</StoryMedia>
 
-## Leadership and adoption
-
-Complete this section with a specific example of team enablement: a working session, an adoption obstacle or a change to the review process. Explain what you owned and what your engineering partners contributed.
-
-The strongest outcome is a repeatable capability the team can use. Add the evidence that shows whether that happened.
+<details><summary>Before this story is published</summary><p>Add an approved component mapping, a recorded workflow demonstration, one specific team-enablement example, and comparable delivery evidence. Redact internal information and distinguish AI assistance from your own direction and verification.</p></details>
