@@ -2,14 +2,14 @@
 import MotionStage from './motion-stage.astro';
 import { getImage } from 'astro:assets';
 import healthCover from '../../../public/images/work/malaffi-cover.jpg';
-interface Props { src: string; label: string; poster?: string; }
-const { src, label, poster } = Astro.props;
+interface Props { src: string; label: string; poster?: string; priority?: boolean; }
+const { src, label, poster, priority = false } = Astro.props;
 const optimizedPoster = await getImage({ src: healthCover, width: 1200, format: 'webp', quality: 80 });
 // This repository asset is a cartoon demo, not a Malaffi product recording.
 // Keep its interface artwork visible until an approved walkthrough replaces it.
 const placeholderVideo = src === '/videos/work/malaffi-preview.mp4';
 ---
-{placeholderVideo ? <div class="film-stage interface-preview"><img src={poster ?? optimizedPoster.src} width="1200" height="900" alt="Malaffi interface artwork showing health records, appointments and lab results" decoding="async" /><span class="film-tag">Interface study</span></div> :
+{placeholderVideo ? <div class="film-stage interface-preview"><img src={poster ?? optimizedPoster.src} width="1200" height="900" alt="Malaffi interface artwork showing health records, appointments and lab results" decoding="async" loading={priority ? "eager" : "lazy"} fetchpriority={priority ? "high" : "auto"} /><span class="film-tag">Interface study</span></div> :
 <MotionStage label={label} class="film-stage">
   <video muted loop playsinline controls preload="none" poster={poster ?? optimizedPoster.src} aria-label={label}>
     <source src={src} type="video/mp4" />

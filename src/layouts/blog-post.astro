@@ -6,8 +6,15 @@ import { getReadingTime, formatDate } from '@/lib/utils';
 type Props = CollectionEntry<'blog'>;
 const { id, data, body } = Astro.props;
 const url = new URL(`/blog/${id}`, siteConfig.url).href;
+const articleSchema = {
+  "@type": "BlogPosting", "@id": `${url}#article`, headline: data.title, description: data.description,
+  url, mainEntityOfPage: { "@id": `${url}#webpage` }, datePublished: data.pubDate.toISOString(),
+  ...(data.updatedDate ? { dateModified: data.updatedDate.toISOString() } : {}),
+  author: { "@id": new URL("/#person", siteConfig.url).href }, publisher: { "@id": new URL("/#person", siteConfig.url).href },
+  inLanguage: "en-AE",
+};
 ---
-<MainLayout title={data.title} description={data.description} noindex={data.editorial}>
+<MainLayout title={data.title} description={data.description} noindex={data.editorial} type="article" publishedTime={data.pubDate} modifiedTime={data.updatedDate} structuredData={data.editorial ? [] : [articleSchema]}>
   <div class="shell"><article class="article-shell"><header class="page-intro"><a href="/blog" class="back-link">← All writing</a><p class="eyebrow">{data.category}</p><h1>{data.title}</h1><p>{data.description}</p></header><div class="article-meta"><span>Abhishek Rawat</span><time datetime={data.pubDate.toISOString()}>{formatDate(data.pubDate)}</time><span>{getReadingTime(body ?? '')} min read</span></div>
     {data.editorial && <aside class="editorial-banner"><strong>Sample essay.</strong> Drafted for the portfolio’s editorial direction. Replace or review before publishing as a personal account.</aside>}
     <div class="case-prose"><slot /></div>

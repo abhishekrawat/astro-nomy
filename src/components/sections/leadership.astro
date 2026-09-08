@@ -10,5 +10,5 @@ const principles = [
   <div class="section-heading"><div><p class="eyebrow">How I approach leadership</p><h2 id="leadership-title">Clarity is a<br/><span class="serif-accent">team sport.</span></h2></div><p>Strong interfaces start with strong decisions. My focus is the work—and the conditions that help a team do it well.</p></div>
   <div class="principle-grid">{principles.map(item => <article><span class="principle-number">{item.number}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div>
   {portfolio.testimonials.length > 0 && <div class="testimonial-grid">{portfolio.testimonials.map(item => <figure><blockquote>{item.quote}</blockquote><figcaption>{item.name} · {item.role}</figcaption></figure>)}</div>}
-  <a href="/about" class="text-link">More about my approach <span aria-hidden="true">↗</span></a>
+  <a href="/about" class="text-link">More about my approach <span class="link-arrow" aria-hidden="true">↗</span></a>
 </section>

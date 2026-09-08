@@ -13,19 +13,20 @@
 .signal-hero .hero-line { overflow: hidden; padding: .08em .06em .12em 0; margin-bottom: -.18em; }
 .signal-hero .hero-line > span { display: block; }
 .signal-hero h1 em { position: relative; font-family: Georgia, 'Times New Roman', serif; font-weight: 400; color: var(--orange); letter-spacing: -.07em; }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) { .signal-hero h1 em { background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; } }
 .signal-hero h1 em::after { content: ''; position: absolute; bottom: -.025em; left: .02em; width: 98%; height: .065em; background: currentColor; border-radius: 50%; transform: rotate(-3deg); opacity: .4; }
 .signal-hero .hero-description { max-width: 500px; font-size: 16px; line-height: 1.72; margin-top: 0; }
 .signal-hero .hero-buttons { margin-top: 26px; gap: 24px; }
-.signal-hero .button-primary { border-radius: 999px; padding: 9px 9px 9px 23px; min-height: 56px; gap: 22px; }
-.hero-button-arrow { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; background: hsl(var(--background) / .15); font-size: 19px; }
-.signal-hero .button-primary, .signal-hero .text-link span { transition: transform .35s var(--hero-ease), background .3s, border-color .3s; }
-.signal-hero .button-primary:hover .hero-button-arrow { animation: hero-arrow .4s var(--hero-ease); }
-.signal-hero .text-link:hover span { transform: translate(3px, -3px); }
+.signal-hero .button-primary { border-radius: 999px; padding: 9px 9px 9px 23px; min-height: 56px; gap: 22px; transition: transform .35s var(--hero-ease), background-color .35s var(--hero-ease), border-color .35s var(--hero-ease), box-shadow .35s var(--hero-ease); }
+.hero-button-arrow { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; background: hsl(var(--background) / .15); font-size: 19px; transition: transform .35s var(--hero-ease), background-color .35s var(--hero-ease); }
+.signal-hero .text-link .link-arrow { transition-timing-function: var(--hero-ease); }
+.signal-hero .button-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 22px -14px hsl(var(--foreground) / .65); }
+.signal-hero .button-primary:hover .hero-button-arrow { transform: scale(1.08); background: hsl(var(--background) / .24); }
 .signal-hero .hero-location { margin-top: 23px; font-size: 11px; }
 .signal-hero .availability-dot { animation-iteration-count: 2; }
 .signal-hero .hero-project { position: relative; padding: 68px 0 0; align-self: center; }
-.hero-atmosphere { position: absolute; inset: -18px -24px 30px; z-index: -2; border-radius: 50%; background: radial-gradient(ellipse at 60% 42%, #e8b78350, #e7e8d855 45%, transparent 72%); }
-.dark .hero-atmosphere { background: radial-gradient(ellipse at 60% 42%, #b6693338, #7e846619 45%, transparent 72%); }
+.hero-atmosphere { position: absolute; inset: -18px -24px 30px; z-index: -2; border-radius: 50%; background: radial-gradient(ellipse at 60% 42%, #77a8ff45, #d9e7ff66 45%, transparent 72%); }
+.dark .hero-atmosphere { background: radial-gradient(ellipse at 60% 42%, #377cff42, #203b7430 45%, transparent 72%); }
 .hero-paths { position: absolute; width: calc(100% + 40px); height: auto; left: -20px; top: -16px; z-index: -1; overflow: visible; color: var(--orange); }
 .hero-paths path { stroke: currentColor; stroke-width: 1; opacity: .32; }
 .hero-paths circle { fill: currentColor; opacity: .6; }
@@ -69,7 +70,6 @@
 @keyframes hero-fragment-in { from { opacity: 0; transform: translate(-30px, -18px) rotate(-18deg); } to { opacity: 1; transform: rotate(-7deg); } }
 @keyframes hero-deliver-in { from { opacity: 0; transform: translate(20px, -28px) rotate(17deg); } to { opacity: 1; transform: rotate(5deg); } }
 @keyframes hero-path-in { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
-@keyframes hero-arrow { 49% { transform: translateY(5px); } 50% { transform: translateY(-5px); } }
 @media (max-width: 1000px) and (min-width: 761px) {
   .signal-hero { grid-template-columns: minmax(0, 1.1fr) minmax(340px, .9fr); column-gap: 28px; padding-top: 54px; }
   .signal-hero .hero-copy h1 { font-size: clamp(45px, 5.2vw, 55px); }

@@ -5,82 +5,84 @@
 
 @layer base {
   :root {
-    /* Warm paper & ink */
-    --background: 50 20% 98%;
-    --background-200: 50 15% 96%;
+    /* Cool paper & ink */
+    --background: 220 36% 98%;
+    --background-200: 220 30% 96%;
 
-    --foreground: 60 4% 7%;
+    --foreground: 222 34% 10%;
 
-    --muted: 48 10% 91%;
-    --muted-foreground: 50 4% 38%;
+    --muted: 220 17% 91%;
+    --muted-foreground: 220 10% 38%;
 
-    --popover: 50 20% 98%;
-    --popover-foreground: 60 4% 7%;
+    --popover: 220 36% 98%;
+    --popover-foreground: 222 34% 10%;
 
-    --border: 48 10% 89%;
-    --input: 48 10% 89%;
+    --border: 220 16% 89%;
+    --input: 220 16% 89%;
 
-    --card: 50 20% 98%;
-    --card-foreground: 60 4% 7%;
+    --card: 220 36% 98%;
+    --card-foreground: 222 34% 10%;
 
-    --primary: 60 4% 7%;
-    --primary-foreground: 50 20% 98%;
+    --primary: 222 34% 10%;
+    --primary-foreground: 220 36% 98%;
 
-    --secondary: 48 10% 91%;
-    --secondary-foreground: 60 4% 7%;
+    --secondary: 220 17% 91%;
+    --secondary-foreground: 222 34% 10%;
 
-    --accent: 60, 4%, 7%, 0.06;
-    --accent-foreground: 60 4% 7%;
+    --accent: 222, 34%, 10%, 0.06;
+    --accent-foreground: 222 34% 10%;
 
-    /* Single warm accent — availability dot, focus, selection only */
-    --accent-warm: 32 90% 44%;
+    /* Blue-to-violet emphasis, inspired by Meta's fluid colour language. */
+    --accent-warm: 220 100% 52%;
+    --availability: 145 48% 38%;
 
     --destructive: 0 100% 50%;
     --destructive-foreground: 210 40% 98%;
 
-    --ring: 32 90% 44%;
+    --ring: 220 100% 52%;
 
     --radius: 0.5rem;
     --ds-shadow-border: 0 0 0 1px rgba(28, 25, 20, .08);
   }
 
   .dark {
-    /* Deep warm ink */
-    --background: 60 4% 5%;
-    --background-200: 60 4% 3%;
+    /* Deep blue ink */
+    --background: 224 32% 7%;
+    --background-200: 224 32% 5%;
 
-    --foreground: 48 12% 92%;
+    --foreground: 220 28% 93%;
 
-    --muted: 50 5% 12%;
-    --muted-foreground: 48 6% 78%;
+    --muted: 223 18% 14%;
+    --muted-foreground: 220 12% 78%;
 
-    --accent: 48, 12%, 92%, .09;
-    --accent-foreground: 48 12% 92%;
+    --accent: 220, 28%, 93%, .09;
+    --accent-foreground: 220 28% 93%;
 
-    --accent-warm: 32 85% 56%;
+    --accent-warm: 220 100% 68%;
+    --availability: 145 48% 60%;
 
-    --popover: 60 4% 5%;
-    --popover-foreground: 48 12% 92%;
+    --popover: 224 32% 7%;
+    --popover-foreground: 220 28% 93%;
 
-    --border: 50 5% 13%;
-    --input: 50 5% 13%;
+    --border: 223 18% 16%;
+    --input: 223 18% 16%;
 
-    --card: 60 4% 5%;
-    --card-foreground: 48 12% 92%;
+    --card: 224 32% 7%;
+    --card-foreground: 220 28% 93%;
 
-    --primary: 48 12% 92%;
-    --primary-foreground: 60 4% 5%;
+    --primary: 220 28% 93%;
+    --primary-foreground: 224 32% 7%;
 
-    --secondary: 50 5% 12%;
-    --secondary-foreground: 48 12% 92%;
+    --secondary: 223 18% 14%;
+    --secondary-foreground: 220 28% 93%;
 
     --destructive: 0 63% 31%;
-    --destructive-foreground: 48 12% 92%;
+    --destructive-foreground: 220 28% 93%;
 
-    --ring: 32 85% 56%;
+    --ring: 220 100% 68%;
 
     --radius: 0.5rem;
-    --ds-shadow-border: 0 0 0 1px hsla(48, 12%, 92%, .145);
+    --ds-shadow-border: 0 0 0 1px hsla(220, 28%, 93%, .145);
   }
 }
 
@@ -168,6 +170,9 @@ body::after {
 .dark body::after {
   opacity: 0.045;
 }
+@media (max-width: 760px), (prefers-reduced-motion: reduce) {
+  body::after { display: none; }
+}
 
 /* Legacy emphasis hook: typography stays within the sans-serif family. */
 .serif-accent {
@@ -184,7 +189,7 @@ body::after {
   width: 7px;
   height: 7px;
   border-radius: 9999px;
-  background: hsl(var(--accent-warm));
+  background: hsl(var(--availability));
   flex-shrink: 0;
 }
 .availability-dot::before {
@@ -192,7 +197,7 @@ body::after {
   position: absolute;
   inset: 0;
   border-radius: 9999px;
-  background: hsl(var(--accent-warm));
+  background: hsl(var(--availability));
   animation: pulse-dot 2.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
 @keyframes pulse-dot {

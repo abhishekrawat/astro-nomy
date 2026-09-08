@@ -1,6 +1,6 @@
 ---
 import BaseHead from "@/components/layout/base-head.astro";
-interface Props { title: string; description?: string; image?: string; noindex?: boolean; bodyClass?: string; }
+interface Props { title: string; description?: string; image?: string; noindex?: boolean; type?: "website" | "article"; publishedTime?: Date; modifiedTime?: Date; structuredData?: Record<string, unknown>[]; bodyClass?: string; }
 const { bodyClass, ...head } = Astro.props;
 ---
 <!doctype html>

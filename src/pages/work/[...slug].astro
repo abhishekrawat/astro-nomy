@@ -17,15 +17,22 @@ const next = all[(all.findIndex(item => item.id === project.id) + 1) % all.lengt
 const parent = data.kind === 'independent' ? '/builds' : '/work';
 const chapterHeadings = headings.filter(item => item.depth === 2);
 const readingMinutes = Math.max(2, Math.ceil((project.body ?? '').split(/\s+/).length / 200));
+const canonicalURL = new URL(`/work/${project.id}`, 'https://rawat.dev').href;
+const caseStudySchema = {
+  "@type": "CreativeWork", "@id": `${canonicalURL}#case-study`, name: data.title, description: data.description,
+  url: canonicalURL, mainEntityOfPage: { "@id": `${canonicalURL}#webpage` }, datePublished: data.pubDate.toISOString(),
+  author: { "@id": "https://rawat.dev/#person" }, inLanguage: "en-AE",
+  ...(data.cover ? { image: new URL(data.cover, 'https://rawat.dev').href } : {}),
+};
 ---
-<MainLayout title={data.title} description={data.description} image={data.cover} noindex={data.editorial}>
+<MainLayout title={data.title} description={data.description} image={data.cover} noindex={data.editorial} type="article" publishedTime={data.pubDate} structuredData={data.editorial ? [] : [caseStudySchema]}>
   <article class="shell" data-case-study>
     <header class="case-header story-header"><a href={parent} class="back-link">← {data.kind === 'independent' ? 'Independent builds' : 'Selected work'}</a><p class="eyebrow">{data.eyebrow}</p><h1>{data.title}</h1><p class="case-lead">{data.summary ?? data.description}</p>
       <p class="story-kicker">{readingMinutes} min read <span aria-hidden="true">·</span> A story in {chapterHeadings.length} chapters</p>
     </header>
-    <div class="story-hero" data-project-preview={project.id}>{data.video ? <VideoPreview src={data.video} label={`${data.title} silent product walkthrough`} /> : data.visual === 'ai' ? <WorkflowPreview /> : <ProjectVisual variant={data.visual} eager />}</div>
+    <div class="story-hero" data-project-preview={project.id}>{data.video ? <VideoPreview src={data.video} label={`${data.title} silent product walkthrough`} priority /> : data.visual === 'ai' ? <WorkflowPreview /> : <ProjectVisual variant={data.visual} eager />}</div>
     <div class="story-summary">
-    {data.video && data.video !== '/videos/work/malaffi-preview.mp4' && <a class="text-link" href={data.video}>Open the full silent walkthrough ↗</a>}
+    {data.video && data.video !== '/videos/work/malaffi-preview.mp4' && <a class="text-link" href={data.video}>Open the full silent walkthrough <span class="link-arrow" aria-hidden="true">↗</span></a>}
     <dl class="case-meta"><div><dt>My role</dt><dd>{data.role}</dd></div><div><dt>Context</dt><dd>{data.company}</dd></div><div><dt>Timeframe</dt><dd>{data.duration}</dd></div><div><dt>Project type</dt><dd>{data.status}</dd></div></dl>
     {data.editorial && <aside class="editorial-banner"><strong>Story preview.</strong> Sample narrative and illustrative artifacts await your review. They are not evidence of measured results. Existing project media is identified separately.</aside>}
     </div>

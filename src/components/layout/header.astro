@@ -10,13 +10,13 @@ const path = Astro.url.pathname;
       {portfolio.navigation.map(link => <a href={link.href} aria-current={path.startsWith(link.href) ? 'page' : undefined}>{link.label}</a>)}
     </nav>
     <div class="header-actions">
-      <a class="header-contact" href={`mailto:${portfolio.email}`} data-track="Contact">Let’s talk <span aria-hidden="true">↗</span></a>
+      <a class="header-contact" href={`mailto:${portfolio.email}`} data-track="Contact">Let’s talk <span class="link-arrow" aria-hidden="true">↗</span></a>
       <ThemeControl />
       <details class="mobile-navigation">
         <summary aria-label="Navigation menu"><span aria-hidden="true">☰</span></summary>
         <nav aria-label="Mobile navigation">
-          {portfolio.navigation.map(link => <a href={link.href} aria-current={path.startsWith(link.href) ? 'page' : undefined}>{link.label}<span aria-hidden="true">↗</span></a>)}
-          <a href={`mailto:${portfolio.email}`} data-track="Contact">Let’s talk <span aria-hidden="true">↗</span></a>
+          {portfolio.navigation.map(link => <a href={link.href} aria-current={path.startsWith(link.href) ? 'page' : undefined}>{link.label}<span class="link-arrow" aria-hidden="true">↗</span></a>)}
+          <a href={`mailto:${portfolio.email}`} data-track="Contact">Let’s talk <span class="link-arrow" aria-hidden="true">↗</span></a>
         </nav>
       </details>
     </div>

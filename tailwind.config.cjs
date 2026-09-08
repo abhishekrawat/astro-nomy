@@ -3,7 +3,18 @@ const { fontFamily } = require("tailwindcss/defaultTheme");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
-  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  // Only scan files that are rendered by the portfolio routes. This prevents
+  // unused starter-kit components from being emitted into every page's CSS.
+  content: [
+    "./src/pages/**/*.{astro,md,mdx}",
+    "./src/layouts/**/*.astro",
+    "./src/content/**/*.{md,mdx}",
+    "./src/components/layout/{header,footer}.astro",
+    "./src/components/sections/{hero-landing,featured-work,leadership,contact}.astro",
+    "./src/components/story/{video-preview,workflow-preview,workbench-photo,story-media,decision-comparison,motion-stage}.astro",
+    "./src/components/{project-card,project-visual,theme-control,bilingual-demo,callout}.astro",
+    "./src/components/ui/button.tsx",
+  ],
   theme: {
     container: {
       center: true,

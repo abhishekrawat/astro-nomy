@@ -5,9 +5,9 @@ import { portfolio } from "@/config/portfolio";
 <footer class="site-footer">
   <div class="shell footer-top">
     <div><a class="wordmark" href="/">Abhishek Rawat<span class="accent-text">.</span></a><p>Healthcare design. Thoughtful systems. Things that work.</p></div>
-    <nav aria-label="Social links"><a href={siteConfig.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a><a href={siteConfig.links.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={siteConfig.links.resume} target="_blank" rel="noreferrer" data-track="Resume">Résumé ↗</a></nav>
+    <nav aria-label="Social links"><a href={siteConfig.links.linkedin} target="_blank" rel="noreferrer">LinkedIn <span class="link-arrow" aria-hidden="true">↗</span></a><a href={siteConfig.links.github} target="_blank" rel="noreferrer">GitHub <span class="link-arrow" aria-hidden="true">↗</span></a><a href={siteConfig.links.resume} target="_blank" rel="noreferrer" data-track="Resume">Résumé <span class="link-arrow" aria-hidden="true">↗</span></a></nav>
   </div>
-  <div class="shell footer-bottom"><span>© {new Date().getFullYear()} Abhishek Rawat</span><span>{portfolio.location} <span aria-hidden="true">·</span> <span data-local-time>GST / UTC+4</span></span><a href="/rss.xml">RSS ↗</a></div>
+  <div class="shell footer-bottom"><span>© {new Date().getFullYear()} Abhishek Rawat</span><span>{portfolio.location} <span aria-hidden="true">·</span> <span data-local-time>GST / UTC+4</span></span><a href="/rss.xml">RSS <span class="link-arrow" aria-hidden="true">↗</span></a></div>
 </footer>
 <script>
   const time = document.querySelector('[data-local-time]');
