@@ -47,7 +47,9 @@ The existing Malaffi cover is imported through Astro’s image pipeline. It prod
 
 The three new project visuals are editable HTML/CSS illustrations, not stock photos. The labels explicitly identify them. Update `project-visual.astro` to use real project media when ready.
 
-The existing silent Malaffi video now leads its homepage preview, Work listing and case study. `video-preview.astro` uses an optimized poster and `preload="none"`. With JavaScript, one sufficiently visible preview plays at a time, muted and looping, with an explicit play/pause button. Videos pause offscreen and when the tab is hidden. Manual pauses persist while browsing that page. Reduced-motion and save-data preferences prevent automatic playback. A deliberate video play remains possible. Without JavaScript, the video retains native controls; the case study also links directly to the full video.
+The Malaffi preview uses the existing optimized interface artwork. Visual inspection on 2026-09-08 found that `malaffi-preview.mp4` is a cartoon demo; it is retained on disk but excluded from preview playback and the case-study film link. Supply an approved product recording and remove the explicit placeholder guard in `video-preview.astro` and the case-study page to enable it. Other videos retain `preload="none"`, a single visible playing preview, explicit play/pause controls, offscreen pausing, and reduced-motion/save-data support. Without JavaScript, videos retain native controls.
+
+The homepage hero uses a 1.2-second coordinated text, path and card entrance, followed by event-driven pointer depth on desktop. Reduced motion disables the entrance and depth. Native page transitions keep the header stable and connect visible matching project previews where supported; other browsers use normal navigation. No additional animation dependency is required.
 
 `workflow-preview.astro` is an editable HTML/CSS demonstration, not a real internal-tool recording. Its three stages stay readable without animation. Reduced-motion visitors see it statically, without a nonfunctional animation button.
 

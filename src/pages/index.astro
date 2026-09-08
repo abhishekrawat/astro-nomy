@@ -12,7 +12,16 @@ const posts = (await getCollection('blog', ({data}) => !data.draft)).sort((a,b) 
 ---
 <MainLayout title="Healthcare Product Design Lead">
   <Hero />
-  <div class="trust-strip shell"><p class="eyebrow">Organisations I’ve designed for</p><div><span>Malaffi</span><span>Department of Health<span class="trust-location">Abu Dhabi</span></span><span>ADAFSA</span><span>Landmark Group</span><span>Fab.com</span></div></div>
+  <section class="trust-proof shell" aria-labelledby="organisations-title">
+    <div class="trust-proof-heading"><h2 id="organisations-title">Organisations I’ve designed for</h2></div>
+    <ul class="trust-marks" role="list">
+      <li>Malaffi</li>
+      <li>Department of Health</li>
+      <li>ADAFSA</li>
+      <li>Landmark Group</li>
+      <li>Fab.com</li>
+    </ul>
+  </section>
   <FeaturedWork />
   <Leadership />
   <section class="builds-section section-space" aria-labelledby="builds-title"><div class="shell"><div class="section-heading"><div><p class="eyebrow">Beyond the screen / independent builds</p><h2 id="builds-title">Curiosity,<br/><span class="serif-accent">made tangible.</span></h2></div><div><p>I build to understand. Small devices, real constraints, and the long journey from an idea to something you can hold.</p><a href="/builds" class="text-link">Inside the workshop ↗</a></div></div><figure class="workbench-intro"><WorkbenchPhoto /><figcaption>Workbench study · AI-generated concept, awaiting real build photography.</figcaption></figure><div class="project-grid">{builds.map((project,index) => <ProjectCard project={project} index={index} />)}</div></div></section>

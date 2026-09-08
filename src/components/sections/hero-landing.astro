@@ -2,15 +2,30 @@
 import { portfolio } from '@/config/portfolio';
 import VideoPreview from '@/components/story/video-preview.astro';
 ---
-<section class="portfolio-hero shell">
-  <div class="hero-copy"><p class="eyebrow hero-1"><span class="availability-dot" aria-hidden="true"></span> Healthcare product design lead</p>
-    <h1 class="hero-1"><span class="hero-line">Care, made clear.</span> <span class="hero-line">Delivery, made better.</span></h1>
-    <p class="hero-description hero-2">I’m Abhishek. I bring clarity to complex healthcare experiences—and use AI to help teams turn good decisions into working products.</p>
-    <div class="hero-buttons hero-3"><a href="#selected-work" class="button-primary">Explore my work <span aria-hidden="true">↓</span></a><a href={`mailto:${portfolio.email}`} class="text-link" data-track="Contact">Let’s talk ↗</a></div>
-    <p class="hero-location">Based in Abu Dhabi <span aria-hidden="true">/</span> {portfolio.availability}</p>
+<section class="portfolio-hero signal-hero shell" aria-labelledby="hero-title">
+  <div class="hero-copy"><p class="eyebrow hero-intro"><span class="availability-dot" aria-hidden="true"></span> {portfolio.availability}<span aria-hidden="true">·</span> UAE</p>
+    <h1 id="hero-title"><span class="hero-line"><span>I make complex</span></span><span class="hero-line"><span>healthcare easier</span></span><span class="hero-line"><span>to understand</span></span><span class="hero-line"><span>and <em>trust.</em></span></span></h1>
+    <p class="hero-description">I lead product design from clinical workflows to patient-facing experiences—bringing clarity to the systems, teams, and decisions behind better care. I use AI to accelerate exploration and delivery, while keeping human judgement close to the work.</p>
+    <div class="hero-buttons"><a href="#selected-work" class="button-primary"><span>Explore selected work</span><span class="hero-button-arrow" aria-hidden="true">↓</span></a><a href={`mailto:${portfolio.email}`} class="text-link" data-track="Contact">Start a conversation <span aria-hidden="true">↗</span></a></div>
+    <p class="hero-location">Lead healthcare product designer <span aria-hidden="true">/</span> Abu Dhabi</p>
   </div>
-  <div class="hero-project">
-    <div class="hero-project-media"><VideoPreview src="/videos/work/malaffi-preview.mp4" label="Malaffi silent interface walkthrough" /></div>
-    <div class="hero-project-caption"><div><p class="eyebrow">Selected story / Malaffi</p><a href="/work/malaffi-health-portal" data-track="Case study open"><strong>A health record.<br/>A human perspective. <span aria-hidden="true">↗</span></strong></a></div><p>Healthcare expertise.<br/>A builder’s mindset.</p></div>
+  <div class="hero-project" data-hero-stage>
+    <div class="hero-atmosphere" aria-hidden="true"></div>
+    <svg class="hero-paths" viewBox="0 0 560 540" fill="none" aria-hidden="true">
+      <path class="signal-path" pathLength="1" d="M32 104H125Q151 104 151 130V165Q151 188 177 188H282Q307 188 307 216V345Q307 375 335 375H461Q494 375 494 410V453" />
+      <path class="signal-path" pathLength="1" d="M517 82H404Q380 82 380 107V145Q380 169 352 169H221Q196 169 196 197V409Q196 438 169 438H59" />
+      <circle cx="32" cy="104" r="4"/><circle cx="494" cy="453" r="4"/><circle cx="517" cy="82" r="3"/><circle cx="59" cy="438" r="3"/>
+    </svg>
+    <div class="hero-fragment fragment-understand" aria-hidden="true"><span class="fragment-index">01 / Understand</span><div class="fragment-lines"><i></i><i></i><i></i></div><span>Find the human need.</span></div>
+    <div class="hero-preview-arrival"><div class="hero-preview-frame" data-hero-surface>
+      <div class="hero-preview-bar" aria-hidden="true"><span class="preview-dots"><i></i><i></i><i></i></span><span>Malaffi / a clearer perspective</span><span>↗</span></div>
+      <div class="hero-project-media" data-project-preview="malaffi-health-portal"><VideoPreview src="/videos/work/malaffi-preview.mp4" label="Malaffi silent interface walkthrough" /></div>
+    </div></div>
+    <div class="hero-fragment fragment-deliver" aria-hidden="true"><span class="fragment-check">↗</span><div><span class="fragment-index">02 / Make it real</span><strong>Intent → interface.</strong></div></div>
+    <div class="hero-project-caption"><div><p class="eyebrow">Selected story / Malaffi</p><a href="/work/malaffi-health-portal" data-track="Case study open" data-hero-case><strong>A health record.<br/>A human perspective. <span aria-hidden="true">↗</span></strong></a></div><span class="hero-caption-note">Designed around people.</span></div>
   </div>
 </section>
+<script>
+  import { initializeHero } from '@/scripts/hero-motion';
+  initializeHero();
+</script>

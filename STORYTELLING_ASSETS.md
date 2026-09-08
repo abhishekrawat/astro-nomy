@@ -8,7 +8,7 @@ The existing Astro architecture, self-hosted Inter typography, editorial publica
 
 ## Existing project media
 
-- `public/videos/work/malaffi-preview.mp4`: existing silent walkthrough, approximately 788KB. Reused in previews and as a directly accessible full film.
+- `public/videos/work/malaffi-preview.mp4`: visually checked on 2026-09-08 and found to contain a cartoon demo, not a Malaffi walkthrough. The file is retained, but `video-preview.astro` displays the existing Malaffi interface artwork in its place and the case study hides the full-film link. Replace with an approved recording and remove the placeholder guard before presenting it as product footage.
 - `public/images/work/malaffi-cover.jpg`: existing three-screen image. Delivered through Astro as responsive WebP images and the film poster.
 - `src/components/project-visual.astro`: existing editable illustrative AI and device compositions.
 

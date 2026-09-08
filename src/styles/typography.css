@@ -42,7 +42,7 @@ h1, h2, h3, .font-heading { font-family: var(--font-sans); font-style: normal; }
   font-size: var(--type-ui);
   line-height: 1.8;
 }
-.eyebrow, .trust-strip .eyebrow, .writing-list .eyebrow, .case-prose .eyebrow {
+.eyebrow, .writing-list .eyebrow, .case-prose .eyebrow {
   font-size: var(--type-small);
   font-weight: 500;
   letter-spacing: .035em;
@@ -57,8 +57,6 @@ h1, h2, h3, .font-heading { font-family: var(--font-sans); font-style: normal; }
 .wordmark, .desktop-navigation a, .header-contact, .text-link, .button-primary,
 .contact-secondary, .footer-top nav, .case-meta dd { font-size: var(--type-ui); }
 .project-tags span { font-size: 11px; }
-.trust-strip > div { font-size: 17px; letter-spacing: -.025em; font-weight: 500; }
-.trust-strip > div > span:nth-child(2) { font-size: var(--type-ui); }
 .trust-location { font-size: var(--type-small); letter-spacing: 0; }
 .hero-work-caption strong { font-size: var(--type-body); }
 .monogram { font-family: var(--font-sans); font-size: 28px; letter-spacing: -2px; font-weight: 700; }

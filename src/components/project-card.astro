@@ -7,7 +7,7 @@ interface Props { project: CollectionEntry<'work'>; index?: number; }
 const { project, index = 0 } = Astro.props;
 ---
 <article class="project-card">
-  {project.data.video ? <div class="project-card-preview"><VideoPreview src={project.data.video} label={`${project.data.title} silent product walkthrough`} /></div> : project.data.visual === 'ai' ? <div class="project-card-preview"><WorkflowPreview /></div> : <a href={`/work/${project.id}`} class="project-image-link" aria-label={`Explore ${project.data.title}`} data-track="Case study open"><ProjectVisual variant={project.data.visual} /></a>}
+  {project.data.video ? <div class="project-card-preview" data-project-preview={project.id}><VideoPreview src={project.data.video} label={`${project.data.title} silent product walkthrough`} /></div> : project.data.visual === 'ai' ? <div class="project-card-preview" data-project-preview={project.id}><WorkflowPreview /></div> : <a href={`/work/${project.id}`} class="project-image-link" data-project-preview={project.id} aria-label={`Explore ${project.data.title}`} data-track="Case study open"><ProjectVisual variant={project.data.visual} /></a>}
   <div class="project-card-body"><div class="project-card-meta"><p class="eyebrow">{String(index + 1).padStart(2, '0')} / {project.data.eyebrow}</p>{project.data.editorial && <span class="sample-label">Story preview</span>}</div>
     <a href={`/work/${project.id}`} data-track="Case study open"><h3>{project.data.title} <span aria-hidden="true">↗</span></h3></a>
     <p>{project.data.description}</p><div class="project-tags">{project.data.tags.slice(0, 3).map(tag => <span>{tag}</span>)}</div>

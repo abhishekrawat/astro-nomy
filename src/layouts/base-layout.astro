@@ -5,7 +5,12 @@ const { bodyClass, ...head } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
-  <head><BaseHead {...head} /></head>
+  <head>
+    <BaseHead {...head} />
+    <script>
+      import '@/scripts/page-transitions';
+    </script>
+  </head>
   <body class={bodyClass}>
     <a href="#main-content" class="skip-link">Skip to content</a>
     <slot />
